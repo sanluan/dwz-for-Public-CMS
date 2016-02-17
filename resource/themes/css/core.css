@@ -8,7 +8,7 @@ del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td{ padding:0;margin:0;font-size:12px;line-height:21px;font-family:Arial, sans-serif;}
+table, caption, tbody, tfoot, thead, tr, th, td{ padding:0;margin:0;font-size:12px;line-height:21px;font-family:Arial, sans-serif;word-break:break-all;}
 
 /* Remember to define focus styles! */
 :focus{ outline:0;}
@@ -31,20 +31,6 @@ a:hover{ text-decoration:underline;}
 header{ display:block;overflow:hidden;height:34px;position:relative;border-bottom-width:1px;border-bottom-style:solid;}
 main{ overflow:hidden;}
 footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;z-index:-1;border-top-width:1px;border-top-style:solid;position:absolute;}
-
-/* Panel */
-.panel{ display:block;background-position:0 100%;background-repeat:repeat-x;}
-.panel .panelHeader{ display:block;height:28px;padding-left:5px;background-position:0 0;}
-.panel .panelHeaderContent{ display:block;height:28px;padding-right:5px;background-position:100% -50px;position:relative;}
-.panel .panelHeaderContent h1{ display:block;overflow:hidden;height:28px;padding:0 5px;line-height:28px;background-position:0 -100px;background-repeat:repeat-x;}
-.panel .panelContent{ display:block;overflow:auto;padding:5px 5px 1px 5px;border-style:solid;border-width:0 1px;}
-.panel .panelFooter{ display:block;overflow:hidden;height:5px;padding-left:5px;background-position:0 -150px;}
-.panel .panelFooterContent{ display:block;overflow:hidden;height:5px;padding-right:5px;background-position:100% -200px;}
-
-.panel .collapsable, .panel .expandable{ display:block;overflow:hidden;width:20px;height:21px;text-indent:-1000px;position:absolute;top:4px;right:4px;}
-.panel .collapsable:hover{ background-position:0 -50px;}
-.panel .expandable{ background-position:0 -100px;}
-.panel .expandable:hover{ background-position:0 -150px;}
 
 /* Tabs */
 .tabs{ background-position:0 100%;background-repeat:repeat-x;}
@@ -74,17 +60,13 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .tabsPage .tabsPageHeader li a{ float:left;display:block;overflow:hidden;height:26px;padding-left:5px;padding-right:10px;line-height:26px;background-position:0 0;}
 .tabsPage .tabsPageHeader li a:hover{ text-decoration:none;}
 .tabsPage .tabsPageHeader li span{ float:left;display:block;overflow:hidden;width:112px;height:24px;line-height:24px;cursor:pointer;}
-
 .tabsPage .tabsPageHeader li.selected{ background:#ffffff;}
 .tabsPage .tabsPageHeader li.hover a ,.tabsPage .tabsPageHeader li.selected a{ font-weight:bold;}
-
 .tabsPage .tabsPageHeader li .close{ display:block;overflow:hidden;width:11px;height:11px;padding:0;text-indent:-1000px;position:absolute;top:3px;right:2px;}
 .tabsPage .tabsPageHeader li .close:hover{ background-position:0 -50px;}
-
 .tabsPage .tabsPageHeader li.main span{ padding:2px 8px 0 3px;}
 .tabsPage .tabsPageHeader li .home_icon,
 .tabsPage .tabsPageHeader li.main .home_icon{ width:auto;padding:0 0 0 15px;background-position:0 3px;}
-
 .tabsPage .tabsMove{ height:25px;position:absolute;top:0;right:0;z-index:2;}
 .tabsPage .tabsLeft, .tabsPage .tabsRight, .tabsPage .tabsMore{ display:block;overflow:hidden;width:17px;height:23px;text-indent:-1000px;position:absolute;z-index:2;}
 .tabsPage .tabsLeft{ background-position:0 0;top:1px;left:0;cursor:pointer;}
@@ -148,9 +130,7 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .dialog .dialogFooter{ padding-left:5px;background-position:0 -150px;}
 .dialog .dialogFooter_r{ padding-right:5px;background-position:100% -200px;}
 .dialog .dialogFooter_c{ padding:0;background-position:0 -250px;background-repeat:repeat-x;}
-
 .dialogProxy{ opacity:0.8;filter:alpha(opacity=80);}
-
 .dialog .resizable_f_r{ width:11px;height:11px;background-position:0 -400px;}
 
 /* Dialog Resizable */
@@ -171,13 +151,22 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .shadow{ display:none;overflow:hidden;position:absolute;z-index:41;}
 .shadow .shadow_h, .shadow .shadow_h_l, .shadow .shadow_h_r, .shadow .shadow_h_c,
 .shadow .shadow_f, .shadow .shadow_f_l, .shadow .shadow_f_r, .shadow .shadow_f_c{ display:block;overflow:hidden;height:6px;}
-
 .shadow .shadow_h, .shadow .shadow_c, .shadow .shadow_f{ position:relative;}
 .shadow .shadow_h_l, .shadow .shadow_c_l, .shadow .shadow_f_l{ width:6px;position:absolute;top:0;left:0;}
 .shadow .shadow_h_r, .shadow .shadow_c_r, .shadow .shadow_f_r{ width:6px;position:absolute;top:0;right:0;}
 .shadow .shadow_h_c, .shadow .shadow_c_c, .shadow .shadow_f_c{ margin:0 6px;}
-
 .shadow .shadow_c, .shadow .shadow_c_l, .shadow .shadow_c_r, .shadow .shadow_c_c{ display:block;overflow:hidden;height:100%;}
+
+/* Shadow */
+.shadow .shadow_h_l{background-image:url(../default/images/shadow/shadow_h_l.png);background-repeat:no-repeat;}
+.shadow .shadow_h_r{background-image:url(../default/images/shadow/shadow_h_r.png);background-repeat:no-repeat;}
+.shadow .shadow_h_c{background-image:url(../default/images/shadow/shadow_h_c.png);background-repeat:repeat-x;}
+.shadow .shadow_c_l{background-image:url(../default/images/shadow/shadow_c_l.png);background-repeat:repeat-y;}
+.shadow .shadow_c_r{background-image:url(../default/images/shadow/shadow_c_r.png);background-repeat:repeat-y;}
+.shadow .shadow_c_c{background-image:url(../default/images/shadow/shadow_c_c.png);background-repeat:repeat;}
+.shadow .shadow_f_l{background-image:url(../default/images/shadow/shadow_f_l.png);background-repeat:no-repeat;}
+.shadow .shadow_f_r{background-image:url(../default/images/shadow/shadow_f_r.png);background-repeat:no-repeat;}
+.shadow .shadow_f_c{background-image:url(../default/images/shadow/shadow_f_c.png);background-repeat:repeat-x;}
 
 /* Tree */
 .tree li{ clear:both;display:block;line-height:24px;cursor:pointer;}
@@ -185,33 +174,30 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .tree div{ display:block;overflow:hidden;}
 .tree div div{ float:left;display:block;overflow:hidden;width:22px;height:24px;border:none;background-position:0 -100px;}
 .tree a, .tree a:hover{ text-decoration:none;}
-
 .tree .collapsable{ background-position:0 -300px;}
 .tree .first_collapsable{ background-position:0 -250px;}
 .tree .last_collapsable{ background-position:0 -350px;}
-
 .tree .expandable{ background-position:0 -100px;}
-
 .tree .first_expandable{ background-position:0 -50px;}
 .tree .last_expandable{ background-position:0 -150px;}
 .tree .end_expandable{ background-position:0 0;}
 .tree .end_collapsable{ background-position:0 -200px;}
-
 .tree .indent{ background:none;}
 .tree .line{ background-position:0 -400px;}
 .tree .node{ background-position:0 -450px;}
 .tree .last .node{ background-position:0 -500px;}
-
 .tree .folder_expandable{ background-position:0 0;}
 .tree .folder_collapsable{ background-position:0 -50px;}
 .tree .file{ background-position:0 -100px;}
-
 .tree .unchecked{ background-position:0 0;}
 .tree .hover .unchecked{ background-position:0 -50px;}
 .tree .checked{ background-position:0 -100px;}
 .tree .hover .checked{ background-position:0 -150px;}
 .tree .indeterminate{ background-position:0 -200px;}
 .tree .hover .indeterminate{ background-position:0 -250px;}
+.tree div div{background-image:url(../default/images/tree/tree.png);background-repeat:no-repeat;}
+.tree .folder_collapsable, .tree .folder_expandable, .tree .file{background-image:url(../default/images/tree/folder.png);background-repeat:no-repeat;}
+.tree .checked, .tree .unchecked, .tree .indeterminate{background-image:url(../default/images/tree/check.png);background-repeat:no-repeat;}
 
 /* Accordion */
 .accordion{ display:block;border-style:solid;border-width:1px 1px 0 1px;}
@@ -228,31 +214,22 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .accordion .accordionHeader h2 span{ background-position:0 -150px;}
 
 /* Grid */
-.panel .grid{ border-style:solid;border-width:0 1px;}
-.panel .panelBar{ border-width:1px;}
-
 .panelBar{ display:block;overflow:hidden;height:27px;border-style:solid;border-width:1px 0;background-repeat:repeat-x;}
-
 .panelBar ul{ padding:1px;}
 .panelBar li{ float:left;display:block;overflow:hidden;height:25px;padding:0 0 0 5px;}
 .panelBar li.hover{ background-position:0 -100px;}
 .panelBar li.hover a{ background-position:100% -150px;}
-
 .panelBar .toolBar li, .panelBar .toolBar li.hover{ padding:0 0 0 5px;background-position:0 -100px;}
 .panelBar .toolBar a, .panelBar .toolBar li.hover a{ float:left;display:block;overflow:hidden;padding:0 5px 0 0;text-decoration:none;background-position:100% -150px;}
 .panelBar .toolBar span, .panelBar .toolBar li.hover span{ float:left;display:block;overflow:hidden;height:25px;padding:0 0 0 20px;line-height:25px;cursor:pointer;}
-
 .panelBar .toolBar a.add span{ background-position:0 -696px;}
 .panelBar .toolBar a.delete span{ background-position:0 -746px;}
 .panelBar .toolBar a.edit span{ background-position:0 -796px;}
 .panelBar .toolBar a.icon span{ background-position:0 -846px;}
-
 .panelBar .toolBar li.line{ display:block;overflow:hidden;width:12px;padding:0;text-indent:-1000px;background-position:5px -200px;}
-
 .panelBar .pages{ float:left;overflow:hidden;height:21px;padding:2px 5px;}
 .panelBar .pages span{ float:left;line-height:21px;}
 .panelBar .pages select{ float:left;margin:0 3px;font-size:12px;}
-
 .pagination{ float:right;padding-left:7px;background-position:0 -199px;}
 .pagination li, .pagination li.hover{ padding:0 0 0 5px;background-position:0 -100px;}
 .pagination a, .pagination li.hover a, .pagination li span{ float:left;display:block;padding:0 5px 0 0;text-decoration:none;line-height:23px;background-position:100% -150px;}
@@ -280,37 +257,24 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .pagination li.jumpto .textInput{ float:left;width:30px;padding:1px;border-color:#acaeaf;}
 .pagination li.jumpto .goto{ float:left;display:block;overflow:hidden;width:16px;height:19px;border:0;text-indent:-1000px;background-position:0 -650px;cursor:pointer;}
 
-.grid{ display:block;overflow:hidden;width:100%;border-width:0 1px;position:relative;}
-.grid .gridHeader{ display:block;overflow:hidden;width:auto;}
-.grid .gridThead{ }
+/* CSS Table */
+table.list {border-collapse:collapse; border:solid 1px #ededed;}
+table.list thead tr {background:url("../default/images/tableth.png") repeat-x scroll 0 0 #F0EFF0;}
+table.list th {padding:1px 2px; line-height:26px; border-right: solid 1px #D0D0D0; border-bottom:solid 1px #D0D0D0; font-weight:bolder; }
+table.list td {padding:1px 2px; line-height:24px; border-right:solid 1px #ededed;}
+table.list th.order{background:url(../default/images/order.gif) no-repeat right; cursor:pointer;}
+table.list th.asc{background:url(../default/images/order_up.gif) no-repeat right; cursor:pointer;}
+table.list th.desc{background:url(../default/images/order_down.gif) no-repeat right; cursor:pointer;}
+table.list tbody {background-color:#fff;}
+table.list .right {text-align:right;}
+table.list .trbg {background-color:#f8f8f8;}
+table.list .hover {background-color:#fff5c0;}
+table.list .selected {background-color:#CDE8FF;}
+table.list a {color:#3C7FB1;}
+table.list a:hover {text-decoration:underline;}
+table.list td span.error {z-index:-1}
+table.nowrap tbody tr {border-bottom:solid 1px #ededed;}
 
-.grid .gridScroller{ display:block;overflow:auto;position:relative;}
-.grid .gridTbody{ }
-
-.grid table{ border:0;border-collapse:collapse;table-layout:fixed;}
-.grid .gridHeader th{ padding:0 3px;border-style:solid;border-width:0 1px 1px 0;vertical-align:top;white-space:nowrap;line-height:26px;cursor:default;}
-.grid .gridTbody td{ border-right:solid 1px #ededed;overflow:hidden;padding:0 3px;border-bottom:solid 1px #ededed;vertical-align:middle;line-height:24px;}
-.grid .gridTbody td div{ display:block;overflow:hidden;height:24px;white-space:nowrap;line-height:24px;}
-.grid .gridTbody td div a{ line-height:24px;}
-
-.grid .gridRow{ border-style:solid;border-width:0 0 1px 0;cursor:default;}
-.grid .gridRow td.tdLast{ padding:0 4px 0 5px;border-right:solid 1px;}
-.grid .gridCol{ width:100%;display:block;overflow:hidden;height:26px;line-height:26px;white-space:nowrap;}
-
-
-.grid .gridTbody .selected td{ border-bottom-style:dotted;border-bottom-width:1px;}
-.grid .gridTbody .selected .tdSelected{ }
-.grid .gridTbody .tdSelected{ }
-
-.grid .resizeMarker, .grid .resizeProxy{ display:block;overflow:hidden;width:1px;position:absolute;}
-
-.grid .left{ text-align:left;}
-.grid .right{ text-align:right;}
-.grid .center{ text-align:center;}
-
-.grid .gridHeader th.order{ background-position:100% 0;background:url(../default/images/order.gif) no-repeat right;cursor:pointer;}
-.grid .gridHeader th.asc{ background-position:100% 0;background:url(../default/images/order_up.gif) no-repeat right;cursor:pointer;}
-.grid .gridHeader th.desc{ background-position:100% 0;background:url(../default/images/order_down.gif) no-repeat right;cursor:pointer;}
 
 /* Taskbar */
 #taskbar{ overflow:hidden;height:26px;border-style:solid;border-width:0;border-color:#0f3255;background-color:#112746;background-repeat:repeat-x;position:absolute;z-index:30;}
@@ -344,6 +308,7 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 
 /* ProgressBar */
 .progressBar{ display:block;width:148px;height:28px;position:fixed;top:50%;left:50%;margin-left:-74px;margin-top:-14px;padding:10px 10px 10px 50px;text-align:left;line-height:27px;font-weight:bold;position:absolute;z-index:2001;}
+.progressBar{border:solid 2px #86a5ad;background-color:#FFF;background-image:url(../default/images/progressBar/progressBar_m.gif);background-repeat:no-repeat;background-position:10px 10px;}
 .background{ display:block;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:2000;}
 .alertBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:1010;}
 .dialogBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:900;}
@@ -429,16 +394,12 @@ header .nav li{ float:left;padding:0 5px;line-height:34px;position:relative;}
 .themeList li div{ display:block;overflow:hidden;width:13px;height:11px;text-indent:-100px;cursor:pointer;}
 .themeList li.azure div{ background-position:0 0;}
 .themeList li.azure .selected{ background-position:0 -20px;}
-.themeList li.green div{ background-position:-20px 0;}
-.themeList li.green .selected{ background-position:-20px -20px;}
-.themeList li.red div{ background-position:-40px 0;}
-.themeList li.red .selected{ background-position:-40px -20px;}
-.themeList li.purple div{ background-position:-60px 0;}
-.themeList li.purple .selected{ background-position:-60px -20px;}
-.themeList li.silver div{ background-position:-80px 0;}
-.themeList li.silver .selected{ background-position:-80px -20px;}
-.themeList li.default div{ background-position:-100px 0;}
-.themeList li.default .selected{ background-position:-100px -20px;}
+.themeList li.purple div{ background-position:-20px 0;}
+.themeList li.purple .selected{ background-position:-20px -20px;}
+.themeList li.silver div{ background-position:-40px 0;}
+.themeList li.silver .selected{ background-position:-40px -20px;}
+.themeList li.default div{ background-position:-60px 0;}
+.themeList li.default .selected{ background-position:-60px -20px;}
 
 /* Pages default */
 .page{ display:block;overflow:hidden;float:left;width:100%;}
@@ -555,7 +516,7 @@ h3.contentTitle{ margin-bottom:5px;line-height:25px;font-size:13px;border-bottom
 #suggest li.selected{ border:1px solid #0a246a;background-color:#b6bdd2}
 
 /* button */
-a.btnAdd, a.btnDel, a.btnView, a.btnEdit, a.btnSelect, a.btnInfo, a.btnAssign, a.btnLook, a.btnAttach{ background:url(../default/images/button/imgX.gif) no-repeat;display:block;width:22px;height:20px;text-indent:-1000px;overflow:hidden;float:left;margin-right:3px}
+a.btnAdd, a.btnDel, a.btnView, a.btnEdit, a.btnSelect, a.btnInfo, a.btnAssign, a.btnLook, a.btnAttach{ background:url(../default/images/button.gif) no-repeat;display:block;width:22px;height:20px;text-indent:-1000px;overflow:hidden;float:left;margin-right:3px}
 a.btnAdd{ background-position:0 0}
 a.btnDel{ background-position:-23px 0}
 a.btnInfo{ background-position:-46px 0}

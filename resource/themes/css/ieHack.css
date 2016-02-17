@@ -48,7 +48,6 @@ header .menu li a, header .menu li span { line-height:37px;}
 /* Grid */
 .panelBar .toolBar span, .panelBar .toolBar li.hover span,
 .panelBar .pagination span, .panelBar .pagination li.hover span { line-height:25px;}
-.grid .gridCol { line-height:23px;}
 
 /* ----------------------------------------------------------------- Form */
 /* TextInput */
@@ -64,6 +63,3 @@ header .menu li a, header .menu li span { line-height:37px;}
 #calendar .time .up, #calendar .time .down {font-size:7px;}
 
 textarea.required { background-position:104% 0;}
-
-
-
