@@ -84,7 +84,7 @@
 <div id="dialogBackground" class="dialogBackground"></div>
 
 <div id='background' class='background'></div>
-<div id='progressBar' class='progressBar'>数据加载中，请稍等...</div>]]></_PAGE_>
+<div id='progressBar' class='progressBar'></div>]]></_PAGE_>
 
 <!-- dwz.pagination -->
 <_PAGE_ id="pagination"><![CDATA[<ul>

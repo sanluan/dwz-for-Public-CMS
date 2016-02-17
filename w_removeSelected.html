@@ -1,55 +1,52 @@
-<form id="pagerForm" method="post" action="#rel#">
-	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
-</form>
-
 <div class="pageHeader">
-	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="w_removeSelected.html" method="post">
-	<div class="searchBar">
-		<ul class="searchContent">
-			<li>
-				<label>我的客户：</label>
-				<input type="text" name="keywords" value=""/>
-			</li>
-			<li>
-			<select class="combox" name="province">
-				<option value="">所有省市</option>
-				<option value="北京">北京</option>
-				<option value="上海">上海</option>
-				<option value="天津">天津</option>
-				<option value="重庆">重庆</option>
-				<option value="广东">广东</option>
-			</select>
-			</li>
-		</ul>
-		<!--
-		<table class="searchContent">
-			<tr>
-				<td>
-					我的客户：<input type="text"/>
-				</td>
-				<td>
-					<select class="combox" name="province">
-						<option value="">所有省市</option>
-						<option value="北京">北京</option>
-						<option value="上海">上海</option>
-						<option value="天津">天津</option>
-						<option value="重庆">重庆</option>
-						<option value="广东">广东</option>
-					</select>
-				</td>
-			</tr>
-		</table>
-		-->
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="w_removeSelected.html" method="post">
+		<input type="hidden" name="pageNum" value="1" />
+		<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+		<input type="hidden" name="orderField" value="${param.orderField}" />
+		<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>我的客户：</label>
+					<input type="text" name="keywords" value=""/>
+				</li>
+				<li>
+				<select class="combox" name="province">
+					<option value="">所有省市</option>
+					<option value="北京">北京</option>
+					<option value="上海">上海</option>
+					<option value="天津">天津</option>
+					<option value="重庆">重庆</option>
+					<option value="广东">广东</option>
+				</select>
+				</li>
 			</ul>
+			<!--
+			<table class="searchContent">
+				<tr>
+					<td>
+						我的客户：<input type="text"/>
+					</td>
+					<td>
+						<select class="combox" name="province">
+							<option value="">所有省市</option>
+							<option value="北京">北京</option>
+							<option value="上海">上海</option>
+							<option value="天津">天津</option>
+							<option value="重庆">重庆</option>
+							<option value="广东">广东</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			-->
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+					<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</form>
 </div>
 <div class="pageContent">

@@ -1,39 +1,35 @@
-
-<form id="pagerForm" action="demo/database/dwzOrgLookup2.html">
-	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
-</form>
-
 <div class="pageHeader">
-	<form rel="pagerForm" method="post" action="demo/database/dwzOrgLookup2.html" onsubmit="return dwzSearch(this, 'dialog');">
-	<div class="searchBar">
-		<ul class="searchContent">
-			<li>
-				<label>部门名称:</label>
-				<input class="textInput" name="orgName" value="" type="text">
-			</li>
-			<li>
-				<label>部门编号:</label>
-				<input class="textInput" name="orgNum" value="" type="text">
-			</li>
-			<li>
-				<label>部门经理:</label>
-				<input class="textInput" name="leader" value="" type="text">
-			</li>
+	<form id="pagerForm" method="post" action="demo/database/dwzOrgLookup2.html" onsubmit="return dwzSearch(this, 'dialog');">
+		<input type="hidden" name="pageNum" value="1" />
+		<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+		<input type="hidden" name="orderField" value="${param.orderField}" />
+		<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+		<div class="searchBar">
+			<ul class="searchContent">
 				<li>
-				<label>上级部门:</label>
-				<input class="textInput" name="parentOrg.orgName" value="" type="text">
-			</li>
-		</ul>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择部门">选择带回</button></div></div></li>
+					<label>部门名称:</label>
+					<input class="textInput" name="orgName" value="" type="text">
+				</li>
+				<li>
+					<label>部门编号:</label>
+					<input class="textInput" name="orgNum" value="" type="text">
+				</li>
+				<li>
+					<label>部门经理:</label>
+					<input class="textInput" name="leader" value="" type="text">
+				</li>
+					<li>
+					<label>上级部门:</label>
+					<input class="textInput" name="parentOrg.orgName" value="" type="text">
+				</li>
 			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+					<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择部门">选择带回</button></div></div></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</form>
 </div>
 <div class="pageContent">

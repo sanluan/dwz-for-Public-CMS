@@ -307,8 +307,8 @@ table.nowrap tbody tr {border-bottom:solid 1px #ededed;}
 #taskbar .taskbarRightDisabled{ background-position:0 -250px;cursor:default;}
 
 /* ProgressBar */
-.progressBar{ display:block;width:148px;height:28px;position:fixed;top:50%;left:50%;margin-left:-74px;margin-top:-14px;padding:10px 10px 10px 50px;text-align:left;line-height:27px;font-weight:bold;position:absolute;z-index:2001;}
-.progressBar{border:solid 2px #86a5ad;background-color:#FFF;background-image:url(../default/images/progressBar/progressBar_m.gif);background-repeat:no-repeat;background-position:10px 10px;}
+.progressBar{ display:block;width:28px;height:28px;position:fixed;top:50%;left:50%;margin-left:-14px;margin-top:-14px;padding:10px 10px 10px 10px;position:absolute;z-index:2001;}
+.progressBar{background-image:url(../default/images/progressBar/progressBar_m.gif);background-repeat:no-repeat;background-position:10px 10px;}
 .background{ display:block;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:2000;}
 .alertBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:1010;}
 .dialogBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:900;}

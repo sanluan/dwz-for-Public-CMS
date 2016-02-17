@@ -1,39 +1,35 @@
-<form id="pagerForm" method="post" action="demo_page1.html">
-	<input type="hidden" name="status" value="${param.status}">
-	<input type="hidden" name="keywords" value="${param.keywords}" />
-	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-</form>
-
-
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="demo_page1.html" method="post">
-	<div class="searchBar">
-		<ul class="searchContent">
-			<li>
-				<label>我的客户：</label>
-				<input type="text"/>
-			</li>
-			<li>
-			<select class="combox" name="province">
-				<option value="">所有省市</option>
-				<option value="北京">北京</option>
-				<option value="上海">上海</option>
-				<option value="天津">天津</option>
-				<option value="重庆">重庆</option>
-				<option value="广东">广东</option>
-			</select>
-			</li>
-			<li><label>建档日期：</label><input type="text" class="date" readonly="true" /></li>
-		</ul>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+	<form id="pagerForm" onsubmit="return navTabSearch(this);" action="demo_page1.html" method="post">
+		<input type="hidden" name="status" value="${param.status}">
+		<input type="hidden" name="keywords" value="${param.keywords}" />
+		<input type="hidden" name="pageNum" value="1" />
+		<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+		<input type="hidden" name="orderField" value="${param.orderField}" />
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>我的客户：</label>
+					<input type="text"/>
+				</li>
+				<li>
+				<select class="combox" name="province">
+					<option value="">所有省市</option>
+					<option value="北京">北京</option>
+					<option value="上海">上海</option>
+					<option value="天津">天津</option>
+					<option value="重庆">重庆</option>
+					<option value="广东">广东</option>
+				</select>
+				</li>
+				<li><label>建档日期：</label><input type="text" class="date" readonly="true" /></li>
 			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+					<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</form>
 </div>
 <div class="pageContent">
