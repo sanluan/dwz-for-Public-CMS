@@ -67,7 +67,12 @@ header{border-color:#b8d0d6;}
 .toolBar li.hover, .toolBar li.hover a, .toolBar li.hover span, .toolBar span,
 .pagination, .pagination li.hover, .pagination li.hover a, .pagination li span,
 .pagination li.disabled span span,
-.panelBar .line, .pagination li.jumpto, .pagination li.jumpto .goto{background-image:url(./images/grid.png);background-repeat:no-repeat; }
+.panelBar .line, .pagination li.jumpto, .pagination li.jumpto .goto{background-image:url(./images/grid.png); }
+
+.toolBar li.hover, .toolBar li.hover a, .toolBar li.hover span, .toolBar span,
+.pagination, .pagination li.hover, .pagination li.hover a, .pagination li span,
+.pagination li.disabled span span,
+.panelBar .line, .pagination li.jumpto, .pagination li.jumpto .goto{background-repeat:no-repeat;}
 .panelBar{border-color:#b8d0d6;background-color:#efefef;}
 
 /* ----------------------------------------------------------------- Form */
