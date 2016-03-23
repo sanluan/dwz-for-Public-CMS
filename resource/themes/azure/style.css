@@ -38,8 +38,9 @@ header{border-color:#99bbe8;}
 .alert h1{border-color:#CCC;background-image:url(./images/alert_panel_icon.png);background-repeat:no-repeat;}
 
 /* Dialog */
-.dialog .dialogHeader, .dialog .dialogHeader_r, .dialog .dialogHeader_c,
-.dialog .dialogFooter, .dialog .dialogFooter_r, .dialog .dialogFooter_c{background-image:url(./images/dialogpanel.png);background-repeat:no-repeat;}
+.dialog .dialogHeader, .dialog .dialogHeader_r,
+.dialog .dialogFooter, .dialog .dialogFooter_r{background-image:url(./images/dialogpanel.png);background-repeat:no-repeat;}
+.dialog .dialogHeader_c,.dialog .dialogFooter_c{background-image:url(./images/dialogpanel.png);}
 .dialog .dialogHeader h1, .dialog .dialogHeader .close, .dialog .dialogHeader .maximize, .dialog .dialogHeader .restore, .dialog .dialogHeader .minimize, .resizable_f_r{background-image:url(./images/dialogpanel_icon.png);background-repeat:no-repeat;}
 .dialog .dialogHeader h1{color:#15428B;}
 .dialog .dialogContent{border-color:#99bbe8;background-color:#e4ebf6;}
