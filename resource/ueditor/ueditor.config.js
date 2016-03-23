@@ -30,7 +30,7 @@
         UEDITOR_HOME_URL: URL
 
         // 服务器统一请求接口路径
-        , serverUrl: base+"/ueditor.do"
+        , serverUrl: base+"/ueditor.json"
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
 //        , toolbars: [[
@@ -41,7 +41,7 @@
 //            'directionalityltr', 'directionalityrtl', 'indent', '|',
 //            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
 //            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-//            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+//            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
 //            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
 //            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
 //            'print', 'preview', 'searchreplace', 'help', 'drafts'
@@ -50,7 +50,7 @@
                   'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'forecolor', 'backcolor','spechars', '|',
                   'paragraph', 'fontfamily', 'fontsize', '|', 
                   'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
-                  'link', 'unlink', '|', 
+                  'link', 'unlink', '|', 'insertvideo', 
                   'simpleupload', 'insertimage', 'wordimage','emotion', 'scrawl', 'attachment', 'map', 'insertcode', '|',
                   'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'],
               ['fullscreen','pagebreak','horizontal', 'searchreplace', 'selectall', 'touppercase', 'tolowercase', '|','removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'template', 'preview','cleardoc', 'undo', 'redo', 'drafts','source']]

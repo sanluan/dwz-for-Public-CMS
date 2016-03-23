@@ -5,6 +5,10 @@
 	<title>PublicCMS管理后台</title>
 	<link href="resource/themes/css/core.css" rel="stylesheet" media="screen"/>
 	<link href="resource/themes/css/print.css" rel="stylesheet" media="print"/>
+	<link rel="stylesheet" href="resource/fontawesome/css/font-awesome.min.css">
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="resource/fontawesome/css/font-awesome-ie7.min.css">
+	<![endif]-->
 	<!--[if lte IE 9]>
 		<link href="resource/themes/css/ieHack.css" rel="stylesheet" media="screen"/>
 	    <script src="resource/js/html5shiv.min.js"></script>
@@ -24,7 +28,7 @@
 	<script src="resource/js/dwz.regional.zh.js"></script>
 	<script>
 $(function(){
-	DWZ.init("resource/dwz.frag.xml", {
+	DWZ.init("resource/dwz.frag.html", {
 		loginUrl:"login.html",
 		statusCode:{ok:200, error:300, timeout:301}, //【可选】
 		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
@@ -68,7 +72,7 @@ function editorSyn(ename){
 			<div id="menu">
 				<div class="accordion" fillSpace="sidebar">
 					<div class="accordionHeader">
-						<h2><span>Folder</span>界面组件</h2>
+						<h2>界面组件</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
@@ -138,7 +142,7 @@ function editorSyn(ename){
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2><span>Folder</span>典型页面</h2>
+						<h2>典型页面</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder treeCheck">
@@ -165,7 +169,7 @@ function editorSyn(ename){
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2><span>Folder</span>流程演示</h2>
+						<h2>流程演示</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
@@ -181,7 +185,7 @@ function editorSyn(ename){
 		<div class="tabsPageHeader">
 			<div class="tabsPageHeaderContent">
 				<ul class="navTab-tab">
-					<li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">工作台</span></span></a></li>
+					<li tabid="main" class="main"><a href="javascript:;"><i class="icon-home"></i> 工作台</a></li>
 				</ul>
 			</div>
 			<div class="tabsLeft">left</div>
@@ -189,7 +193,7 @@ function editorSyn(ename){
 			<div class="tabsMore">more</div>
 		</div>
 		<ul class="tabsMoreList">
-			<li><a href="javascript:;">工作台</a></li>
+			<li><a href="javascript:;"><i class="icon-home"></i> 工作台</a></li>
 		</ul>
 		<div class="navTab-panel tabsPageContent layoutBox">
 			<div class="page unitBox">
@@ -213,10 +217,9 @@ function editorSyn(ename){
 	Copyright &copy; 2015
 	<ul class="themeList" id="themeList">
 		<li theme="azure"><div class="selected">天蓝</div></li>
-		<li theme="default"><div>淡青</div></li>
-		<li theme="green"><div>绿色</div></li>
-		<li theme="purple"><div>紫色</div></li>
 		<li theme="silver"><div>银色</div></li>
+		<li theme="purple"><div>紫色</div></li>
+		<li theme="default"><div>淡青</div></li>
 	</ul>
 </footer>
 <script>

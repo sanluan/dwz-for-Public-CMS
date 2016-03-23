@@ -36,4 +36,11 @@
 		title:{error:"错误", info:"提示", warn:"警告", correct:"成功", confirm:"确认提示"},
 		butMsg:{ok:"确定", yes:"是", no:"否", cancel:"取消"}
 	});
+	
+
+	$.setMessage('statusCode_503','服务器当前负载过大或者正在维护!');
+	$.setMessage('validateFormError','提交数据不完整，{0}个字段有错误，请改正后再提交!');
+	$.setMessage('sessionTimout','会话超时，请重新登录!');
+	$.setMessage('alertSelectMsg','请选择信息!');
+	$.setMessage('forwardConfirmMsg','继续下一步!');
 })(jQuery);

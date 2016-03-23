@@ -16179,7 +16179,7 @@ UE.plugins['list'] = function () {
         },
         codemirror: function (editor, holder){
 
-            var codeEditor = window.CodeMirror(holder, {
+            var codeEditor = window.UeCodeMirror(holder, {
                 mode: "text/html",
                 tabMode: "indent",
                 lineNumbers: true,
@@ -16190,7 +16190,7 @@ UE.plugins['list'] = function () {
             codeEditor.getScrollerElement().style.cssText = 'position:absolute;left:0;top:0;width:100%;height:100%;';
             codeEditor.refresh();
             return {
-                getCodeMirror:function(){
+                getUeCodeMirror:function(){
                     return codeEditor;
                 },
                 setContent: function (content){
@@ -16223,7 +16223,7 @@ UE.plugins['list'] = function () {
             sourceEditorFirst:false
         });
         function createSourceEditor(holder){
-            return sourceEditors[opt.sourceEditor == 'codemirror' && window.CodeMirror ? 'codemirror' : 'textarea'](me, holder);
+            return sourceEditors[opt.sourceEditor == 'codemirror' && window.UeCodeMirror ? 'codemirror' : 'textarea'](me, holder);
         }
 
         var bakCssText;
@@ -16313,7 +16313,7 @@ UE.plugins['list'] = function () {
                         sourceEditor.select();
                         me.addListener('fullscreenchanged', function(){
                             try{
-                                sourceEditor.getCodeMirror().refresh()
+                                sourceEditor.getUeCodeMirror().refresh()
                             }catch(e){}
                         });
                     });

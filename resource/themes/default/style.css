@@ -1,12 +1,11 @@
 @charset "utf-8";
 
-/* Icon */
-.tabsHeader li.main a span span, #taskbar li .taskbutton span{background-image:url(./images/icon.png);background-repeat:no-repeat;}
-
+a{ color: #3C7FB1;}
 /* Tabs */
-.tabs, .tabsHeader, .tabsHeaderContent,
-.tabs .tabsHeader ul, .tabs .tabsHeader li, .tabs .tabsHeader li a, .tabs .tabsHeader li span,
+.tabsHeader, .tabsHeaderContent,
+.tabs .tabsHeader li a, .tabs .tabsHeader li span,
 .tabs .tabsFooter, .tabs .tabsFooterContent{background-image:url(./images/tabspanel.png);background-repeat:no-repeat;}
+.tabs, .tabs .tabsHeader ul, .tabs .tabsHeader li{background-image:url(./images/tabspanel.png);}
 .tabs .tabsHeader li a{color:#03408b;}
 .tabs .tabsHeader li span{color:#183152;}
 .tabs .tabsContent{border-color:#b8d0d6;background-color:#eef4f5;}
@@ -24,12 +23,9 @@ header{border-color:#b8d0d6;}
 .tabsPage .tabsPageHeader{background-color:#e9f0f2;}
 .tabsPage .tabsPageHeader{border-color:#b8d0d6;}
 .tabsPage .tabsPageHeader li a{color:#183152;}
-.tabsPage .tabsPageHeader li .close,
-.tabsPage .tabsPageHeader li.hover .close,
-.tabsPage .tabsPageHeader li.selected .close{background-image:url(./images/tabspage_icon.png);background-repeat:no-repeat;}
+.tabsPage .tabsPageHeader li.selected{ background:#ffffff;}
 .tabsPage .tabsLeft, .tabsPage .tabsRight, .tabsPage .tabsMore{background-image:url(./images/tabscontrol.png);background-repeat:no-repeat;}
 .tabsPage .tabsMoreList{border-color:#b8d0d6;background-color:#FFF;}
-.tabsPage .tabsPageHeader .home_icon{background-image:url(./images/icon.png);background-repeat:no-repeat;}
 .tabsPage .tabsPageContent,footer{border-color:#b8d0d6;background-color:#FFF;}
 
 /* Alert */
@@ -57,7 +53,7 @@ header{border-color:#b8d0d6;}
 .tree .selected{background-color:#e8edf3;}
 
 /* Accordion */
-.accordion .accordionHeader, .accordion .accordionHeader h2, .accordion .accordionHeader h2 span{color:#183152;background-image:url(./images/accordion.png);}
+.accordion .accordionHeader, .accordion .accordionHeader h2{color:#183152;background-image:url(./images/accordion.png);}
 .accordion{border-color:#b8d0d6;background-color:#FFF;}
 .accordion .accordionHeader{background-color:#eaf4ff;}
 .accordion .accordionContent{border-color:#b8d0d6;}

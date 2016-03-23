@@ -1,14 +1,7 @@
 @charset "utf-8";
 
 /* Core Code */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td{ padding:0;margin:0;font-size:12px;line-height:21px;font-family:Arial, sans-serif;word-break:break-all;}
+html, body, *{ padding:0;margin:0;font-size:12px;line-height:23px;font-family:Arial, sans-serif;word-break:break-all;}
 
 /* Remember to define focus styles! */
 :focus{ outline:0;}
@@ -25,7 +18,7 @@ q:before, q:after{ content:"";}
 blockquote, q{ quotes:"" "";}
 
 img{ border:none;}
-a{ color:#000;text-decoration:none;}
+a{ text-decoration:none;}
 a:hover{ text-decoration:underline;}
 
 header{ display:block;overflow:hidden;height:34px;position:relative;border-bottom-width:1px;border-bottom-style:solid;}
@@ -56,17 +49,11 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .tabsPage .tabsPageHeaderContent{ display:block;overflow:hidden;height:27px;margin-right:19px;position:relative;}
 .tabsPage .tabsPageHeaderMargin{ margin:0 34px 0 17px;}
 .tabsPage .tabsPageHeader ul{ display:block;width:10000px;height:26px;z-index:1;margin-top:1px;position:absolute;}
-.tabsPage .tabsPageHeader li{ float:left;display:block;height:26px;margin-left:2px;border-style:solid;border-width:1px 1px 0 1px;border-color:#aaaaaa;border-radius:3px 3px 0 0;position:relative;cursor:pointer;}
-.tabsPage .tabsPageHeader li a{ float:left;display:block;overflow:hidden;height:26px;padding-left:5px;padding-right:10px;line-height:26px;background-position:0 0;}
+.tabsPage .tabsPageHeader li{ float:left;display:block;height:26px;margin-left:2px;border-style:solid;border-width:1px 1px 0 1px;border-color:#aaaaaa;border-radius:3px 3px 0 0;position:relative;}
+.tabsPage .tabsPageHeader li a{ display:block;overflow:hidden;height:26px;max-width:112px;padding-left:6px;padding-right:12px;line-height:26px;background-position:0 0;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .tabsPage .tabsPageHeader li a:hover{ text-decoration:none;}
-.tabsPage .tabsPageHeader li span{ float:left;display:block;overflow:hidden;width:112px;height:24px;line-height:24px;cursor:pointer;}
-.tabsPage .tabsPageHeader li.selected{ background:#ffffff;}
 .tabsPage .tabsPageHeader li.hover a ,.tabsPage .tabsPageHeader li.selected a{ font-weight:bold;}
-.tabsPage .tabsPageHeader li .close{ display:block;overflow:hidden;width:11px;height:11px;padding:0;text-indent:-1000px;position:absolute;top:3px;right:2px;}
-.tabsPage .tabsPageHeader li .close:hover{ background-position:0 -50px;}
-.tabsPage .tabsPageHeader li.main span{ padding:2px 8px 0 3px;}
-.tabsPage .tabsPageHeader li .home_icon,
-.tabsPage .tabsPageHeader li.main .home_icon{ width:auto;padding:0 0 0 15px;background-position:0 3px;}
+.tabsPage .tabsPageHeader li .close{ line-height:13px;height:13px;padding:0;position:absolute;top:2px;right:2px;}
 .tabsPage .tabsMove{ height:25px;position:absolute;top:0;right:0;z-index:2;}
 .tabsPage .tabsLeft, .tabsPage .tabsRight, .tabsPage .tabsMore{ display:block;overflow:hidden;width:17px;height:23px;text-indent:-1000px;position:absolute;z-index:2;}
 .tabsPage .tabsLeft{ background-position:0 0;top:1px;left:0;cursor:pointer;}
@@ -203,7 +190,6 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .accordion{ display:block;border-style:solid;border-width:1px 1px 0 1px;}
 .accordion .accordionHeader{ display:block;overflow:hidden;background-repeat:repeat-x;cursor:pointer;}
 .accordion .accordionHeader h2{ display:block;overflow:hidden;padding:0 25px 0 5px;height:25px;line-height:24px;}
-.accordion .accordionHeader h2 span{ float:left;display:block;overflow:hidden;text-indent:-1000px;width:20px;height:25px;}
 .accordion .accordionContent{ display:block;overflow:auto;border-style:solid;border-width:0 0 1px 0;}
 
 .accordion .accordionHeader.hover{ background-position:0 -25px;}
@@ -211,7 +197,6 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .accordion .accordionHeader.hover h2{ background-position:100% -75px;}
 .accordion .accordionHeader .collapsable{ background-position:100% -100px;}
 .accordion .accordionHeader.hover .collapsable{ background-position:100% -125px;}
-.accordion .accordionHeader h2 span{ background-position:0 -150px;}
 
 /* Grid */
 .panelBar{ display:block;overflow:hidden;height:27px;border-style:solid;border-width:1px 0;background-repeat:repeat-x;}
@@ -221,11 +206,7 @@ footer{ text-align:center;width:100%;height:25px;line-height:25px;padding:0 5px;
 .panelBar li.hover a{ background-position:100% -150px;}
 .panelBar .toolBar li, .panelBar .toolBar li.hover{ padding:0 0 0 5px;background-position:0 -100px;}
 .panelBar .toolBar a, .panelBar .toolBar li.hover a{ float:left;display:block;overflow:hidden;padding:0 5px 0 0;text-decoration:none;background-position:100% -150px;}
-.panelBar .toolBar span, .panelBar .toolBar li.hover span{ float:left;display:block;overflow:hidden;height:25px;padding:0 0 0 20px;line-height:25px;cursor:pointer;}
-.panelBar .toolBar a.add span{ background-position:0 -696px;}
-.panelBar .toolBar a.delete span{ background-position:0 -746px;}
-.panelBar .toolBar a.edit span{ background-position:0 -796px;}
-.panelBar .toolBar a.icon span{ background-position:0 -846px;}
+
 .panelBar .toolBar li.line{ display:block;overflow:hidden;width:12px;padding:0;text-indent:-1000px;background-position:5px -200px;}
 .panelBar .pages{ float:left;overflow:hidden;height:21px;padding:2px 5px;}
 .panelBar .pages span{ float:left;line-height:21px;}
@@ -283,7 +264,7 @@ table.nowrap tbody tr {border-bottom:solid 1px #ededed;}
 #taskbar ul{ position:absolute;width:10000px;}
 #taskbar li{ float:left;height:25px;margin-left:2px;padding-left:5px;background-position:0 -50px;position:relative;cursor:pointer;}
 #taskbar li .taskbutton{ float:left;display:block;overflow:hidden;height:25px;background-position:100% -100px;}
-#taskbar li .taskbutton span{ display:block;overflow:hidden;width:70px;height:25px;line-height:26px;padding:0 25px 0 20px;background-position:3px -42px;}
+#taskbar li .taskbutton span{ display:block;overflow:hidden;width:70px;height:25px;line-height:26px;padding:0 25px 0 0;}
 
 #taskbar .selected{ background-position:0 -250px;}
 #taskbar .selected .taskbutton{ background-position:100% -300px;}
@@ -307,9 +288,8 @@ table.nowrap tbody tr {border-bottom:solid 1px #ededed;}
 #taskbar .taskbarRightDisabled{ background-position:0 -250px;cursor:default;}
 
 /* ProgressBar */
-.progressBar{ display:block;width:28px;height:28px;position:fixed;top:50%;left:50%;margin-left:-14px;margin-top:-14px;padding:10px 10px 10px 10px;position:absolute;z-index:2001;}
-.progressBar{background-image:url(../default/images/progressBar/progressBar_m.gif);background-repeat:no-repeat;background-position:10px 10px;}
-.background{ display:block;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:2000;}
+#progressBar{ display:block;width:28px;height:28px;font-size:28px;position:absolute;top:50%;left:50%;margin-left:-14px;margin-top:-14px;z-index:2001;}
+#background{ display:block;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:2000;}
 .alertBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:1010;}
 .dialogBackground{ display:none;width:100%;height:100%;opacity:0.4;filter:alpha(opacity=40);background:#FFF;position:absolute;top:0;left:0;z-index:900;}
 
