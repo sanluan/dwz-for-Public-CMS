@@ -14,10 +14,12 @@ a{ color: #3C7FB1;}
 header{border-color:#C1C1C1;}
 
 /* NavMenu */
-#navMenu li{background-color:#F1F1F1;border:1px solid #C1C1C1;}
+#navMenu{background-color:#F1F1F1;border-color:#C1C1C1;}
+#navMenu li{border-right-color:#C1C1C1;}
 #navMenu li a{color:#183152;}
-#navMenu li.selected{background-color:#FFF;}
-#navMenu li a:hover,#navMenu li.selected a, #navMenu li.selected a:hover{color:#000;}
+#navMenu li.selected{background-color:#C1C1C1;border-color:#fff;}
+#navMenu li.selected a,#navMenu li.selected a:hover{color:#fff;}
+#navMenu li a:hover{color:#000;}
 
 /* TabsPage */
 .tabsPage .tabsPageHeader{background-color:#F1F1F1;}
