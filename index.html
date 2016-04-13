@@ -5,9 +5,9 @@
 	<title>PublicCMS管理后台</title>
 	<link href="resource/themes/css/core.css" rel="stylesheet" media="screen"/>
 	<link href="resource/themes/css/print.css" rel="stylesheet" media="print"/>
-	<link rel="stylesheet" href="resource/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resource/font-awesome/css/font-awesome.min.css">
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="resource/fontawesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="resource/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 	<!--[if lte IE 9]>
 		<link href="resource/themes/css/ieHack.css" rel="stylesheet" media="screen"/>
@@ -18,6 +18,7 @@
 	<script src="resource/js/jquery.cookie.js"></script>
 	<script src="resource/js/jquery.validate.js"></script>
 	<script src="resource/js/jquery.bgiframe.js"></script>
+	<script src="resource/js/echarts.common.min.js"></script>
 
 	<script>var base="";</script>
 	<script src="resource/ueditor/ueditor.config.js"></script>
@@ -55,9 +56,9 @@ function editorSyn(ename){
 		<li><a href="login.html">退出</a></li>
 	</ul>
 	<ul id="navMenu">
-		<li class="selected"><a href="menu/myself.html"><i class="icon-user icon-large"></i> 菜单</a></li>
-		<li><a href="menu/myself.html"><i class="icon-book icon-large"></i> 菜单</a></li>
-		<li><a href="menu/myself.html"><i class="icon-folder-open icon-large"></i> 菜单</a></li>
+		<li class="selected"><a href="menu/myself.html"><i class="icon-user icon-large"></i> 菜单1</a></li>
+		<li><a href="menu/myself.html"><i class="icon-book icon-large"></i> 菜单2</a></li>
+		<li><a href="menu/myself.html"><i class="icon-folder-open icon-large"></i> 菜单3</a></li>
 	</ul>
 </header>
 <main>
@@ -185,7 +186,7 @@ function editorSyn(ename){
 		<div class="tabsPageHeader">
 			<div class="tabsPageHeaderContent">
 				<ul class="navTab-tab">
-					<li tabid="main" class="main"><a href="javascript:;"><i class="icon-home"></i> 工作台</a></li>
+					<li tabid="main" class="main"><a href="javascript:;"><i class="icon-home icon-large"></i> 工作台</a></li>
 				</ul>
 			</div>
 			<div class="tabsLeft">left</div>
@@ -193,7 +194,7 @@ function editorSyn(ename){
 			<div class="tabsMore">more</div>
 		</div>
 		<ul class="tabsMoreList">
-			<li><a href="javascript:;"><i class="icon-home"></i> 工作台</a></li>
+			<li><a href="javascript:;"><i class="icon-home icon-large"></i> 工作台</a></li>
 		</ul>
 		<div class="navTab-panel tabsPageContent layoutBox">
 			<div class="page unitBox">
@@ -214,7 +215,7 @@ function editorSyn(ename){
 	</div>
 </main>
 <footer>
-	Copyright &copy; 2015
+	Copyright &copy; 2016
 	<ul class="themeList" id="themeList">
 		<li theme="azure"><div class="selected">天蓝</div></li>
 		<li theme="silver"><div>银色</div></li>

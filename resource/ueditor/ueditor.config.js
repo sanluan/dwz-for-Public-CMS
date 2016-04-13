@@ -291,7 +291,7 @@
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
         //,scaleEnabled:false
         //,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
-        ,minFrameHeight:320  //编辑器拖动时最小高度,默认220
+        ,minFrameHeight:500  //编辑器拖动时最小高度,默认220
 
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
