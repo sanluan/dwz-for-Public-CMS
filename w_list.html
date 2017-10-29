@@ -21,29 +21,10 @@
 				</select>
 				</li>
 			</ul>
-			<!--
-			<table class="searchContent">
-				<tr>
-					<td>
-						我的客户：<input type="text"/>
-					</td>
-					<td>
-						<select class="combox" name="province">
-							<option value="">所有省市</option>
-							<option value="北京">北京</option>
-							<option value="上海">上海</option>
-							<option value="天津">天津</option>
-							<option value="重庆">重庆</option>
-							<option value="广东">广东</option>
-						</select>
-					</td>
-				</tr>
-			</table>
-			-->
 			<div class="subBar">
 				<ul>
-					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-					<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+					<li><button type="submit"class="buttonActive">检索</button></li>
+					<li><a class="button" href="demo_page_list_search.html" target="dialog" mask="true" title="查询框">高级检索</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,9 +34,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a href="demo_page4.html" target="navTab"><i class="icon-plus-sign-alt icon-large"></i> 添加</a></li>
+			<li><a href="demo_page_form.html" target="navTab"><i class="icon-plus-sign-alt icon-large"></i> 添加</a></li>
 			<li><a href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗？" warn="请选择一个用户"><i class="icon-trash icon-large"></i> 删除</a></li>
-			<li><a href="demo_page4.html?uid={sid_user}" target="navTab" warn="请选择一个用户"><i class="icon-edit icon-large"></i> 修改</a></li>
+			<li><a href="demo_page_form.html?uid={sid_user}" target="navTab" warn="请选择一个用户"><i class="icon-edit icon-large"></i> 修改</a></li>
 			<li class="line">line</li>
 			<li><a href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><i class="icon-cloud-download icon-large"></i> 导出EXCEL</a></li>
 			<li><a href="javascript:$.printBox('w_list_print')"><i class="icon-print icon-large"></i> 打印</a></li>
@@ -325,5 +306,4 @@
 		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="2"></div>
 
 	</div>
-
 </div>
