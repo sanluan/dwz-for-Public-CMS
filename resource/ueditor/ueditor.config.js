@@ -48,9 +48,9 @@
 //        ]]
     	, toolbars: [[
                   'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'forecolor', 'backcolor','spechars', '|',
-                  'paragraph', 'fontfamily', 'fontsize', '|',
-                  'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                  'link', 'unlink', '|', 'insertvideo',
+                  'paragraph', 'fontfamily', 'fontsize', '|', 
+                  'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
+                  'link', 'unlink', '|', 'insertvideo', 
                   'simpleupload', 'insertimage', 'wordimage','emotion', 'scrawl', 'attachment', 'map', 'insertcode', '|',
                   'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'],
               ['fullscreen','pagebreak','horizontal', 'searchreplace', 'selectall', 'touppercase', 'tolowercase', '|','removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'template', 'preview','cleardoc', 'undo', 'redo', 'drafts','source']]
@@ -97,8 +97,8 @@
         //首行缩进距离,默认是2em
         //,indentValue:'2em'
 
-        ,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        ,initialFrameHeight:320  //初始化编辑器高度,默认320
+        //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:480  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
@@ -407,7 +407,7 @@
 			header: [],
 			hr:     [],
 			i:      ['class', 'style'],
-			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
+			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', '_url', 'loadingclass', 'class', 'data-latex'],
 			ins:    ['datetime'],
 			li:     ['class', 'style'],
 			mark:   [],
@@ -432,7 +432,9 @@
 			tt:     [],
 			u:      [],
 			ul:     ['class', 'style'],
-			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
+			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style'],
+			embed:  ['type', 'class', 'width', 'height', 'allowscriptaccess', 'loop', 'play', 'menu', 'wmode', 'src', 'pluginspage', 'allowfullscreen'],
+			iframe: ['frameborder','border','marginwidth','marginheight','width','height','src','id']
 		}
     };
 

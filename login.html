@@ -7,18 +7,32 @@
 </head>
 <body onload="document.getElementsByTagName('input')[0].focus();">
 <div class="login_body">
+    <div class="login_body_left"><img src="resource/square_logo.png"/></div>
     <div class="login_form clearfix">
-		<form action="index.html" method="post">
-	        <p><input type="text" name="username" placeholder="帐号" title="账号"/></p>
-	        <p><input type="password" name="password" placeholder="密码" title="密码"/></p>
-	        <p>
-	        	<input type="submit" value="登  录"/>
-	        </p>
-		</form>
+        <form action="index.html" method="get">
+            <p class="logo">Public CMS</p>
+            <p>
+            	<i class="iconfont iconfont-user"></i>
+            	<input type="text" name="username" placeholder="用户名" title="用户名"/>
+            </p>
+            <p>
+            	<i class="iconfont iconfont-key"></i>
+            	<input type="password" name="password" placeholder="密码" title="密码"/>
+            </p>
+            <p>
+                <input type="submit" value="登录"/>
+                <input type="hidden" name="returnUrl" value=""/>
+            </p>
+            <p class="error_msg">
+                密码错误
+            </p>
+        </form>
+        <p>
+		    <a href="login.html">English</a>
+			<a class="current-lang" href="login.html">中文</a>
+			<a href="login.html">日本語</a>
+        </p>
     </div>
-    <p class="login_msg">
-
-    </p>
 </div>
 </body>
 </html>
