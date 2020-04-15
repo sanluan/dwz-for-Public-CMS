@@ -1,5 +1,5 @@
 body,html{color:#31353e}
-::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color:rgba(98,98,98,.2);border-radius:10px}
+::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color:rgba(98,98,98,.4);border-radius:10px}
 ::-webkit-scrollbar-thumb{border-radius:10px;background-color:rgba(0,0,0,.2)}
 ::-webkit-scrollbar-thumb:vertical:hover{background-color:rgba(0,0,0,.35)}
 ::-webkit-scrollbar-thumb:vertical:active{background-color:rgba(0,0,0,.38)}
@@ -17,7 +17,7 @@ header a{color:#afc5f6}
 main,#sidebar,#sidebar_s{background:#2c3343}
 .tabsPage{background:#edf1f5}
 #sidebar #menu{background:#222836}
-#sidebar_s a,main .accordion .accordionHeader h2.collapsable{color:#fff}
+main .accordion .accordionHeader h2.collapsable{color:#fff}
 #splitBarProxy{border-color:#c0c0c0;background-color:#CCC}
 
 #leftside,.accordionContent .tree a,.accordionContent .tree div.hover{color:#8d95a7}
@@ -45,7 +45,7 @@ main,#sidebar,#sidebar_s{background:#2c3343}
 .unit a.button:hover{background:#516485;color:#fff;border-color:#516485}
 .divider{border-color:#d6dce6}
 .formBar{background:#edf1f5;}
-.tagsBox span {background: #edf2f6}
+.tagsBox span,.parametersBox span {background: #edf2f6}
 
 button.buttonActive{color:#fff;background-color:#667ea7;border-color:#667ea7}
 button.buttonActive:hover{background-color:#5d7298;border-color:#5d7298}

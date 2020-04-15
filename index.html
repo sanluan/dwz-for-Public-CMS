@@ -17,45 +17,6 @@
 	    <script src="resource/js/html5shiv.min.js"></script>
 	    <script src="resource/js/respond.min.js"></script>
 	<![endif]-->
-	<script src="resource/js/jquery-1.9.1.min.js"></script>
-	<script src="resource/js/jquery.cookie.js"></script>
-	<script src="resource/js/jquery.validate.js"></script>
-	<script src="resource/js/jquery.bgiframe.js"></script>
-
-	<script src="resource/js/dwz.min.js?1"></script>
-	<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
-	<script>
-	var base="ajax";
-	window.UEDITOR_HOME_URL="resource/ueditor/";
-	window.CKEDITOR_BASEPATH="resource/ckeditor/";
-	window.CKEDITOR_LANGUAGE="zh";
-    window.KINDEDITOR_OPTIONS= {
-            width:'60%',
-            height:'400px',
-            basePath:'resource/kindeditor/',
-            uploadJson : 'ajax/upload.json',
-            fileManagerJson : 'ajax/fileList.json',
-            allowFileManager : true
-    };
-$(function(){
-	DWZ.init("resource/dwz.frag.html", {
-		ckeditorResources:["resource/ckeditor/ckeditor.js"],
-		kindeditorResources:["resource/kindeditor/kindeditor-all-min.js","resource/kindeditor/lang/zh-CN.js"],
-		ueditorResources:["resource/ueditor/ueditor.config.js","resource/ueditor/ueditor.all.min.js","resource/ueditor/lang/zh-cn/zh-cn.js"],
-		codemirrorResources:['resource/codemirror/lib/codemirror.js','resource/codemirror/mode/xml/xml.js','resource/codemirror/mode/javascript/javascript.js','resource/codemirror/mode/css/css.js',
-            'resource/codemirror/mode/htmlmixed/htmlmixed.js','resource/codemirror/mode/freemarker/freemarker.js','resource/codemirror/mode/freemarkermixed/freemarkermixed.js',
-            'resource/codemirror/mode/nginx/nginx.js','resource/codemirror/addon/hint/show-hint.js','resource/codemirror/addon/hint/javascript-hint.js','resource/codemirror/addon/hint/html-hint.js',
-            'resource/codemirror/addon/hint/css-hint.js','resource/codemirror/addon/hint/xml-hint.js'],
-		loginUrl:"login_dialog.html", loginTitle:"登录",
-		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
-		debug:false,	// 调试模式 【true|false】
-		callback:function(){
-			initEnv();
-			$("#themeList").theme({themeBase:"resource/themes",defaultTheme:"toptry"}); // themeBase 相对于index页面的主题base路径
-		}
-	});
-});
-	</script>
 </head>
 <body scroll="no">
 <header>
@@ -188,6 +149,11 @@ $(function(){
         		<img src="https://cms.publiccms.com/resource/themes/images/zh.png" alt="中文"/>中文
         	</a>
         </li>
+		<li>
+        	<a href="changeLocale?lang=zh_TW" target="ajaxTodo">
+        		<img src="https://cms.publiccms.com/resource/themes/images/zh_TW.png" alt="繁體"/>繁體
+        	</a>
+        </li>
         <li>
         	<a href="ajax/changeLocale.json?lang=ja" target="ajaxTodo">
         		<img src="https://cms.publiccms.com/resource/themes/images/ja.png" alt="日本語"/>日本語
@@ -200,5 +166,44 @@ $(function(){
         <li theme="toptry"><div></div></li>
     </ul>
 </footer>
+<script src="resource/js/jquery-1.9.1.min.js"></script>
+	<script src="resource/js/jquery.cookie.js"></script>
+	<script src="resource/js/jquery.validate.js"></script>
+	<script src="resource/js/jquery.bgiframe.js"></script>
+
+	<script src="resource/js/dwz.min.js?1"></script>
+	<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
+	<script>
+	var base="ajax";
+	window.UEDITOR_HOME_URL="resource/ueditor/";
+	window.CKEDITOR_BASEPATH="resource/ckeditor/";
+	window.CKEDITOR_LANGUAGE="zh";
+    window.KINDEDITOR_OPTIONS= {
+            width:'60%',
+            height:'400px',
+            basePath:'resource/kindeditor/',
+            uploadJson : 'ajax/upload.json',
+            fileManagerJson : 'ajax/fileList.json',
+            allowFileManager : true
+    };
+$(function(){
+	DWZ.init("resource/dwz.frag.html", {
+		ckeditorResources:["resource/ckeditor/ckeditor.js"],
+		kindeditorResources:["resource/kindeditor/kindeditor-all-min.js","resource/kindeditor/lang/zh-CN.js"],
+		ueditorResources:["resource/ueditor/ueditor.config.js","resource/ueditor/ueditor.all.min.js","resource/ueditor/lang/zh-cn/zh-cn.js"],
+		codemirrorResources:['resource/codemirror/lib/codemirror.js','resource/codemirror/mode/xml/xml.js','resource/codemirror/mode/javascript/javascript.js','resource/codemirror/mode/css/css.js',
+            'resource/codemirror/mode/htmlmixed/htmlmixed.js','resource/codemirror/mode/freemarker/freemarker.js','resource/codemirror/mode/freemarkermixed/freemarkermixed.js',
+            'resource/codemirror/mode/nginx/nginx.js','resource/codemirror/addon/hint/show-hint.js','resource/codemirror/addon/hint/javascript-hint.js','resource/codemirror/addon/hint/html-hint.js',
+            'resource/codemirror/addon/hint/css-hint.js','resource/codemirror/addon/hint/xml-hint.js'],
+		loginUrl:"login_dialog.html", loginTitle:"登录",
+		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
+		debug:false,	// 调试模式 【true|false】
+		callback:function(){
+			initEnv();
+			$("#themeList").theme({themeBase:"resource/themes",defaultTheme:"toptry"}); // themeBase 相对于index页面的主题base路径
+		}
+	});
+});
+	</script>
 </body>
 </html>

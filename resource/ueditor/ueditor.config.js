@@ -41,19 +41,18 @@
 //            'directionalityltr', 'directionalityrtl', 'indent', '|',
 //            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
 //            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-//            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo',  'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-//            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+//            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo',  'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'pagebreak', 'template', 'background', '|',
+//            'horizontal', 'date', 'time', 'spechars', 'wordimage', '|',
 //            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
 //            'print', 'preview', 'searchreplace', 'drafts', 'help'
 //        ]]
     	, toolbars: [[
-                  'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'forecolor', 'backcolor','spechars', 'lineheight', '|',
-                  'paragraph', 'fontfamily', 'fontsize', '|', 
-                  'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
-                  'link', 'unlink', '|', 'insertvideo', 
-                  'simpleupload', 'insertimage', 'wordimage','emotion', 'scrawl', 'attachment', 'map', 'insertcode', '|',
+                  'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'forecolor', 'backcolor','spechars', 'lineheight', '|', 'paragraph', 'fontfamily', 'fontsize', '|',
+                  'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',  'link', 'unlink', '|',
+                  'insertvideo', 'simpleupload', 'insertimage', 'wordimage','emotion', 'scrawl', 'attachment', 'map', 'insertcode', '|',
                   'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'],
-              ['fullscreen','pagebreak','horizontal', 'searchreplace', 'selectall', 'touppercase', 'tolowercase', '|','removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'template', 'preview','cleardoc', 'undo', 'redo', 'drafts','source']]
+              ['fullscreen','pagebreak','horizontal', 'searchreplace', 'selectall', 'touppercase', 'tolowercase', '|',
+                  'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'template', 'preview','cleardoc', 'undo', 'redo', 'drafts','source']]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
         //    'anchor':'', 'undo':''
@@ -114,7 +113,7 @@
         //,imagePopup:true      //图片操作的浮层开关，默认打开
 
         //,autoSyncData:true //自动同步编辑器要提交的数据
-        //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
+        ,emotionLocalization:true //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
         //粘贴只保留标签，去除标签所有属性
         //,retainOnlyLabelPasted: false
@@ -178,7 +177,7 @@
         //    'square' : ''   //'■ 小方块'
         //}
         //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
-        //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
+        ,listiconpath : URL+"themes/ueditor-list/"//自定义标号的路径
         //,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
 
         //,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签
@@ -354,9 +353,6 @@
         //allowLinkProtocol 允许的链接地址，有这些前缀的链接地址不会自动添加http
         //, allowLinkProtocols: ['http:', 'https:', '#', '/', 'ftp:', 'mailto:', 'tel:', 'git:', 'svn:']
 
-        //webAppKey 百度应用的APIkey，每个站长必须首先去百度官网注册一个key后方能正常使用app功能，注册介绍，http://app.baidu.com/static/cms/getapikey.html
-        //, webAppKey: ""
-
         //默认过滤规则相关配置项目
         //,disabledTableInTable:true  //禁止表格嵌套
         //,allowDivTransToP:true      //允许进入编辑器的div标签自动变成p标签
@@ -405,7 +401,7 @@
 			h5:     ['class', 'style'],
 			h6:     ['class', 'style'],
 			header: [],
-			hr:     [],
+			hr:     ['class', 'noshade', 'size', 'style'],
 			i:      ['class', 'style'],
 			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', '_url', 'loadingclass', 'class', 'data-latex' ,'word_img', 'style'],
 			ins:    ['datetime'],
@@ -413,7 +409,7 @@
 			mark:   [],
 			nav:    [],
 			ol:     ['class', 'style'],
-			p:      ['class', 'style'],
+			p:      ['class', 'style', 'data-background'],
 			pre:    ['class', 'style'],
 			s:      [],
 			section:[],
