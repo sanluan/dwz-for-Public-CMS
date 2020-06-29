@@ -115,7 +115,7 @@ header .nav .selected ul{display:block}
 /* Accordion */
 .accordion{display:block}
 .accordion .accordionHeader{display:block;overflow:hidden;cursor:pointer}
-.accordion .accordionHeader h2{display:block;overflow:hidden;padding:0 10px 0 5px;height:45px;line-height:45px;font-weight:400}
+.accordion .accordionHeader h2{display:block;overflow:hidden;padding:0 10px 0 10px;height:45px;line-height:45px;font-weight:400}
 .accordion .accordionHeader h2>i{margin-right:5px}
 .accordion .accordionHeader h2 .icon{float:right;line-height:45px}
 .accordion .accordionContent{display:block;overflow:auto}
@@ -247,7 +247,7 @@ a.toggleCollapse{text-decoration:none}
 .searchBar .textInput,.searchBar span{float:left}
 .searchBar span{line-height:28px}
 .searchBar span.connect-string{font-size:16px}
-.searchBar ul.searchContent{display:block;overflow:hidden;height:32px;padding-right:100px;position:relative;}
+.searchBar ul.searchContent{display:block;overflow:hidden;height:32px;padding-right:180px;position:relative;}
 .searchBar ul.searchContent:before{font-size:18px;position:absolute;right:0;top:0;line-height:32px;width:30px;text-align:right}
 .searchBar ul.searchContent li{float:left;white-space:nowrap;display:block;overflow:hidden;height:28px;padding:2px 0}
 .searchBar ul.searchContentHover,.searchBar ul.searchContentHover li{height:auto}
