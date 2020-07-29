@@ -2,7 +2,8 @@
 <html lang="zh">
 <head>
 	<meta charset="utf-8">
-	<title>PublicCMS管理后台</title>
+	<title>PublicCMS管理后台 UI演示</title>
+	<meta name="viewport" content="width=device-width,initial-scale=0.6">
 	<link href="resource/codemirror/lib/codemirror.css" rel="stylesheet" >
     <link href="resource/codemirror/addon/hint/show-hint.css" rel="stylesheet" >
 	<link href="resource/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -10,7 +11,7 @@
 	<link rel="stylesheet" href="resource/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 
-	<link href="resource/themes/css/core.css?1" rel="stylesheet" media="screen"/>
+	<link href="resource/themes/css/core.css?5" rel="stylesheet" media="screen"/>
 	<link href="resource/themes/css/print.css?1" rel="stylesheet" media="print"/>
 	<!--[if lte IE 9]>
 		<link href="resource/themes/css/ieHack.css" rel="stylesheet" media="screen"/>
@@ -22,13 +23,13 @@
 <header>
 	<a class="logo" href="./"><img src="resource/logo.png"/></a>
 	<ul class="nav">
-		<li><i class="icon-user icon-large"></i> 管理员</li>
+		<li><a><i class="icon-user icon-large"></i> 管理员</a></li>
 		<li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
 		<li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
 	</ul>
 	<ul id="navMenu">
-		<li class="selected"><a href="menu/main.html"><i class="icon-user icon-large"></i> 功能</a></li>
-		<li><a href="menu/chart.html"><i class="icon-book icon-large"></i> 报表</a></li>
+		<li class="selected"><a href="menu/main.html" parentId="mian"><i class="icon-user icon-large"></i> 功能</a></li>
+		<li><a href="menu/chart.html"  parentId="chart"><i class="icon-book icon-large"></i> 报表</a></li>
 	</ul>
 </header>
 <main>
@@ -120,10 +121,18 @@
             <li><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
         </ul>
         <div class="navTab-panel tabsPageContent layoutBox">
-            <div class="page unitBox">
+            <div class="page unitBox work-bench">
                 <div class="pageFormContent" layoutH="80">
+
+					<div class="unit">
+						<h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
+					</div>
+					<div class="unit">
 <script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
+					</div>
+					<div class="unit">
 <script src='https://gitee.com/sanluan/PublicCMS/widget_preview'></script>
+					</div>
 <style>
 .pro_name a{color: #4183c4;}
 .osc_git_title{background-color: #d8e5f1;}
@@ -160,18 +169,19 @@
         	</a>
         </li>
     </ul>
-    Copyright &copy; 2018
+    Copyright &copy; 2020
 
     <ul class="themeList" id="themeList">
         <li theme="toptry"><div></div></li>
+        <li theme="red"><div></div></li>
     </ul>
 </footer>
-<script src="resource/js/jquery-1.9.1.min.js"></script>
+<script src="resource/js/jquery-1.12.4.min.js"></script>
 	<script src="resource/js/jquery.cookie.js"></script>
 	<script src="resource/js/jquery.validate.js"></script>
 	<script src="resource/js/jquery.bgiframe.js"></script>
 
-	<script src="resource/js/dwz.min.js?1"></script>
+	<script src="resource/js/dwz.min.js?4"></script>
 	<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
 	<script>
 	var base="ajax";
