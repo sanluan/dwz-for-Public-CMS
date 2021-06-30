@@ -28,8 +28,7 @@ header a{color:#efefef;}
 .accordionContent .tree div.selected a{background-color:#FA5151;color:#fff;}
 
 .tabsPage .tabsPageHeader{background-color:#dde2ec;}
-.tabsPage .tabsLeft,.tabsPage .tabsMore,.tabsPage .tabsRight,.toggleCollapse{color:#666666;}
-.tabsPageHeader .toggleCollapse{border-color:#D8403D;}
+.tabsPage .tabsLeft,.tabsPage .tabsMore,.tabsPage .tabsRight{color:#666666;}
 .tabsPage .tabsPageHeader li a{color:#333333;}
 .tabsPage .tabsPageHeader li.selected,.tabsPage .tabsPageHeader li:hover{background-color:#edd9dd;}
 .tabsPage .tabsPageHeader li.selected a,.tabsPage .tabsPageHeader li:hover a{color:#8f0006;}
@@ -57,6 +56,8 @@ button.buttonActive:hover{background-color:#5d7298;border-color:#5d7298;}
 a.button,button.button{color:#8f0006;background-color:#fff;border-color:#dde2ec;}
 a.button:hover,button.button:hover{background-color:#eceff3;border-color:#dde2ec;}
 .pagination li.jumpto .textInput,.textInput,input.disabled,input.error,input.focus,input.readonly,input.required,textarea.disabled,textarea.error,textarea.focus,textarea.readonly,textarea.required{border-color:#dde2ec;}
+input.disabled,textarea.disabled{background-color:#eee;cursor:not-allowed;}
+textarea.readonly,input.readonly{background-color:#eee;}
 .pageHeader{background-color:#f2f6f9;color:#31353e;}
 .searchBar span.connect-string{color:#dde2ec;}
 .searchBar ul.searchContent:before{color:#D8403D;}
@@ -65,6 +66,8 @@ a.button:hover,button.button:hover{background-color:#eceff3;border-color:#dde2ec
 .panelBar .toolBar li a:hover>i{color:#fff;}
 .panelBar .toolBar li a:hover{background-color:#D8403D;color:#fff;}
 .panelBar .toolBar li.line{background-color:#e4e9f2;}
+.panelBar .toolBar li a.addMore{background-color:#FF9913}
+.panelBar .toolBar li>ul{border-color:#eceff3;}
 .panelBar.pageBar{background-color:#e8ebf2;}
 
 .grid { background-color:#FFF;}
@@ -77,7 +80,7 @@ a.button:hover,button.button:hover{background-color:#eceff3;border-color:#dde2ec
 .grid .gridTbody tr:nth-child(even){background-color:#f8fcfe;}
 .grid .gridTbody tr:hover,.grid .gridTbody tr.selected { border-color:#edd9dd;background-color:#edd9dd;}
 .grid .error{background-color:#fb7e81;}
-.grid .gridHeader th.asc:before,.grid .gridHeader th.desc:before,.grid .gridHeader th.order:before{color:#D8403D;}
+.grid .gridHeader th.asc:before,.grid .gridHeader th.desc:before,.grid .gridHeader th.order:before{color:#FFFFFF;}
 
 table.list,table.list td{border-color:#e4e9f2;}
 table.list thead tr{background-color:#f8fcfe;}
@@ -90,6 +93,7 @@ table.list tbody tr.selected td{background-color:#edd9dd;}
 table.list th.asc:before,table.list th.desc:before,table.list th.order:before{color:#D8403D;}
 table.nowrap tbody tr {border-color:#ededed;}
 
+.tabs .tabsHeader{background-color:#FFF;}
 .tabs .tabsHeaderContent>ul li a{color:#989eab;}
 .tabs .tabsHeader li.selected:before{background-color:#b52e31;}
 .tabs .tabsHeader li.selected a{color:#31353e;}
@@ -110,7 +114,8 @@ footer a{color:#4d84ff;}
 .dialog .dialogHeader{background-color:#f2f6f9;}
 .dialog .dialogHeader_c a:hover{color:#3587ef;}
 .dialog .dialogHeader .close,.dialog .dialogHeader .maximize,.dialog .dialogHeader .minimize,.dialog .dialogHeader .restore{color:#a1a4a8;}
-.dialog .dialogContent .viewInfo,.dialogContent .pageContent{background-color:#fff;}
+.dialog .dialogContent{background-color:#f2f6f9;}
+.dialog .dialogContent .pageFormContent,.dialog .dialogContent .pageContent{background-color:#fff;}
 
 #taskbar{background-color:#131a23;}
 #taskbar li{color:#b5c3db;}

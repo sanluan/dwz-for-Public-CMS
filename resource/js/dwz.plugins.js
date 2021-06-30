@@ -23,25 +23,75 @@ DWZ.regPlugins.push(function($p){
             return false;
         });
     });
-    
+
 });
 DWZ.regPlugins.push(function($p){
-    if($('.cmsVersion',$p).length ) {
-        var fullVersion=$('.cmsVersion a',$p).eq(0).text();
-        $.getJSON(Base64.decode('Ly9jbXMucHVibGljY21zLmNvbS9hcGkvZGlyZWN0aXZlL3ZlcnNpb24=')+"?version="+fullVersion, function(data) {
-            var version=fullVersion.substring(0,fullVersion.lastIndexOf('.'));
-            var revision=fullVersion.substring(fullVersion.lastIndexOf('.')+1);
-            if(version!==data.cms ) {
-                $('.cmsVersion .old',$p).show();
-            } else {
-                if(revision == data.revision){
-                    $('.cmsVersion .new',$p).show();
-                } else {
-                    $('.cmsVersion .old',$p).css('color','gray').show();
-                }
+    $("textarea.editor", $p).each(function(i) {
+        var $this = $(this);
+        var index= window.editor.index++;
+        var dataId="editor_"+index;
+        if("ckeditor"==$this.attr("editorType")) {
+            if(!window.editor.ckeditorInitd){
+                $.each(window.editor.ckeditorResources, function(index, url){
+                    $.ajax({url: url, type: "GET", async: false, dataType: "script"});
+                });
+                window.editor.ckeditorInitd=true;
             }
+            $this.attr("id",dataId);
+            CKEDITOR.replace(dataId);
+            $this.attr("data-id",dataId);
+        } else if("kindeditor"==$this.attr("editorType")) {
+            if(!window.editor.kindeditorInitd){
+                $.each(window.editor.kindeditorResources, function(index, url){
+                    $.ajax({url: url, type: "GET", async: false, dataType: "script"});
+                });
+                window.editor.kindeditorInitd=true;
+            }
+            $this.attr("id",dataId);
+            KindEditor.create('#'+dataId,window.KINDEDITOR_OPTIONS);
+            $this.attr("data-id",dataId);
+        } else {
+            if(!window.editor.ueditorInitd){
+                $.each(window.editor.ueditorResources, function(index, url){
+                    $.ajax({url: url, type: "GET", async: false, dataType: "script"});
+                });
+                window.editor.ueditorInitd=true;
+            }
+            var editor = new baidu.editor.ui.Editor();
+            if ($this.attr("maxlength") ){
+                editor.setOpt({
+                    maximumWords: $this.attr("maxlength")
+                });
+            }
+            editor.render($this[0]);
+            $this.attr("data-id","ueditorInstant"+editor.uid);
+        }
+    });
+    $("textarea.code", $p).each(function() {
+        var $this = $(this);
+        var index= window.codemirror.index++;
+        var dataId="editor_"+index;
+        if(!window.codemirror.initd){
+            $.each(window.codemirror.resources, function(index, url){
+                $.ajax({url: url, type: "GET", async: false, dataType: "script"});
+            });
+            window.codemirror.initd=true;
+        }
+        var mode = 'htmlmixed'
+        if($(this).attr('mode')){
+            mode = $(this).attr('mode');
+        }
+        DWZ.codemirror.instances[dataId]=CodeMirror.fromTextArea($this[0], {
+            mode: mode,
+            lineNumbers: true,
+            tabSize        : 4,
+            indentUnit     : 4,
+            lineWrapping   : true,
+            indentWithTabs : true,
+            extraKeys: { "Ctrl": "autocomplete" }
         });
-    }
+        $this.attr("data-id",dataId);
+    });
 });
 /**
  * Created by huihuazhang on 2016/4/27.

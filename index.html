@@ -11,8 +11,9 @@
 	<link rel="stylesheet" href="resource/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 
-	<link href="resource/themes/css/core.css?5" rel="stylesheet" media="screen"/>
+	<link href="resource/themes/css/core.css?6" rel="stylesheet" media="screen"/>
 	<link href="resource/themes/css/print.css?1" rel="stylesheet" media="print"/>
+	<link href="resource/css/cms.css" rel="stylesheet" media="screen"/>
 	<!--[if lte IE 9]>
 		<link href="resource/themes/css/ieHack.css" rel="stylesheet" media="screen"/>
 	    <script src="resource/js/html5shiv.min.js"></script>
@@ -21,13 +22,16 @@
 </head>
 <body scroll="no">
 <header>
-	<a class="logo" href="./"><img src="resource/logo.png"/></a>
+	<a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
 	<ul class="nav">
 		<li><a><i class="icon-user icon-large"></i> 管理员</a></li>
 		<li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
 		<li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
 	</ul>
 	<ul id="navMenu">
+		<li>
+            <a href="javascript:;" onclick="return false;" class="toggleCollapse"><i class="icon icon-chevron-sign-left icon-large"></i></a>
+        </li>
 		<li class="selected"><a href="menu/main.html" parentId="mian"><i class="icon-user icon-large"></i> 功能</a></li>
 		<li><a href="menu/chart.html"  parentId="chart"><i class="icon-book icon-large"></i> 报表</a></li>
 	</ul>
@@ -112,7 +116,6 @@
                     <li tabid="main" class="main"><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
                 </ul>
             </div>
-            <a href="javascript:;" onclick="return false;" class="toggleCollapse"><i class="icon icon-chevron-sign-left icon-large"></i></a>
             <a href="javascript:;" onclick="return false;" class="tabsLeft"><i class="icon-backward icon-large"></i></a>
             <a href="javascript:;" onclick="return false;" class="tabsRight"><i class="icon-forward icon-large"></i></a>
             <a href="javascript:;" onclick="return false;" class="tabsMore"><i class="icon-th-list icon-large"></i></a>
@@ -122,26 +125,226 @@
         </ul>
         <div class="navTab-panel tabsPageContent layoutBox">
             <div class="page unitBox work-bench">
-                <div class="pageFormContent" layoutH="80">
-
+				<div class="pageFormContent" layoutH>
 					<div class="unit">
 						<h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
 					</div>
 					<div class="unit">
-<script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
+						<script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
 					</div>
-					<div class="unit">
-<script src='https://gitee.com/sanluan/PublicCMS/widget_preview'></script>
-					</div>
-<style>
-.pro_name a{color: #4183c4;}
-.osc_git_title{background-color: #d8e5f1;}
-.osc_git_box{background-color: #fafafa;}
-.osc_git_box{border-color: #ddd;}
-.osc_git_info{color: #666;}
-.osc_git_main a{color: #4183c4;}
-</style>
-                </div>
+					<script src="resource/js/echarts.common.min.js"></script>
+					<fieldset>
+						<legend>我的账号</legend>
+						<div class="unit">
+							<ul>
+								<li>
+									<div class="card">
+										<i class="icon-book icon-large icon"></i>
+										<p>我的待审核内容</p>
+										<h3>19</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-edit icon-large icon"></i>
+										<p>我的草稿</p>
+										<h3>0</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-signin icon-large icon"></i>
+										<p>登录次数</p>
+										<h3>6306</h3>
+									</h3></div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-unlock-alt icon-large icon-large icon"></i>
+										<p>我的登录授权</p>
+										<h3>4</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-time icon-large icon"></i>
+										<p>
+											<label>上次登录日期:</label>2021-06-27 00:32:08
+										</p>
+										<p>
+											<label>上次登录IP:</label>127.0.0.1
+										</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>评论管理</legend>
+						<div class="unit">
+							<ul class="clearfix">
+								<li>
+									<div class="card">
+										<i class="icon-comment icon-large icon-large icon"></i>
+										<p>待审核评论</p>
+										<h3>0</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-comments icon-large icon"></i>
+										<p>评论数</p>
+										<h3>274</h3>
+									</div>
+								</li>
+							</ul>
+							<div id="comment" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1625024844867"><div style="position: relative; width: 1336px; height: 350px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="2004" height="525" style="position: absolute; left: 0px; top: 0px; width: 1336px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+						</div>
+						<script>
+						echarts.init(document.getElementById('comment')).setOption({
+							title: {
+								text: '评论',
+								x:'center'
+							},
+							tooltip : {
+								trigger: 'axis'
+							},
+							grid: {
+								left: '3%',
+								right: '4%',
+								bottom: '3%',
+								containLabel: true
+							},
+							xAxis: {
+								type: 'category',
+								boundaryGap: false,
+								data: ['2021-05-31','2021-06-01','2021-06-02','2021-06-03','2021-06-04','2021-06-05','2021-06-06','2021-06-07','2021-06-08','2021-06-09','2021-06-10','2021-06-11','2021-06-12','2021-06-13','2021-06-14','2021-06-15','2021-06-16','2021-06-17','2021-06-18','2021-06-19','2021-06-20','2021-06-21','2021-06-22','2021-06-23','2021-06-24','2021-06-25','2021-06-26','2021-06-27','2021-06-28','2021-06-29','2021-06-30']
+							},
+							yAxis: {
+								type: 'value'
+							},
+							series: [
+							{
+								name:'操作',
+								type:'line',
+								data:[0,0,0,2,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+								areaStyle: {}
+							}]
+						});
+						</script>
+				   </fieldset>
+					<fieldset>
+						<legend>用户数据报表</legend>
+						<div class="unit">
+							<div id="visit" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1625024844868"><div style="position: relative; width: 1336px; height: 350px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="2004" height="525" style="position: absolute; left: 0px; top: 0px; width: 1336px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class="" style="position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9999999; box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px; transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s, visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s, left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgb(255, 255, 255); border-width: 1px; border-radius: 4px; color: rgb(102, 102, 102); font: 14px / 21px &quot;Microsoft YaHei&quot;; padding: 10px; left: 448px; top: 177px; border-color: rgb(255, 255, 255); pointer-events: none; visibility: hidden; opacity: 0;"><div style="margin: 0px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><div style="font-size:14px;color:#666;font-weight:400;line-height:1;">2021-06-05</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#5470c6;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">PV</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">457</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">UV</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">318</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#fac858;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">IP Views</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">247</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div></div></div>
+							<ul class="re">
+								<li>
+									<div class="card">
+										<i class="icon-signal icon-large icon"></i>
+										<p>注册</p>
+										<h3>0</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-ticket icon-large icon"></i>
+										<p>登录</p>
+										<h3>2</h3>
+									</div>
+								</li>
+								<li>
+									<div class="card">
+										<i class="icon-list-alt icon-large icon"></i>
+										<p>操作</p>
+										<h3>0</h3>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<script>
+						echarts.init(document.getElementById('visit')).setOption({
+							title: {
+								text: '访问日志',
+								x:'center'
+							},
+							tooltip : {
+								trigger: 'axis'
+							},
+							grid: {
+								left: '3%',
+								right: '4%',
+								bottom: '3%',
+								containLabel: true
+							},
+							legend: {
+								data: ['PV', 'UV', 'IP Views'],
+								top:30
+							},
+							xAxis: {
+								type: 'category',
+								boundaryGap: false,
+								data: ['2021-06-01','2021-06-02','2021-06-03','2021-06-04','2021-06-05','2021-06-06','2021-06-07','2021-06-08','2021-06-09','2021-06-10','2021-06-11','2021-06-12','2021-06-13','2021-06-14','2021-06-15']
+							},
+							yAxis: {
+								type: 'value'
+							},
+							series: [
+							{
+								   name:'PV',
+								   type:'line',
+								   data:[1067,1235,1016,775,457,524,939,916,1085,1236,933,710,702,573,1104],
+								   areaStyle: {}
+							   },
+							   {
+								   name:'UV',
+								   type:'line',
+								   data:[565,542,522,449,318,336,510,563,639,640,529,587,602,442,648],
+								   areaStyle: {}
+							   },
+							   {
+								   name:'IP Views',
+								   type:'line',
+								   data:[409,381,391,337,247,255,387,409,461,450,393,371,412,354,482],
+								   areaStyle: {}
+							   }]
+						});
+						</script>
+					</fieldset>
+					<fieldset>
+						<legend>系统</legend>
+						<div class="unit">
+							<p class="cmsVersion">
+								<label>PublicCMS:</label>
+								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202011.c</a> <span class="new hide" style="color: green; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
+							</p>
+							<p>
+								<label>时区:</label>Asia/Shanghai
+							</p>
+							<p>
+								<label>管理节点:</label>
+								11146bb6-0329-465a-b236-4c28df87205b
+							</p>
+							<p>
+								<label>数据目录:</label>
+								D:\data\publiccms
+							</p>
+							<p>
+								<label>磁盘空间:</label>156.25GB
+							</p>
+							<div class="divider"></div>
+							<div class="unit">
+								<p>
+									<label>站点数量:</label>
+									8
+								</p>
+								<p>
+									<label>域名数量:</label>
+									9
+								</p>
+							</div>
+						</div>
+					</fieldset>
+				</div>
             </div>
         </div>
     </div>
@@ -177,14 +380,14 @@
     </ul>
 </footer>
 <script src="resource/js/jquery-1.12.4.min.js"></script>
-	<script src="resource/js/jquery.cookie.js"></script>
-	<script src="resource/js/jquery.validate.js"></script>
-	<script src="resource/js/jquery.bgiframe.js"></script>
-
-	<script src="resource/js/dwz.min.js?4"></script>
-	<script src="resource/js/dwz.plugins.js"></script>
-	<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
-	<script>
+<script src="resource/js/jquery.cookie.js"></script>
+<script src="resource/js/jquery.validate.js"></script>
+<script src="resource/js/jquery.bgiframe.js"></script>
+<script src="resource/js/base64.js"></script>
+<script src="resource/js/dwz.min.js?5"></script>
+<script src="resource/js/dwz.plugins.js"></script>
+<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
+<script>
 	var base="ajax";
 	window.UEDITOR_HOME_URL="resource/ueditor/";
 	window.CKEDITOR_BASEPATH="resource/ckeditor/";
@@ -197,15 +400,24 @@
             fileManagerJson : 'ajax/fileList.json',
             allowFileManager : true
     };
-$(function(){
-	DWZ.init("resource/dwz.frag.html", {
-		ckeditorResources:["resource/ckeditor/ckeditor.js"],
-		kindeditorResources:["resource/kindeditor/kindeditor-all-min.js","resource/kindeditor/lang/zh-CN.js"],
-		ueditorResources:["resource/ueditor/ueditor.config.js","resource/ueditor/ueditor.all.min.js","resource/ueditor/lang/zh-cn/zh-cn.js"],
-		codemirrorResources:['resource/codemirror/lib/codemirror.js','resource/codemirror/mode/xml/xml.js','resource/codemirror/mode/javascript/javascript.js','resource/codemirror/mode/css/css.js',
+	window.editor = {
+        ckeditorResources: ["resource/ckeditor/ckeditor.js"],
+        ueditorResources: ["resource/ueditor/ueditor.config.js","resource/ueditor/ueditor.all.min.js","resource/ueditor/lang/zh-cn/zh-cn.js"],
+        kindeditorResources: ["resource/kindeditor/kindeditor-all.js","resource/kindeditor/lang/zh-CN.js"],
+        ckeditorInitd: false,
+        ueditorInitd: false,
+        kindeditorInitd: false,
+        index: 0
+    };
+    window.codemirror = {
+        resources: ['resource/codemirror/lib/codemirror.js','resource/codemirror/mode/xml/xml.js','resource/codemirror/mode/javascript/javascript.js','resource/codemirror/mode/css/css.js',
             'resource/codemirror/mode/htmlmixed/htmlmixed.js','resource/codemirror/mode/freemarker/freemarker.js','resource/codemirror/mode/freemarkermixed/freemarkermixed.js',
             'resource/codemirror/mode/nginx/nginx.js','resource/codemirror/addon/hint/show-hint.js','resource/codemirror/addon/hint/javascript-hint.js','resource/codemirror/addon/hint/html-hint.js',
             'resource/codemirror/addon/hint/css-hint.js','resource/codemirror/addon/hint/xml-hint.js'],
+        initd: false,
+        index: 0
+    };
+	DWZ.init("resource/dwz.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",
 		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
 		debug:false,	// 调试模式 【true|false】
@@ -214,7 +426,6 @@ $(function(){
 			$("#themeList").theme({themeBase:"resource/themes",defaultTheme:"toptry"}); // themeBase 相对于index页面的主题base路径
 		}
 	});
-});
-	</script>
+</script>
 </body>
 </html>
