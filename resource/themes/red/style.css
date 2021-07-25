@@ -28,20 +28,21 @@ header a{color:#efefef;}
 .accordionContent .tree div.selected a{background-color:#FA5151;color:#fff;}
 
 .tabsPage .tabsPageHeader{background-color:#dde2ec;}
-.tabsPage .tabsLeft,.tabsPage .tabsMore,.tabsPage .tabsRight{color:#666666;border-color:#666666;}
+.tabsPage .tabsLeft,.tabsPage .tabsMore,.tabsPage .tabsRight{color:#666666;}
 .tabsPage .tabsPageHeader li a{color:#333333;}
-.tabsPage .tabsPageHeader li.selected,.tabsPage .tabsPageHeader li:hover{background-color:#edd9dd;}
+.tabsPage .tabsPageHeader li.selected{background-color:#fff;}
+.tabsPage .tabsPageHeader li:hover{color:#fff;}
 .tabsPage .tabsPageHeader li.selected a,.tabsPage .tabsPageHeader li:hover a{color:#8f0006;}
 .tabsPage .tabsMoreList{background-color:#fff;border-color:#dde2ec;}
 .tabsPage .tabsMoreList li a{color:#333;}
 .tabsPage .tabsMoreList li a:hover,.tabsPage .tabsMoreList li.selected a{background-color:#D8403D;color:#fff;}
 
 .page{background-color:#fff;}
-.page.work-bench{background-color:#edf1f5;}
+.pageFormContent.card{background-color:#edf1f5;}
 
-.pageFormContent fieldset{background-color:#fff;}
-.pageFormContent fieldset legend{color:#b52e31;}
-.pageFormContent fieldset legend:before{background-color:#b52e31;}
+fieldset{background-color:#fff;}
+fieldset legend{color:#b52e31;}
+fieldset legend:before{background-color:#b52e31;}
 .pageFormContent label{color:#989eab;}
 .pageFormContent dt{color:#31353e;}
 .unit a.button:hover{background-color:#8f0006;color:#fff;border-color:#8f0006;}
