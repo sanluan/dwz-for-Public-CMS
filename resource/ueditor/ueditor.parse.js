@@ -1,7 +1,7 @@
 /*!
  * UEditor
  * version: ueditor
- * build: Sat Jul 24 2021 21:58:08 GMT+0800 (中国标准时间)
+ * build: Wed Apr 27 2022 18:45:51 GMT+0800 (中国标准时间)
  */
 
 (function(){
@@ -906,7 +906,7 @@ UE.parse.register('list',function(utils){
 
     utils.extend(this,{
         liiconpath : 'http://bs.baidu.com/listicon/',
-        listDefaultPaddingLeft : '20'
+        listDefaultPaddingLeft : '40'
     });
 
     var root = this.root,
@@ -923,7 +923,7 @@ UE.parse.register('list',function(utils){
     }
 
     if(ols.length || uls.length){
-        customCss.push(selector +' .list-paddingleft-1{padding-left:0}');
+        customCss.push(selector +' .list-paddingleft-1{padding-left:20px}');
         customCss.push(selector +' .list-paddingleft-2{padding-left:'+ this.listDefaultPaddingLeft+'px}');
         customCss.push(selector +' .list-paddingleft-3{padding-left:'+ this.listDefaultPaddingLeft*2+'px}');
 
@@ -983,40 +983,6 @@ UE.parse.register('list',function(utils){
     }
 
 
-});
-UE.parse.register('vedio',function(utils){
-    var video = this.root.getElementsByTagName('video'),
-        audio = this.root.getElementsByTagName('audio');
-
-    document.createElement('video');document.createElement('audio');
-    if(video.length || audio.length){
-        var sourcePath = utils.removeLastbs(this.rootPath),
-            jsurl = sourcePath + '/third-party/video-js/video.js',
-            cssurl = sourcePath + '/third-party/video-js/video-js.min.css',
-            swfUrl = sourcePath + '/third-party/video-js/video-js.swf';
-
-        if(window.videojs) {
-            videojs.autoSetup();
-        } else {
-            utils.loadFile(document,{
-                id : "video_css",
-                tag : "link",
-                rel : "stylesheet",
-                type : "text/css",
-                href : cssurl
-            });
-            utils.loadFile(document,{
-                id : "video_js",
-                src : jsurl,
-                tag : "script",
-                type : "text/javascript"
-            },function(){
-                videojs.options.flash.swf = swfUrl;
-                videojs.autoSetup();
-            });
-        }
-
-    }
 });
 
 })();

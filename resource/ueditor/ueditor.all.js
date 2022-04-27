@@ -1,7 +1,7 @@
 /*!
  * UEditor
  * version: ueditor
- * build: Fri Dec 03 2021 22:27:23 GMT+0800 (中国标准时间)
+ * build: Wed Apr 27 2022 19:46:20 GMT+0800 (中国标准时间)
  */
 
 (function(){
@@ -10475,8 +10475,11 @@ UE.plugins['autotypeset'] = function(){
         mergeEmptyline: true,           //合并空行
         removeClass: true,              //去掉冗余的class
         removeEmptyline: false,         //去掉空行
+        removeSpace:false,              //去掉空格
         textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
         imageBlockLine: "center",       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+        removeImageSize:false,          //清除图片尺寸
+        imageWidth: "",                 //图片的宽度
         pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
         clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
         clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
@@ -10576,16 +10579,6 @@ UE.plugins['autotypeset'] = function(){
                 removeNotAttributeSpan(ci);
             }
 
-            if(opt.defaultFontsize && !ci.style.fontSize){
-                 ci.style.fontSize = opt.defaultFontsize;
-                 removeNotAttributeSpan(ci);
-            }
-
-            if(opt.defaultFontFamily && !ci.style.fontFamily){
-                 ci.style.fontFamily	 = opt.defaultFontFamily;
-                 removeNotAttributeSpan(ci);
-            }
-
             if(isLine(ci)){
                 //合并空行
                 if(opt.mergeEmptyline ){
@@ -10598,7 +10591,6 @@ UE.plugins['autotypeset'] = function(){
                         }
                         domUtils.remove(tmpNode);
                     }
-
                 }
                  //去掉空行，保留占位的空行
                 if(opt.removeEmptyline && domUtils.inDoc(ci,cont) && !remainTag[ci.parentNode.tagName.toLowerCase()] ){
@@ -10610,25 +10602,29 @@ UE.plugins['autotypeset'] = function(){
                     }
                     domUtils.remove(ci);
                     continue;
-
                 }
-
             }
             if(isLine(ci,true) && ci.tagName != 'SPAN'){
+                if(opt.defaultFontsize && !ci.style.fontSize){
+                    ci.style.fontSize = opt.defaultFontsize + 'px';
+                }
+                if(opt.defaultFontFamily && !ci.style.fontFamily){
+                    ci.style.fontFamily	 = opt.defaultFontFamily;
+                }
                 if(opt.indent){
                     ci.style.textIndent = opt.indentValue;
                 }
                 if(opt.textAlign){
                     ci.style.textAlign = opt.textAlign;
                 }
-                if(opt.lineHeight){
-                     ci.style.lineHeight = opt.lineHeight;
+                if(opt.lineheight){
+                    ci.style.lineHeight = (opt.lineheight == "1" ? "normal" : opt.lineheight + 'em') ;
                 }
                 if(opt.rowspacingtop){
-                     ci.style.marginTop = opt.rowspacingtop;
+                    ci.style.marginTop = opt.rowspacingtop+ 'px';
                 }
                 if(opt.rowspacingbottom){
-                     ci.style.marginBottom = opt.rowspacingbottom;
+                    ci.style.marginBottom = opt.rowspacingbottom+ 'px';
                 }
             }
 
@@ -10639,7 +10635,23 @@ UE.plugins['autotypeset'] = function(){
                 }
                 domUtils.removeAttributes(ci,['class']);
             }
+            if(ci.tagName.toLowerCase() == 'img' && !ci.getAttribute('emotion')){
+                //清理宽度高度
+                if(opt.removeImageSize){
+                    domUtils.removeStyle(ci,'width');
+                    domUtils.removeStyle(ci,'height');
+                    domUtils.removeAttributes(ci,['width','height']);
+                }
 
+                //图片宽度设定
+                if(opt.imageWidth && !domUtils.getStyle(ci,'width')){
+                    var img = ci;
+                    if(img.width > (parseInt(opt.imageWidth) / 4)){
+                        domUtils.setStyle(img,'width',opt.imageWidth+'px');
+                        domUtils.setStyle(img,'height','auto');
+                    }
+                }
+            }
             //表情不处理
             if(opt.imageBlockLine && ci.tagName.toLowerCase() == 'img' && !ci.getAttribute('emotion')){
                 if(html){
@@ -10704,6 +10716,16 @@ UE.plugins['autotypeset'] = function(){
                     domUtils.remove(ci);
                 }
             }
+        }
+        //去掉空格
+        if(opt.removeSpace ){
+            var root = UE.htmlparser(cont.innerHTML);
+            root.traversal(function(node){
+                if(node.type == 'text'){
+                    node.data = node.data.replace(/ /g,'').replace(/&nbsp;/ig,'');
+                }
+            });
+            cont.innerHTML = root.toHtml()
         }
         if(opt.tobdc){
             var root = UE.htmlparser(cont.innerHTML);
@@ -13096,9 +13118,7 @@ UE.commands['time'] = UE.commands["date"] = {
 UE.plugins['rowspacing'] = function(){
     var me = this;
     me.setOpt({
-        'rowspacingtop':['5', '10', '15', '20', '25'],
-        'rowspacingbottom':['5', '10', '15', '20', '25']
-
+        'rowspacing':['5', '10', '15', '20', '25']
     });
     me.commands['rowspacing'] =  {
         execCommand : function( cmdName,value,dir ) {
@@ -14891,7 +14911,7 @@ UE.plugins['paste'] = function () {
             }
             var clipboardData = e.clipboardData;
             var rtfContent;
-            if(0 < clipboardData.items.length && -1 < clipboardData.types.indexOf('text/rtf') ) {
+            if(-1 < clipboardData.types.indexOf('text/rtf') ) {
                 rtfContent = clipboardData.getData('text/rtf');
             }
             getClipboardData.call(me, function (div) {
@@ -17780,12 +17800,14 @@ UE.plugins['video'] = function (){
      * @param width 视频宽度
      * @param height 视频高度
      * @param align 视频对齐
-     * @param toEmbed 是否以flash代替显示
-     * @param addParagraph  是否需要添加P 标签
+     * @param poster 封面图
+     * @param classname  css类名
+     * @param type  类型支持video、embed
      */
-    function creatInsertStr(url,width,height,id,align,classname,type){
+    function creatInsertStr(url,width,height,id,align,poster,classname,type){
 
         url = utils.unhtmlForUrl(url);
+        poster = utils.unhtmlForUrl(poster);
         align = utils.unhtml(align);
         classname = utils.unhtml(classname);
 
@@ -17795,34 +17817,39 @@ UE.plugins['video'] = function (){
         var str;
         switch (type){
             case 'image':
-                str = '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + classname.replace(/\bvideo-js\b/, '') + '"'  +
+                str = '<img ' + (id ? 'id="' + id+'"' : '') + (poster ? ' poster="' + poster + '"': '') +  ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + classname.replace(/\bvideo-js\b/, '') + '"'  +
                     ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
                 break;
             case 'embed':
                 str = '<embed type="application/x-shockwave-flash" class="' + classname + '" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
-                    ' src="' +  utils.html(url) + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
+                    ' src="' +  utils.html(url) + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') + (poster ? ' poster="' + poster + '"': '') +
                     ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >';
                 break;
             case 'video':
                 var ext = url.substr(url.lastIndexOf('.') + 1);
                 if(ext == 'ogv') ext = 'ogg';
-                str = '<video' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"': '') +
+                if('mp3'==ext || 'mid' == ext){
+                  str = '<audio' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"': '') +
+                    ' controls preload="none" src="' + url + '">" /></audio>';
+                }else{
+                  str = '<video' + (id ? ' id="' + id + '"' : '') + ' class="' + classname + ' video-js" ' + (align ? ' style="float:' + align + '"': '') + (poster ? ' poster="' + poster + '"': '') +
                     ' controls preload="none" width="' + width + '" height="' + height + '" src="' + url + '" data-setup="{}">' +
                     '<source src="' + url + '" type="video/' + ext + '" /></video>';
+                }
                 break;
         }
         return str;
     }
 
     function switchImgAndVideo(root,img2video){
-        utils.each(root.getNodesByTagName(img2video ? 'img' : 'embed video'),function(node){
+        utils.each(root.getNodesByTagName(img2video ? 'img' : 'embed video audio'),function(node){
             var className = node.getAttr('class');
             if(className && className.indexOf('edui-faked-video') != -1){
-                var html = creatInsertStr( img2video ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',className,img2video ? 'embed':'image');
+                var html = creatInsertStr( img2video ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',node.getAttr('poster'),className,img2video ? 'embed':'image');
                 node.parentNode.replaceChild(UE.uNode.createElement(html),node);
             }
             if(className && className.indexOf('edui-upload-video') != -1){
-                var html = creatInsertStr( img2video ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',className,img2video ? 'video':'image');
+                var html = creatInsertStr( img2video ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',node.getAttr('poster'),className,img2video ? 'video':'image');
                 node.parentNode.replaceChild(UE.uNode.createElement(html),node);
             }
         })
@@ -17849,7 +17876,8 @@ UE.plugins['video'] = function (){
      *      url: 'http://www.youku.com/xxx',
      *      //视频宽高值， 单位px
      *      width: 200,
-     *      height: 100
+     *      height: 100,
+     *      poster: 'http://www.youku.com/xxx'
      * };
      *
      * //editor 是编辑器实例
@@ -17872,14 +17900,16 @@ UE.plugins['video'] = function (){
      *      url: 'http://www.youku.com/xxx',
      *      //视频宽高值， 单位px
      *      width: 200,
-     *      height: 100
+     *      height: 100,
+     *      poster: 'http://www.youku.com/xxx'
      * },
      * videoAttr2 = {
      *      //视频地址
      *      url: 'http://www.youku.com/xxx',
      *      //视频宽高值， 单位px
      *      width: 200,
-     *      height: 100
+     *      height: 100,
+     *      poster: 'http://www.youku.com/xxx'
      * }
      *
      * //editor 是编辑器实例
@@ -17907,8 +17937,8 @@ UE.plugins['video'] = function (){
             var html = [],id = 'tmpVedio', cl;
             for(var i=0,vi,len = videoObjs.length;i<len;i++){
                 vi = videoObjs[i];
-                cl = (type == 'upload' ? 'edui-upload-video video-js vjs-default-skin':'edui-faked-video');
-                html.push(creatInsertStr( vi.url, vi.width || 420,  vi.height || 280, id + i, null, cl, 'image'));
+                cl = (type == 'upload' ? 'edui-upload-video video-js':'edui-faked-video');
+                html.push(creatInsertStr( vi.url, vi.width || 600,  vi.height || 400, id + i, null, vi.poster , cl, 'image'));
             }
             me.execCommand("inserthtml",html.join(""),true);
             var rng = this.selection.getRange();
@@ -26024,19 +26054,49 @@ UE.ui = baidu.editor.ui = {};
             var me = this.editor,
                 opt = me.options.autotypeset,
                 lang = me.getLang("autoTypeSet");
-                list = me.options['fontfamily'] || [];
-                title = me.options.labelMap['fontfamily'] || me.getLang("labelMap.fontfamily") || '';
-                fontFamilyHtml = '<select name="defaultFontFamily">';
-            fontFamilyHtml += '<option value="" '+(!opt["defaultFontFamily"] ? "selected=\"selected\"" : "")+'>'+title+'</option>';
-            for (var i = 0, ci, items = []; ci = list[i]; i++) {
-                var langLabel = me.getLang('fontfamily')[ci.name] || "";
 
+            var fontFamilyList = me.options['fontfamily'] || [];
+            var fontFamilyHtml = '<select name="defaultFontFamily">';
+            fontFamilyHtml += '<option value="" '+(!opt["defaultFontFamily"] ? "selected=\"selected\"" : "")+'>'+lang.defaultFontFamily+'</option>';
+            for (var i = 0, ci; ci = fontFamilyList[i]; i++) {
+                var langLabel = me.getLang('fontfamily')[ci.name] || "";
                 (function (key, val) {
                     fontFamilyHtml += '<option value="'+utils.unhtml(val)+'"'+((opt["defaultFontFamily"] && opt["defaultFontFamily"] == val) ? "selected=\"selected\"" : "")+'>'+key+'</option>'
                 })(ci.label || langLabel, ci.val)
             }
-
             fontFamilyHtml += '</select>';
+
+            var fontsizelist = me.options['fontsize'] || [];
+            var fontSizeHtml = '<select name="defaultFontsize">';
+            fontSizeHtml += '<option value="" '+(!opt["defaultFontsize"] ? "selected=\"selected\"" : "")+'>'+lang.defaultFontsize+'</option>';
+            for (var i = 0, ci; ci = fontsizelist[i]; i++) {
+                fontSizeHtml += '<option value="'+ci+'"'+((opt["defaultFontsize"] && opt["defaultFontsize"] == ci) ? "selected=\"selected\"" : "")+'>'+ci+'</option>'
+            }
+            fontSizeHtml += '</select>';
+
+            var lineHeightList = me.options['lineheight'] || [];
+            var lineHeightHtml = '<select name="lineheight">';
+            lineHeightHtml += '<option value="" '+(!opt["lineheight"] ? "selected=\"selected\"" : "")+'>'+lang.lineHeight+'</option>';
+            for (var i = 0, ci; ci = lineHeightList[i]; i++) {
+                lineHeightHtml += '<option value="'+ci+'"'+((opt["lineheight"] && opt["lineheight"] == ci) ? "selected=\"selected\"" : "")+'>'+ci+'</option>'
+            }
+            lineHeightHtml += '</select>';
+
+            var rowSpacingList = me.options['rowspacing'] || [];
+
+            var rowSpacingTopHtml = '<select name="rowspacingtop">';
+            rowSpacingTopHtml += '<option value="" '+(!opt["rowspacingtop"] ? "selected=\"selected\"" : "")+'>'+lang.rowspacingtop+'</option>';
+            for (var i = 0, ci; ci = rowSpacingList[i]; i++) {
+                rowSpacingTopHtml += '<option value="'+ci+'"'+((opt["rowspacingtop"] && opt["rowspacingtop"] == ci) ? "selected=\"selected\"" : "")+'>'+ci+'</option>'
+            }
+            rowSpacingTopHtml += '</select>';
+
+            var rowSpacingBottomHtml = '<select name="rowspacingbottom">';
+            rowSpacingBottomHtml += '<option value="" '+(!opt["rowspacingbottom"] ? "selected=\"selected\"" : "")+'>'+lang.rowspacingbottom+'</option>';
+            for (var i = 0, ci; ci = rowSpacingList[i]; i++) {
+                rowSpacingBottomHtml += '<option value="'+ci+'"'+((opt["rowspacingbottom"] && opt["rowspacingbottom"] == ci) ? "selected=\"selected\"" : "")+'>'+ci+'</option>'
+            }
+            rowSpacingBottomHtml += '</select>';
 
             var textAlignInputName = 'textAlignValue' + me.uid,
                 imageBlockInputName = 'imageBlockLineValue' + me.uid,
@@ -26046,7 +26106,7 @@ UE.ui = baidu.editor.ui = {};
                 '<div class="edui-autotypesetpicker-body">' +
                 '<table >' +
                 '<tr><td nowrap><label><input type="checkbox" name="mergeEmptyline" ' + (opt["mergeEmptyline"] ? "checked" : "" ) + '>' + lang.mergeLine + '</label></td><td colspan="2"><label><input type="checkbox" name="removeEmptyline" ' + (opt["removeEmptyline"] ? "checked" : "" ) + '>' + lang.delLine + '</label></td></tr>' +
-                '<tr><td nowrap><label><input type="checkbox" name="removeClass" ' + (opt["removeClass"] ? "checked" : "" ) + '>' + lang.removeFormat + '</label></td><td colspan="2"><label><input type="checkbox" name="indent" ' + (opt["indent"] ? "checked" : "" ) + '>' + lang.indent + '</label></td></tr>' +
+                '<tr><td nowrap><label><input type="checkbox" name="removeClass" ' + (opt["removeClass"] ? "checked" : "" ) + '>' + lang.removeFormat + '</label></td><td colspan="2"><label><input type="checkbox" name="indent" ' + (opt["indent"] ? "checked" : "" ) + '>' + lang.indent + '</label>&nbsp;<label><input type="checkbox" name="removeSpace" ' + (opt["removeSpace"] ? "checked" : "" ) + '>' + lang.removeSpace + '</label></td></tr>' +
                 '<tr>' +
                 '<td nowrap><label><input type="checkbox" name="textAlign" ' + (opt["textAlign"] ? "checked" : "" ) + '>' + lang.alignment + '</label></td>' +
                 '<td colspan="2" id="' + textAlignInputName + '">' +
@@ -26064,9 +26124,10 @@ UE.ui = baidu.editor.ui = {};
                 '<label><input type="radio" name="'+ imageBlockInputName +'" value="right" ' + ((opt["imageBlockLine"] && opt["imageBlockLine"] == "right") ? "checked" : "") + '>' + me.getLang("justifyright") + '</label>' +
                 '</td>' +
                 '</tr>' +
-                '<tr><td nowrap><label><input type="checkbox" name="clearFontSize" ' + (opt["clearFontSize"] ? "checked" : "" ) + '>' + lang.removeFontsize + '</label></td><td colspan="2"><label><input type="checkbox" name="clearFontFamily" ' + (opt["clearFontFamily"] ? "checked" : "" ) + '>' + lang.removeFontFamily + '</label></td></tr>' +
-                '<tr><td nowrap><label>' + lang.defaultFontsize + '</label><input type="text" size="4" name="defaultFontsize" value="' + (opt["defaultFontsize"] ? opt["defaultFontsize"] : "" ) + '"></td><td colspan="2"><label>' + lang.defaultFontFamily + '</label>'+fontFamilyHtml+'</td></tr>' +
-                '<tr><td nowrap><label>' + lang.rowspacingtop + '</label><input type="text" name="rowspacingtop" size="4" value="' + (opt["rowspacingtop"] ? opt["rowspacingtop"] : "" ) + '"></td><td colspan="2"><label>' + lang.rowspacingbottom + '</label><input type="text" name="rowspacingbottom" size="4" value="' + (opt["rowspacingbottom"] ? opt["rowspacingbottom"] : "" ) + '"><label>' + lang.lineHeight + '</label><input type="text" name="lineHeight" size="4" value="' + (opt["lineHeight"] ? opt["lineHeight"] : "" ) + '"></td></tr>' +
+                '<tr><td nowrap><label><input type="checkbox" name="removeImageSize" ' + (opt["removeImageSize"] ? "checked" : "" ) + '>' + lang.removeImageSize + '</label></td><td colspan="2"><label>' + lang.imageWidth + '</label><input type="text" size="5" style="width:40px;" name="imageWidth" value="'+opt["imageWidth"]+'"></td></tr>' +
+                '<tr><td nowrap><label><input type="checkbox" name="clearFontFamily" ' + (opt["clearFontFamily"] ? "checked" : "" ) + '>' + lang.removeFontFamily + '</label></td><td colspan="2"><label>' + lang.defaultFontFamily + '</label>'+fontFamilyHtml+'</td></tr>' +
+                '<tr><td nowrap><label><input type="checkbox" name="clearFontSize" ' + (opt["clearFontSize"] ? "checked" : "" ) + '>' + lang.removeFontsize + '</label></td><td colspan="2"><label>' + lang.defaultFontsize + '</label>'+ fontSizeHtml +'</td></tr>' +
+                '<tr><td nowrap><label>' + lang.lineHeight + '</label>'+ lineHeightHtml +'</td><td colspan="2"><label>' + lang.rowspacingtop + '</label>'+ rowSpacingTopHtml +'<label>' + lang.rowspacingbottom + '</label>'+ rowSpacingBottomHtml +'</td></tr>' +
                 '<tr><td nowrap colspan="3"><label><input type="checkbox" name="removeEmptyNode" ' + (opt["removeEmptyNode"] ? "checked" : "" ) + '>' + lang.removeHtml + '</label></td></tr>' +
                 '<tr><td nowrap colspan="3"><label><input type="checkbox" name="pasteFilter" ' + (opt["pasteFilter"] ? "checked" : "" ) + '>' + lang.pasteFilter + '</label></td></tr>' +
                 '<tr>' +
@@ -26213,7 +26274,7 @@ UE.ui = baidu.editor.ui = {};
                         }
                         // 点击radio,选中对应的checkbox
                         if (target.name == ('imageBlockLineValue' + editorId) || target.name == ('textAlignValue' + editorId) || target.name == 'bdc') {
-                            var checkboxs = target.parentNode.previousSibling.getElementsByTagName('input');
+                            var checkboxs = target.parentNode.parentNode.previousSibling.getElementsByTagName('input');
                             checkboxs && (checkboxs[0].checked = true);
                         }
 
@@ -28304,7 +28365,7 @@ UE.ui = baidu.editor.ui = {};
     for (var r = 0, ri; ri = rowspacings[r++];) {
         (function (cmd) {
             editorui['rowspacing' + cmd] = function (editor) {
-                var val = editor.options['rowspacing' + cmd] || [];
+                var val = editor.options['rowspacing'] || [];
                 if (!val.length) return null;
                 for (var i = 0, ci, items = []; ci = val[i++];) {
                     items.push({

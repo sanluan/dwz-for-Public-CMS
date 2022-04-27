@@ -23,55 +23,7 @@ DWZ.regPlugins.push(function($p){
             return false;
         });
     });
-    
 });
-DWZ.regPlugins.push(function($p){
-    if($('.cmsVersion',$p).length ) {
-        var fullVersion=$('.cmsVersion a',$p).eq(0).text();
-        $.getJSON(Base64.decode('Ly9jbXMucHVibGljY21zLmNvbS9hcGkvZGlyZWN0aXZlL3ZlcnNpb24=')+"?version="+fullVersion, function(data) {
-            var version=fullVersion.substring(0,fullVersion.lastIndexOf('.'));
-            var revision=fullVersion.substring(fullVersion.lastIndexOf('.')+1);
-            if(version!==data.cms ) {
-                $('.cmsVersion .old',$p).show();
-            } else {
-                if(revision == data.revision){
-                    $('.cmsVersion .new',$p).show();
-                } else {
-                    $('.cmsVersion .old',$p).css('color','gray').show();
-                }
-            }
-        });
-    }
-});
-function loadScripts(urls, callback) {
-    function loadScript(url, callback){
-        var script = document.createElement("script")
-        script.type = "text/javascript";
-        if (script.readyState){
-            script.onreadystatechange = function(){
-                if (script.readyState == "loaded" || script.readyState == "complete"){
-                    script.onreadystatechange = null;
-                    callback();
-                }
-            };
-        } else {
-            script.onload = function(){
-                callback();
-            };
-        }
-        script.src = url;
-        document.getElementsByTagName("head")[0].appendChild(script);
-    }
-    var i = 0,count = urls.length-1;
-    var loadOrCallback=function(){
-        if (i == count) {
-            callback && callback();
-        }else{
-            loadScript(urls[++i],loadOrCallback);
-        }
-    };
-    loadScript(urls[i],loadOrCallback);
-}
 DWZ.regPlugins.push(function($p){
     $("textarea.editor", $p).each(function(i) {
         var $this = $(this);
@@ -132,26 +84,37 @@ DWZ.regPlugins.push(function($p){
         var $this = $(this);
         var index= window.codemirror.index++;
         var dataId="editor_"+index;
-        if(!window.codemirror.initd){
-            $.each(window.codemirror.resources, function(index, url){
-                $.ajax({url: url, type: "GET", async: false, dataType: "script"});
-            });
-            window.codemirror.initd=true;
-        }
         var mode = 'htmlmixed'
         if($(this).attr('mode')){
             mode = $(this).attr('mode');
         }
-        DWZ.codemirror.instances[dataId]=CodeMirror.fromTextArea($this[0], {
-            mode: mode,
-            lineNumbers: true,
-            tabSize        : 4,
-            indentUnit     : 4,
-            lineWrapping   : true,
-            indentWithTabs : true,
-            extraKeys: { "Ctrl": "autocomplete" }
-        });
-        $this.attr("data-id",dataId);
+        if(!window.codemirror.initd){
+            loadScripts(window.codemirror.resources,function(){
+                window.codemirror.initd=true;
+                DWZ.instances[dataId]=CodeMirror.fromTextArea($this[0], {
+                    mode: mode,
+                    lineNumbers: true,
+                    tabSize        : 4,
+                    indentUnit     : 4,
+                    lineWrapping   : true,
+                    indentWithTabs : true,
+                    extraKeys: { "Ctrl": "autocomplete" }
+                });
+                $this.attr("data-id",dataId);
+            });
+        } else {
+            DWZ.instances[dataId]=CodeMirror.fromTextArea($this[0], {
+                mode: mode,
+                lineNumbers: true,
+                tabSize        : 4,
+                indentUnit     : 4,
+                lineWrapping   : true,
+                indentWithTabs : true,
+                extraKeys: { "Ctrl": "autocomplete" }
+            });
+            $this.attr("data-id",dataId);
+        }
+       
     });
 });
 /**
@@ -203,19 +166,80 @@ DWZ.regPlugins.push(function($p){
         img.file = file;
         $previewElem.empty().append(img);
 
-        // if ($previewElem.find('.edit-icon').size() == 0) {
-        //  $previewElem.append('<span class="edit-icon"></span>');
-        // }
-
         if ($previewElem.find('.del-icon').size() == 0) {
             $('<a class="del-icon"></a>').appendTo($previewElem).click(function(event){
                 $previewElem.remove();
                 $uploadWrap.find('input[type=file]').val('');
             });
         }
+        if ($previewElem.find('.edit-icon').size() == 0) {
+            $('<a class="edit-icon"></a>').appendTo($previewElem).click(function(event){
+                editImg($uploadWrap,file,file.name,function(dataURL){
+                    if(dataURL){
+                        img.src=dataURL;
+                        $uploadWrap.find('input[name=base64File]').val(dataURL.substring(dataURL.indexOf('base64,')+7));
+                        $uploadWrap.find('input[name=originalFilename]').val(file.name);
+                        $uploadWrap.find('input[type=file]').val('');
+                    }
+                });
+            });
+        }
 
         readAsDataURL(img, file, maxW, maxH);
 
+    }
+    
+    function editImg($uploadWrap,img,fileName,callback){
+        if(0 == $uploadWrap.parent().find('.image-editor').length ) {
+            $uploadWrap.after('<div class="image-editor" ><div class="unit"><p class="image-box"></p><label><a href="javascript:;" class="button"><i class="icon-ok"></i></a></label></div></div>');
+        }
+        var $this = $uploadWrap.parent().find('.image-editor');
+        if($this.attr("data-id")){
+            DWZ.instances[$this.attr("data-id")].destroy();
+        }
+        var index = window.photoclip.index++;
+        var dataId = "photoclip_"+index;
+        var widthInput=$uploadWrap.parents("form:first").find("input[name=width]");
+        var heightInput=$uploadWrap.parents("form:first").find("input[name=height]");
+        widthInput.change(function(){
+            DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
+        });
+        heightInput.change(function(){
+            DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
+        });
+        var options= {
+            size: [parseInt(widthInput.val()), parseInt(heightInput.val())],
+            ok: $this.find('.button'),
+            done: function(dataURL){
+                if ($.isFunction(callback) ) {
+                    callback(dataURL);
+                }
+                DWZ.instances[dataId].destroy();
+                delete DWZ.instances[dataId];
+                $this.remove();
+            },
+            fail: function(msg) {
+                alertMsg.error(msg);
+            }
+        };
+        var filenames=fileName.split('.');
+        if('png'==filenames[filenames.length-1]){
+            options.outputType='png';
+        }
+        function init(dataId,img){
+            var photoClip = new PhotoClip($this.find('.image-box')[0], options);
+            photoClip.load(img);
+            DWZ.instances[dataId] = photoClip;
+        }
+        if(!window.photoclip.initd){
+            loadScripts(window.photoclip.resources,function(){
+                window.photoclip.initd=true;
+                init(dataId,img);
+            });
+        } else {
+            init(dataId,img);
+        }
+        $this.attr("data-id",dataId);
     }
 
     // multiple
@@ -237,8 +261,40 @@ DWZ.regPlugins.push(function($p){
 
             readAsDataURL(img, file, maxW, maxH);
         }
-
     }
+    
+    $.fn.extend({
+        /**
+         * 图片编辑
+         * @param options
+         */
+        editImg: function(options){
+            $uploadWrap = $(this);
+            var $previewElem = $uploadWrap.find('.thumbnail');
+            if(0 == $previewElem.length){
+                $previewElem = $('<div class="thumbnail"></div>').appendTo($uploadWrap);
+            }
+            var img = document.createElement("img");
+            img.src = options.imgUrl;
+            $previewElem.empty().append(img);
+
+            editImg($(this),options.imgUrl,options.imgName,function(dataURL){
+                if(dataURL){
+                    img.src=dataURL;
+                    $uploadWrap.find('input[name=base64File]').val(dataURL.substring(dataURL.indexOf('base64,')+7));
+                    $uploadWrap.find('input[name=originalFilename]').val(options.imgName);
+                    $uploadWrap.find('input[type=file]').val('');
+                    if ($previewElem.find('.del-icon').size() == 0) {
+                        $('<a class="del-icon"></a>').appendTo($previewElem).click(function(event){
+                            $previewElem.remove();
+                            $uploadWrap.find('input[name=base64File]').val('');
+                            $uploadWrap.find('input[name=originalFilename]').val('');
+                        });
+                    }
+                }
+            });
+        }
+    });
 
     $.fn.extend({
         /**
@@ -293,7 +349,111 @@ DWZ.regPlugins.push(function($p){
 
 
     DWZ.regPlugins.push(function($p){
-        $("div.upload-wrap", $p).previewUploadImg();
+        $("div.upload-wrap", $p).previewUploadImg({maxW:300,maxH:200});
     });
 
 })(jQuery);
+
+DWZ.regPlugins.push(function($p){
+    $("a.view[target=_blank]", $p).each(function(){
+        $btn=$(this);
+        $input=$('input[name='+escapeJquery($(this).attr('ref'))+']',$(this).parents(".unitBox:first"));
+        function control(){
+            if($(this).val()){
+                $('a.view[target=_blank][ref='+escapeJquery($(this).attr('name'))+']').show();
+            }else{
+                $('a.view[target=_blank][ref='+escapeJquery($(this).attr('name'))+']').hide();
+            }
+        }
+        $input.change(control);
+        if($input.val()){
+            $btn.show();
+        }else{
+            $btn.hide();
+        }
+        $btn.click(function(){
+            var value=$('input[name='+escapeJquery($(this).attr('ref'))+']',$(this).parents(".unitBox:first")).val();
+            if(value){
+                $(this).attr('href',value.isUrl() ? value : $(this).data('prefix')+value);
+            }else{
+                return false;
+            }
+        });
+    });
+});
+
+DWZ.regPlugins.push(function($p){
+    function initDictionary($dictionary,$exclude,url){
+        var valuearray=[];
+        $dictionary.find('select,input[checked]').each(function(){
+            if($(this).val()){
+                valuearray.push($(this).val());
+            }
+        });
+        $.ajax({
+            type: 'POST', dataType: "json", url: url+'?id='+$dictionary.data('id')+'&excludeDictionaryId='+$exclude.data('id')+'&values='+valuearray.join(), cache: false, data: {} ,
+            success: function(json) {
+                if (!json ) {
+                    return;
+                }
+                combox = $exclude.find('.combox');
+                tree = $exclude.find('.tree');
+                checkbox = $exclude.find('[type=checkbox]');
+                if(combox.length) {
+                    combox.each(function(){
+                        var $combox = $("#op_" + $(this).find('.select').attr('id'));
+                        $combox.find("li.disabled").removeClass('disabled').show();
+                        $.each(json, function(i) {
+                            $combox.find("li a[value="+json[i]+"]").parent().addClass('disabled').hide();
+                            if($combox.find("li a[value="+json[i]+"]").hasClass('selected')){
+                                $combox.find("li:visible:eq(0) a").click();
+                            }
+                        });
+                    });
+                } else if (tree.length) {
+                    tree.each(function(){
+                        $tree=$(this);
+                        $tree.find('li').show();
+                        $.each(json, function(i) {
+                            $tree.find("li a[tvalue="+json[i]+"]").parent().parent().addClass('disabled').hide();
+                            if($tree.find("li a[tvalue="+json[i]+"]").parent().find('[type=checkbox]').is(':checked')){
+                                $tree.find("li a[tvalue="+json[i]+"]").click();
+                            }
+                        });
+                    });
+                } else if (checkbox.length) {
+                    checkbox.each(function(){
+                        $checkbox=$(this);
+                        $checkbox.parent().show();
+                        $.each(json, function(i) {
+                            if($checkbox.val()==json[i]){
+                                $checkbox.parent().hide();
+                                if($checkbox.is(':checked')){
+                                    $checkbox.click();
+                                }
+                            }
+                        });
+                    });
+                }
+            }, error: DWZ.ajaxError
+        });
+    }
+    $(".dictionary", $p).each(function(){
+        if($(this).data('ref')){
+            var refArray = $(this).data('ref').split(',');
+            var url=$(this).data('url');
+            var $dictionary=$(this);
+            for (var index=0; index<refArray.length; index++) {
+                (function($dictionary,index,$box,url){
+                    var $exclude=$('.dictionary[data-id='+refArray[index]+']',$box);
+                    if($exclude.length){
+                        $dictionary.find('select,input').change(function(){
+                            initDictionary($dictionary,$exclude,url);
+                        });
+                    }
+                    initDictionary($dictionary,$exclude,url);
+                })($dictionary,index,( !$.pdialog.getCurrent() ) ? navTab.getCurrentPanel(): $.pdialog.getCurrent(),url);
+            }
+        }
+    });
+});

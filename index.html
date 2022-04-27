@@ -19,8 +19,9 @@
 	    <script src="resource/js/html5shiv.min.js"></script>
 	    <script src="resource/js/respond.min.js"></script>
 	<![endif]-->
+	<script src="resource/js/echarts.proxy.js"></script>
 </head>
-<body scroll="no">
+<body>
 <header>
 	<a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
 	<ul class="nav">
@@ -38,7 +39,7 @@
 </header>
 <main>
     <div id="leftside">
-        <div id="sidebar_s"><i class="icon-caret-right"></i></div>
+        <div id="sidebar_s"><i class="icon-caret-right icon-large"></i></div>
         <div id="sidebar">
             <div id="menu">
 				<div class="accordion">
@@ -184,7 +185,7 @@
 							<ul class="clearfix">
 								<li>
 									<div class="card">
-										<i class="icon-comment icon-large icon-large icon"></i>
+										<i class="icon-comment icon-large icon"></i>
 										<p>待审核评论</p>
 										<h3>0</h3>
 									</div>
@@ -197,7 +198,7 @@
 									</div>
 								</li>
 							</ul>
-							<div id="comment" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1625024844867"><div style="position: relative; width: 1336px; height: 350px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="2004" height="525" style="position: absolute; left: 0px; top: 0px; width: 1336px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+							<div id="comment" style="height:350px;width:98%;"></div>
 						</div>
 						<script>
 						echarts.init(document.getElementById('comment')).setOption({
@@ -217,7 +218,7 @@
 							xAxis: {
 								type: 'category',
 								boundaryGap: false,
-								data: ['2021-05-31','2021-06-01','2021-06-02','2021-06-03','2021-06-04','2021-06-05','2021-06-06','2021-06-07','2021-06-08','2021-06-09','2021-06-10','2021-06-11','2021-06-12','2021-06-13','2021-06-14','2021-06-15','2021-06-16','2021-06-17','2021-06-18','2021-06-19','2021-06-20','2021-06-21','2021-06-22','2021-06-23','2021-06-24','2021-06-25','2021-06-26','2021-06-27','2021-06-28','2021-06-29','2021-06-30']
+								data: ['03-28','03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
 							},
 							yAxis: {
 								type: 'value'
@@ -226,7 +227,7 @@
 							{
 								name:'操作',
 								type:'line',
-								data:[0,0,0,2,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+								data:[0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,1,0,1],
 								areaStyle: {}
 							}]
 						});
@@ -235,8 +236,8 @@
 					<fieldset>
 						<legend>用户数据报表</legend>
 						<div class="unit">
-							<div id="visit" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative;" _echarts_instance_="ec_1625024844868"><div style="position: relative; width: 1336px; height: 350px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="2004" height="525" style="position: absolute; left: 0px; top: 0px; width: 1336px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class="" style="position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9999999; box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px; transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s, visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s, left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgb(255, 255, 255); border-width: 1px; border-radius: 4px; color: rgb(102, 102, 102); font: 14px / 21px &quot;Microsoft YaHei&quot;; padding: 10px; left: 448px; top: 177px; border-color: rgb(255, 255, 255); pointer-events: none; visibility: hidden; opacity: 0;"><div style="margin: 0px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><div style="font-size:14px;color:#666;font-weight:400;line-height:1;">2021-06-05</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#5470c6;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">PV</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">457</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">UV</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">318</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#fac858;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">IP Views</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">247</span><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div><div style="clear:both"></div></div></div></div>
-							<ul class="re">
+							<div id="visit" style="height:350px;width:98%;"></div>
+							<ul>
 								<li>
 									<div class="card">
 										<i class="icon-signal icon-large icon"></i>
@@ -248,14 +249,14 @@
 									<div class="card">
 										<i class="icon-ticket icon-large icon"></i>
 										<p>登录</p>
-										<h3>2</h3>
+										<h3>124</h3>
 									</div>
 								</li>
 								<li>
 									<div class="card">
 										<i class="icon-list-alt icon-large icon"></i>
 										<p>操作</p>
-										<h3>0</h3>
+										<h3>4</h3>
 									</div>
 								</li>
 							</ul>
@@ -263,7 +264,7 @@
 						<script>
 						echarts.init(document.getElementById('visit')).setOption({
 							title: {
-								text: '访问日志',
+								text: '访问报表',
 								x:'center'
 							},
 							tooltip : {
@@ -280,32 +281,32 @@
 								top:30
 							},
 							xAxis: {
-								type: 'category',
-								boundaryGap: false,
-								data: ['2021-06-01','2021-06-02','2021-06-03','2021-06-04','2021-06-05','2021-06-06','2021-06-07','2021-06-08','2021-06-09','2021-06-10','2021-06-11','2021-06-12','2021-06-13','2021-06-14','2021-06-15']
-							},
-							yAxis: {
-								type: 'value'
-							},
-							series: [
-							{
-								   name:'PV',
-								   type:'line',
-								   data:[1067,1235,1016,775,457,524,939,916,1085,1236,933,710,702,573,1104],
-								   areaStyle: {}
-							   },
-							   {
-								   name:'UV',
-								   type:'line',
-								   data:[565,542,522,449,318,336,510,563,639,640,529,587,602,442,648],
-								   areaStyle: {}
-							   },
-							   {
-								   name:'IP Views',
-								   type:'line',
-								   data:[409,381,391,337,247,255,387,409,461,450,393,371,412,354,482],
-								   areaStyle: {}
-							   }]
+						        type: 'category',
+						        boundaryGap: false,
+						        data: ['03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
+						    },
+						    yAxis: {
+						        type: 'value'
+						    },
+						    series: [
+						    {
+						           name:'PV',
+						           type:'line',
+						           data:[2143,1790,1785,1800,1370,749,599,626,1879,1267,1667,1223,1083,2343,1943,1923,1776,1269,896,1715,1880,1552,2588,1944,2134,1220,1986,1933,1617,1433],
+						           areaStyle: {}
+						       },
+						       {
+						           name:'UV',
+						           type:'line',
+						           data:[710,718,745,689,588,425,371,392,612,266,241,383,442,537,620,457,586,467,391,340,491,481,600,593,520,575,479,400,426,460],
+						           areaStyle: {}
+						       },
+						       {
+						           name:'IP Views',
+						           type:'line',
+						           data:[436,442,448,437,389,294,272,283,408,232,216,293,325,409,479,359,448,388,312,276,403,395,507,465,418,468,400,348,377,384],
+						           areaStyle: {}
+						       }]
 						});
 						</script>
 					</fieldset>
@@ -371,7 +372,7 @@
         	</a>
         </li>
     </ul>
-    Copyright &copy; 2020
+    Copyright &copy; 2022
 
     <ul class="themeList" id="themeList">
         <li theme="toptry"><div></div></li>
@@ -383,9 +384,12 @@
 <script src="resource/js/jquery.validate.js"></script>
 <script src="resource/js/jquery.bgiframe.js"></script>
 <script src="resource/js/base64.js"></script>
+<script src="resource/js/sha512.min.js"></script>
 <script src="resource/js/dwz.min.js?7"></script>
+<script src="resource/js/loadscripts.js"></script>
 <script src="resource/js/dwz.plugins.js"></script>
 <script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
+<script src="resource/js/cms.js"></script>
 <script>
 	var base="ajax";
 	window.UEDITOR_HOME_URL="resource/ueditor/";
@@ -397,7 +401,8 @@
             basePath:'resource/kindeditor/',
             uploadJson : 'ajax/upload.json',
             fileManagerJson : 'ajax/fileList.json',
-            allowFileManager : true
+            allowFileManager : true,
+            formatUploadUrl : false
     };
 	window.editor = {
         ckeditorResources: ["resource/ckeditor/ckeditor.js"],
@@ -416,6 +421,11 @@
         initd: false,
         index: 0
     };
+	window.photoclip = {
+            resources: ['resource/photoclip/hammer.min.js','resource/photoclip/iscroll-zoom-min.js','resource/photoclip/lrz.all.bundle.js','resource/photoclip/PhotoClip.min.js'],
+            initd: false,
+            index: 0
+        };
 	DWZ.init("resource/dwz.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",
 		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
@@ -423,6 +433,9 @@
 		callback:function(){
 			initEnv();
 			$("#themeList").theme({themeBase:"resource/themes",defaultTheme:"toptry"}); // themeBase 相对于index页面的主题base路径
+			loadScripts(["/resource/js/echarts.common.min.js"],function(){
+                    echartsProxy(echarts);
+            });
 		}
 	});
 </script>

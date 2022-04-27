@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -9,8 +9,8 @@ CKEDITOR.editorConfig = function( config ) {
   // config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
-    config.extraPlugins = 'codesnippet,lineheight';
-    odeSnippet_theme: 'zenburn';
+   // config.extraPlugins = 'audio';
+  //  odeSnippet_theme: 'zenburn';
 
     config.filebrowserUploadUrl = base + '/ckeditor/upload?1=1';//定义图片上传的地址
     config.filebrowserBrowseUrl = base + '/cmsWebFile/browse.html?type=image';  //定义图片的浏览服务器窗口.
@@ -21,7 +21,7 @@ CKEDITOR.on('instanceReady', function(event){
     editor.addCommand("save", { readOnly: 1, modes: { wysiwyg: 1,source: 1 }, exec: function (editor) {
         if ( editor.fire( 'save' ) ) {
             var $form = editor.element.$.form;
-            if ( $form && $form.fireEvent('onsubmit') ) {
+            if ( $form && $form.onsubmit() ) {
                 try {
                     $form.submit();
                 } catch ( e ) {
