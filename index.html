@@ -4,21 +4,22 @@
 	<meta charset="utf-8">
 	<title>PublicCMS管理后台 UI演示</title>
 	<meta name="viewport" content="width=device-width,initial-scale=0.6">
-	<link href="resource/codemirror/lib/codemirror.css" rel="stylesheet" >
-    <link href="resource/codemirror/addon/hint/show-hint.css" rel="stylesheet" >
-	<link href="resource/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="resource/plugins/codemirror/lib/codemirror.css" rel="stylesheet" >
+    <link href="resource/plugins/codemirror/addon/hint/show-hint.css" rel="stylesheet" >
+	<link href="resource/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 	<!--[if IE 7]>
-	<link rel="stylesheet" href="resource/font-awesome/css/font-awesome-ie7.min.css">
+	<link rel="stylesheet" href="resource/fonts/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
 
-	<link href="resource/themes/css/core.css?10" rel="stylesheet" media="screen"/>
-	<link href="resource/themes/css/print.css?10" rel="stylesheet" media="print"/>
-	<link href="resource/themes/css/cms.css?10" rel="stylesheet" media="screen"/>
+	<link href="resource/css/core.css?10" rel="stylesheet" media="screen"/>
+	<link href="resource/css/print.css?10" rel="stylesheet" media="print"/>
+	<link href="resource/css/cms.css?10" rel="stylesheet" media="screen"/>
 	<!--[if lte IE 9]>
-		<link href="resource/themes/css/ieHack.css" rel="stylesheet" media="screen"/>
+		<link href="resource/css/ieHack.css" rel="stylesheet" media="screen"/>
 	    <script src="resource/js/html5shiv.min.js"></script>
 	    <script src="resource/js/respond.min.js"></script>
 	<![endif]-->
+	<script src="resource/js/echarts.proxy.js"></script>
 	<script src="resource/js/echarts.proxy.js"></script>
 </head>
 <body>
@@ -51,7 +52,7 @@
 							<li><a href="tabsPage.html" target="navTab">主面板</a>
 								<ul>
 									<li><a href="dwz.html" target="navTab" rel="dwz">DWZ介绍</a></li>
-									<li><a href="http://www.baidu.com" target="navTab" rel="page1">外部页面(页面一)</a></li>
+									<li><a href="https://www.baidu.com" target="navTab" rel="page1">外部页面(页面一)</a></li>
 									<li><a href="login.html" target="navTab" rel="external" external="true">iframe navTab页面</a></li>
 									<li><a href="demo_page_list.html" target="navTab" rel="page1" fresh="false">替换页面一</a></li>
 									<li><a href="demo_page_list.html" target="navTab" rel="page3" title="自定义标签名">页面二</a></li>
@@ -126,6 +127,7 @@
         </ul>
         <div class="navTab-panel tabsPageContent layoutBox">
             <div class="page unitBox work-bench">
+				<a class="button float" href="main.html" target="navTab" rel="main"><i class="icon-refresh"></i>刷新</a>
 				<div class="pageFormContent" layoutH>
 					<div class="unit">
 						<h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
@@ -133,7 +135,6 @@
 					<div class="unit">
 						<script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
 					</div>
-					<script src="resource/js/echarts.common.min.js"></script>
 					<fieldset>
 						<legend>我的账号</legend>
 						<div class="unit">
@@ -169,7 +170,7 @@
 								<li>
 									<div class="card">
 										<p>
-											<label>上次登录日期:</label>2021-06-27 00:32:08
+											<label>上次登录日期:</label>2021-06-27 00:32
 										</p>
 										<p>
 											<label>上次登录IP:</label>127.0.0.1
@@ -315,7 +316,7 @@
 						<div class="unit">
 							<p class="cmsVersion">
 								<label>PublicCMS:</label>
-								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202011.c</a> <span class="new hide" style="color: green; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
+								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.b</a> <span class="new hide" style="color: green; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
 							</p>
 							<p>
 								<label>时区:</label>Asia/Shanghai
@@ -353,22 +354,22 @@
    <ul class="langList">
         <li>
         	<a href="ajax/changeLocale.json?lang=en" target="ajaxTodo">
-        		<img src="https://cms.publiccms.com/resource/themes/images/en.png" alt="English"/>English
+        		<img src="resource/images/en.png" alt="English"/>English
         	</a>
         </li>
         <li class="current-lang">
         	<a href="ajax/changeLocale.json?lang=zh" target="ajaxTodo">
-        		<img src="https://cms.publiccms.com/resource/themes/images/zh.png" alt="中文"/>中文
+        		<img src="resource/images/zh.png" alt="中文"/>中文
         	</a>
         </li>
 		<li>
         	<a href="changeLocale?lang=zh_TW" target="ajaxTodo">
-        		<img src="https://cms.publiccms.com/resource/themes/images/zh_TW.png" alt="繁體"/>繁體
+        		<img src="resource/images/zh_TW.png" alt="繁體"/>繁體
         	</a>
         </li>
         <li>
         	<a href="ajax/changeLocale.json?lang=ja" target="ajaxTodo">
-        		<img src="https://cms.publiccms.com/resource/themes/images/ja.png" alt="日本語"/>日本語
+        		<img src="resource/images/ja.png" alt="日本語"/>日本語
         	</a>
         </li>
     </ul>
@@ -389,53 +390,132 @@
 <script src="resource/js/loadscripts.js"></script>
 <script src="resource/js/dwz.plugins.js"></script>
 <script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
-<script src="resource/js/cms.js"></script>
 <script>
 	var base="ajax";
-	window.UEDITOR_HOME_URL="resource/ueditor/";
-	window.CKEDITOR_BASEPATH="resource/ckeditor/";
-	window.CKEDITOR_LANGUAGE="zh";
-    window.KINDEDITOR_OPTIONS= {
-            width:'60%',
-            height:'400px',
-            basePath:'resource/kindeditor/',
-            uploadJson : 'ajax/upload.json',
-            fileManagerJson : 'ajax/fileList.json',
-            allowFileManager : true,
-            formatUploadUrl : false
-    };
+	window.UEDITOR_HOME_URL="resource/plugins/ueditor/";
+	window.CKEDITOR_BASEPATH="resource/plugins/ckeditor/";
+	window.CKEDITOR_LANGUAGE="zh-cn";
+	window.KINDEDITOR_OPTIONS = {
+			width:'60%',
+			height:'400px',
+			basePath:'resource/plugins/kindeditor/',
+			uploadJson : 'ajax/upload.json',
+			fileManagerJson : 'ajax/fileList.json',
+			allowFileManager : true,
+			formatUploadUrl : false
+	};
+	window.TINYMCE_OPTIONS = {
+		language:'zh-Hans',
+		base_url:'resource/plugins/tinymce/',
+		plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+		editimage_cors_hosts: ['picsum.photos'],
+		menubar: 'file edit view insert format tools table help',
+		toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+		toolbar_sticky: true,
+		toolbar_sticky_offset: 108,
+		autosave_ask_before_unload: true,
+		autosave_interval: '30s',
+		autosave_prefix: '{path}{query}-{id}-',
+		autosave_restore_when_empty: false,
+		autosave_retention: '2m',
+		pagebreak_split_block: true,
+		image_advtab: true,
+		importcss_append: true,
+		images_upload_url: '/admin/tinymce/upload',
+		images_reuse_filename: true,
+		images_upload_base_path: '/',
+		image_list: '/admin/tinymce/imageList',
+		image_prepend_url:"/",
+		file_picker_callback: function (callback, value, meta) {
+			var filetype='.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.mp3,.wav,.mid,.png,.jpg,.jpeg,.gif,.bmp,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.psd';
+			switch(meta.filetype){
+				case 'image':
+					filetype='.png,.jpg,.jpeg,.gif,.bmp';
+					break;
+				case 'media':
+					filetype='.mp3, .mp4, .wmv, .mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov';
+					break;
+				case 'file':
+				default:
+			}
+			var input = document.createElement('input');
+				input.setAttribute('type', 'file');
+				input.setAttribute('accept', filetype);
+			input.click();
+			input.onchange = function() {
+				var file = this.files[0];
+				var xhr, formData;
+				xhr = new XMLHttpRequest();
+				xhr.withCredentials = false;
+				xhr.open('POST', '/admin/tinymce/upload');
+				xhr.onload = function() {
+					var json;
+					if (xhr.status != 200) {
+						alertMsg.error('HTTP Error: ' + xhr.status);
+						return;
+					}
+					json = JSON.parse(xhr.responseText);
+					if (!json || typeof json.location != 'string') {
+						alertMsg.error('Invalid JSON: ' + xhr.responseText);
+						return;
+					}
+					callback('/'+json.location);
+				};
+				formData = new FormData();
+				formData.append('file', file, file.name );
+				xhr.send(formData);
+		  };
+	  },
+	  templates: [
+		{ title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+		{ title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+		{ title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+	  ],
+	  template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+	  template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+	  height: 600,
+	  image_caption: true,
+	  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+	  noneditable_class: 'mceNonEditable',
+	  toolbar_mode: 'wrap',
+	  contextmenu: 'link image table',
+	  skin: 'oxide',
+	  content_css: 'default',
+	};
 	window.editor = {
-        ckeditorResources: ["resource/ckeditor/ckeditor.js"],
-        ueditorResources: ["resource/ueditor/ueditor.config.js","resource/ueditor/ueditor.all.min.js","resource/ueditor/lang/zh-cn/zh-cn.js"],
-        kindeditorResources: ["resource/kindeditor/kindeditor-all.js","resource/kindeditor/lang/zh-CN.js"],
-        ckeditorInitd: false,
-        ueditorInitd: false,
-        kindeditorInitd: false,
-        index: 0
-    };
-    window.codemirror = {
-        resources: ['resource/codemirror/lib/codemirror.js','resource/codemirror/mode/xml/xml.js','resource/codemirror/mode/javascript/javascript.js','resource/codemirror/mode/css/css.js',
-            'resource/codemirror/mode/htmlmixed/htmlmixed.js','resource/codemirror/mode/freemarker/freemarker.js','resource/codemirror/mode/freemarkermixed/freemarkermixed.js',
-            'resource/codemirror/mode/nginx/nginx.js','resource/codemirror/addon/hint/show-hint.js','resource/codemirror/addon/hint/javascript-hint.js','resource/codemirror/addon/hint/html-hint.js',
-            'resource/codemirror/addon/hint/css-hint.js','resource/codemirror/addon/hint/xml-hint.js'],
-        initd: false,
-        index: 0
-    };
+		ckeditorResources: ["resource/plugins/ckeditor/ckeditor.js"],
+		ueditorResources: ["resource/plugins/ueditor/ueditor.config.js","resource/plugins/ueditor/ueditor.all.min.js","resource/plugins/ueditor/lang/zh-cn/zh-cn.js"],
+		tinymceResources: ["resource/plugins/tinymce/tinymce.min.js"],
+		kindeditorResources: ["resource/plugins/kindeditor/kindeditor-all-min.js","resource/plugins/kindeditor/lang/zh-CN.js"],
+		ckeditorInitd: false,
+		ueditorInitd: false,
+		kindeditorInitd: false,
+		index: 0
+	};
+	window.codemirror = {
+		resources: ['resource/plugins/codemirror/lib/codemirror.js','resource/plugins/codemirror/mode/xml/xml.js','resource/plugins/codemirror/mode/javascript/javascript.js','resource/plugins/codemirror/mode/css/css.js',
+			'resource/plugins/codemirror/mode/htmlmixed/htmlmixed.js','resource/plugins/codemirror/mode/freemarker/freemarker.js','resource/plugins/codemirror/mode/freemarkermixed/freemarkermixed.js',
+			'resource/plugins/codemirror/mode/nginx/nginx.js','resource/plugins/codemirror/addon/hint/show-hint.js','resource/plugins/codemirror/addon/hint/javascript-hint.js','resource/plugins/codemirror/addon/hint/html-hint.js',
+			'resource/plugins/codemirror/addon/hint/css-hint.js','resource/plugins/codemirror/addon/hint/xml-hint.js'],
+		initd: false,
+		index: 0
+	};
 	window.photoclip = {
-            resources: ['resource/photoclip/hammer.min.js','resource/photoclip/iscroll-zoom-min.js','resource/photoclip/lrz.all.bundle.js','resource/photoclip/PhotoClip.min.js'],
-            initd: false,
-            index: 0
-        };
+		resources: ['resource/plugins/photoclip/hammer.min.js','resource/plugins/photoclip/iscroll-zoom-min.js','resource/plugins/photoclip/lrz.all.bundle.js','resource/plugins/photoclip/PhotoClip.min.js'],
+		initd: false,
+		index: 0
+	};
 	DWZ.init("resource/dwz.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",
-		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"}, //【可选】
-		debug:false,	// 调试模式 【true|false】
+		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"},
+		debug:false,
 		callback:function(){
 			initEnv();
-			$("#themeList").theme({themeBase:"resource/themes",defaultTheme:"toptry"}); // themeBase 相对于index页面的主题base路径
-			loadScripts(["/resource/js/echarts.common.min.js"],function(){
-                    echartsProxy(echarts);
-            });
+			$("#themeList").theme({themeBase:"resource/css/theme-",defaultTheme:"toptry"});
+			$('#navMenu li a[parentId=myself]').parent().addClass("selected");
+			loadScripts(["resource/js/echarts.common.min.js"],function(){
+				echartsProxy(echarts);
+			});
 		}
 	});
 </script>

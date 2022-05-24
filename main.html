@@ -1,0 +1,219 @@
+<a class="button float" href="main.html" target="navTab" rel="main"><i class="icon-refresh"></i>刷新</a>
+<div class="pageFormContent" layoutH>
+	<div class="unit">
+		<h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
+	</div>
+	<div class="unit">
+		<script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
+	</div>
+	<fieldset>
+		<legend>我的账号</legend>
+		<div class="unit">
+			<ul>
+				<li>
+					<div class="card">
+						<i class="icon-book icon-large icon"></i>
+						<p>我的待审核内容</p>
+						<h3>19</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-edit icon-large icon"></i>
+						<p>我的草稿</p>
+						<h3>0</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-signin icon-large icon"></i>
+						<p>登录次数</p>
+						<h3>6306</h3>
+					</h3></div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-unlock-alt icon-large icon-large icon"></i>
+						<p>我的登录授权</p>
+						<h3>4</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<p>
+							<label>上次登录日期:</label>2021-06-27 00:32
+						</p>
+						<p>
+							<label>上次登录IP:</label>127.0.0.1
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>评论管理</legend>
+		<div class="unit">
+			<ul class="clearfix">
+				<li>
+					<div class="card">
+						<i class="icon-comment icon-large icon"></i>
+						<p>待审核评论</p>
+						<h3>0</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-comments icon-large icon"></i>
+						<p>评论数</p>
+						<h3>274</h3>
+					</div>
+				</li>
+			</ul>
+			<div id="comment" style="height:350px;width:98%;"></div>
+		</div>
+		<script>
+		echarts.init(document.getElementById('comment')).setOption({
+			title: {
+				text: '评论',
+				x:'center'
+			},
+			tooltip : {
+				trigger: 'axis'
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['03-28','03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+			{
+				name:'操作',
+				type:'line',
+				data:[0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,1,0,1],
+				areaStyle: {}
+			}]
+		});
+		</script>
+   </fieldset>
+	<fieldset>
+		<legend>用户数据报表</legend>
+		<div class="unit">
+			<div id="visit" style="height:350px;width:98%;"></div>
+			<ul>
+				<li>
+					<div class="card">
+						<i class="icon-signal icon-large icon"></i>
+						<p>注册</p>
+						<h3>0</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-ticket icon-large icon"></i>
+						<p>登录</p>
+						<h3>124</h3>
+					</div>
+				</li>
+				<li>
+					<div class="card">
+						<i class="icon-list-alt icon-large icon"></i>
+						<p>操作</p>
+						<h3>4</h3>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script>
+		echarts.init(document.getElementById('visit')).setOption({
+			title: {
+				text: '访问报表',
+				x:'center'
+			},
+			tooltip : {
+				trigger: 'axis'
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			legend: {
+				data: ['PV', 'UV', 'IP Views'],
+				top:30
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+			{
+				   name:'PV',
+				   type:'line',
+				   data:[2143,1790,1785,1800,1370,749,599,626,1879,1267,1667,1223,1083,2343,1943,1923,1776,1269,896,1715,1880,1552,2588,1944,2134,1220,1986,1933,1617,1433],
+				   areaStyle: {}
+			   },
+			   {
+				   name:'UV',
+				   type:'line',
+				   data:[710,718,745,689,588,425,371,392,612,266,241,383,442,537,620,457,586,467,391,340,491,481,600,593,520,575,479,400,426,460],
+				   areaStyle: {}
+			   },
+			   {
+				   name:'IP Views',
+				   type:'line',
+				   data:[436,442,448,437,389,294,272,283,408,232,216,293,325,409,479,359,448,388,312,276,403,395,507,465,418,468,400,348,377,384],
+				   areaStyle: {}
+			   }]
+		});
+		</script>
+	</fieldset>
+	<fieldset>
+		<legend>系统</legend>
+		<div class="unit">
+			<p class="cmsVersion">
+				<label>PublicCMS:</label>
+				<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.b</a> <span class="new hide" style="color: green; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
+			</p>
+			<p>
+				<label>时区:</label>Asia/Shanghai
+			</p>
+			<p>
+				<label>管理节点:</label>
+				11146bb6-0329-465a-b236-4c28df87205b
+			</p>
+			<p>
+				<label>数据目录:</label>
+				D:\data\publiccms
+			</p>
+			<p>
+				<label>磁盘空间:</label>156.25GB
+			</p>
+			<div class="divider"></div>
+			<div class="unit">
+				<p>
+					<label>站点数量:</label>
+					8
+				</p>
+				<p>
+					<label>域名数量:</label>
+					9
+				</p>
+			</div>
+		</div>
+	</fieldset>
+</div>
