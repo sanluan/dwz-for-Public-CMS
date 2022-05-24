@@ -10,7 +10,8 @@
 	<!--[if IE 7]>
 	<link rel="stylesheet" href="resource/fonts/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
-
+	<link href="resource/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="resource/plugins/spectrum/spectrum.min.css" rel="stylesheet"/>
 	<link href="resource/css/core.css?10" rel="stylesheet" media="screen"/>
 	<link href="resource/css/print.css?10" rel="stylesheet" media="print"/>
 	<link href="resource/css/cms.css?10" rel="stylesheet" media="screen"/>
@@ -19,7 +20,6 @@
 	    <script src="resource/js/html5shiv.min.js"></script>
 	    <script src="resource/js/respond.min.js"></script>
 	<![endif]-->
-	<script src="resource/js/echarts.proxy.js"></script>
 	<script src="resource/js/echarts.proxy.js"></script>
 </head>
 <body>
@@ -52,7 +52,7 @@
 							<li><a href="tabsPage.html" target="navTab">主面板</a>
 								<ul>
 									<li><a href="dwz.html" target="navTab" rel="dwz">DWZ介绍</a></li>
-									<li><a href="https://www.baidu.com" target="navTab" rel="page1">外部页面(页面一)</a></li>
+									<li><a href="https://www.publiccms.com" target="navTab" rel="external" external="true">外部页面(页面一)</a></li>
 									<li><a href="login.html" target="navTab" rel="external" external="true">iframe navTab页面</a></li>
 									<li><a href="demo_page_list.html" target="navTab" rel="page1" fresh="false">替换页面一</a></li>
 									<li><a href="demo_page_list.html" target="navTab" rel="page3" title="自定义标签名">页面二</a></li>
@@ -88,6 +88,7 @@
 									<li><a href="w_combox.html" target="navTab" rel="w_combox">下拉菜单</a></li>
 									<li><a href="w_checkbox.html" target="navTab" rel="w_checkbox">多选框/单选框</a></li>
 									<li><a href="demo_upload.html" target="navTab" rel="demo_upload">iframeCallback表单提交</a></li>
+									<li><a href="w_html5_upload.html" target="navTab" rel="w_html5_upload">html5文件上传</a></li>
 								</ul>
 							</li>
 							<li><a>组合应用</a>
@@ -388,6 +389,8 @@
 <script src="resource/js/sha512.min.js"></script>
 <script src="resource/js/dwz.min.js?7"></script>
 <script src="resource/js/loadscripts.js"></script>
+<script src="resource/plugins/spectrum/spectrum.min.js"></script>
+<script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
 <script src="resource/js/dwz.plugins.js"></script>
 <script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
 <script>
