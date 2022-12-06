@@ -25,81 +25,74 @@ DWZ.regPlugins.push(function($p){
     });
 });
 DWZ.regPlugins.push(function($p){
-    if($('.cmsVersion',$p).length ) {
-        var fullVersion=$('.cmsVersion a',$p).eq(0).text();
-        $.getJSON(Base64.decode('Ly9jbXMucHVibGljY21zLmNvbS9hcGkvZGlyZWN0aXZlL3ZlcnNpb24=')+"?version="+fullVersion, function(data) {
-            var version=fullVersion.substring(0,fullVersion.lastIndexOf('.'));
-            var revision=fullVersion.substring(fullVersion.lastIndexOf('.')+1);
-            if(version!==data.cms ) {
-                $('.cmsVersion .old',$p).show();
-            } else {
-                if(revision == data.revision){
-                    $('.cmsVersion .new',$p).show();
-                } else {
-                    $('.cmsVersion .old',$p).css('color','gray').show();
-                }
-            }
-        });
-    }
-});
-DWZ.regPlugins.push(function($p){
     $("textarea.editor", $p).each(function(i) {
         var $this = $(this);
         var index= window.editor.index++;
         var dataId="editor_"+index;
+        $this.attr("id",dataId);
+        $this.attr("data-id",dataId);
         if("ckeditor"==$this.attr("editorType")) {
-            if(!window.editor.ckeditorInitd){
-                loadScripts(window.editor.ckeditorResources,function(){
-                    window.editor.ckeditorInitd=true;
-                    $this.attr("id",dataId);
-                    CKEDITOR.replace(dataId);
-                    $this.attr("data-id",dataId);
-                });
-            } else {
-                $this.attr("id",dataId);
+            if(window.editor.ckeditorInitd){
                 CKEDITOR.replace(dataId);
-                $this.attr("data-id",dataId);
+            } else {
+                if(window.editor.ckeditorIniting){
+                    window.editor.ckeditorArray.push(dataId);
+                } else {
+                    window.editor.ckeditorIniting=true;
+                    loadScripts(window.editor.ckeditorResources,function(){
+                        window.editor.ckeditorIniting=false;
+                        window.editor.ckeditorInitd=true;
+                        CKEDITOR.replace(dataId);
+                        if(0 < window.editor.ckeditorArray.length){
+                            for(var i=0;i<window.editor.ckeditorArray.length;i++){
+                                CKEDITOR.replace(window.editor.ckeditorArray[i]);
+                            }
+                        }
+                    });
+                }
             }
         } else if("tinymce"==$this.attr("editorType")) {
-            if(!window.editor.tinymceInitd){
-                loadScripts(window.editor.tinymceResources,function(){
-                    window.editor.tinymceInitd=true;
-                    $this.attr("id",dataId);
-                    tinymce.init($.extend(true, {selector:'#'+dataId}, window.TINYMCE_OPTIONS));
-                    $this.attr("data-id",dataId);
-                });
-            } else {
-                $this.attr("id",dataId);
+            if(window.editor.tinymceInitd){
                 tinymce.init($.extend(true, {selector:'#'+dataId}, window.TINYMCE_OPTIONS));
-                $this.attr("data-id",dataId);
+            } else {
+                if(window.editor.tinymceIniting){
+                    window.editor.tinymceArray.push(dataId);
+                } else {
+                    window.editor.tinymceIniting=true;
+                    loadScripts(window.editor.tinymceResources,function(){
+                        window.editor.tinymceIniting=false;
+                        window.editor.tinymceInitd=true;
+                        tinymce.init($.extend(true, {selector:'#'+dataId}, window.TINYMCE_OPTIONS));
+                        if(0 < window.editor.tinymceArray.length){
+                            for(var i=0;i<window.editor.tinymceArray.length;i++){
+                                tinymce.init($.extend(true, {selector:'#'+window.editor.tinymceArray[i]}, window.TINYMCE_OPTIONS));
+                            }
+                        }
+                    });
+                }
             }
         } else if("kindeditor"==$this.attr("editorType")) {
-            if(!window.editor.kindeditorInitd){
-                loadScripts(window.editor.kindeditorResources,function(){
-                    window.editor.kindeditorInitd=true;
-                    $this.attr("id",dataId);
-                    KindEditor.create('#'+dataId,window.KINDEDITOR_OPTIONS);
-                    $this.attr("data-id",dataId);
-                });
-            } else {
-                $this.attr("id",dataId);
+            if(window.editor.kindeditorInitd){
                 KindEditor.create('#'+dataId,window.KINDEDITOR_OPTIONS);
-                $this.attr("data-id",dataId);
+            } else {
+                if(window.editor.kindeditorIniting){
+                    window.editor.kindeditorArray.push(dataId);
+                } else {
+                    window.editor.kindeditorIniting=true;
+                    loadScripts(window.editor.kindeditorResources,function(){
+                        window.editor.kindeditorIniting=false;
+                        window.editor.kindeditorInitd=true;
+                        KindEditor.create('#'+dataId,window.KINDEDITOR_OPTIONS);
+                        if(0 < window.editor.kindeditorArray.length){
+                            for(var i=0;i<window.editor.kindeditorArray.length;i++){
+                                KindEditor.create('#'+window.editor.kindeditorArray[i],window.KINDEDITOR_OPTIONS);
+                            }
+                        }
+                    });
+                }
             }
         } else {
-            if(!window.editor.ueditorInitd){
-                loadScripts(window.editor.ueditorResources,function(){
-                    window.editor.ueditorInitd=true;
-                    var editor = new baidu.editor.ui.Editor();
-                    if ($this.attr("maxlength") ){
-                        editor.setOpt({
-                            maximumWords: $this.attr("maxlength")
-                        });
-                    }
-                    editor.render($this[0]);
-                    $this.attr("data-id","ueditorInstant"+editor.uid);
-                });
-            } else {
+            if(window.editor.ueditorInitd){
                 var editor = new baidu.editor.ui.Editor();
                 if ($this.attr("maxlength") ){
                     editor.setOpt({
@@ -108,6 +101,31 @@ DWZ.regPlugins.push(function($p){
                 }
                 editor.render($this[0]);
                 $this.attr("data-id","ueditorInstant"+editor.uid);
+            } else {
+                if(window.editor.ueditorIniting){
+                    window.editor.ueditorArray.push(dataId);
+                } else {
+                    window.editor.ueditorIniting=true;
+                    loadScripts(window.editor.ueditorResources,function(){
+                        window.editor.ueditorIniting=false;
+                        window.editor.ueditorInitd=true;
+                        var editor = new baidu.editor.ui.Editor();
+                        if ($this.attr("maxlength") ){
+                            editor.setOpt({
+                                maximumWords: $this.attr("maxlength")
+                            });
+                        }
+                        editor.render($this[0]);
+                        $this.attr("data-id","ueditorInstant"+editor.uid);
+                        if(0 < window.editor.ueditorArray.length){
+                            for(var i=0;i<window.editor.ueditorArray.length;i++){
+                                var editor = new baidu.editor.ui.Editor();
+                                editor.render($('#'+window.editor.ueditorArray[i])[0]);
+                                $('#'+window.editor.ueditorArray[i]).attr("data-id","ueditorInstant"+editor.uid);
+                            }
+                        }
+                    });
+                }
             }
         }
     });
@@ -145,245 +163,9 @@ DWZ.regPlugins.push(function($p){
             });
             $this.attr("data-id",dataId);
         }
-       
+
     });
 });
-/**
- * Created by huihuazhang on 2016/4/27.
- * 基于HTML5 文件上传的核心脚本
- * http://www.w3.org/TR/html-markup/input.file.html
- */
-(function($){
-    function readAsDataURL(img, file, maxW, maxH){
-        // Using FileReader to display the image content
-        var reader = new FileReader();
-        reader.onload = (function(aImg) {
-            return function(e) {
-                aImg.src = e.target.result;
-
-                var width = aImg.naturalWidth,
-                    height = aImg.naturalHeight;
-                aImg.setAttribute('data-width', width);
-                aImg.setAttribute('data-height', height);
-
-                if (maxW && maxH) {
-
-                    if (width/maxW > height/maxH) {
-                        aImg.setAttribute('height', maxH);
-                    } else {
-                        aImg.setAttribute('width', maxW);
-                    }
-                }
-
-            };
-        })(img);
-
-        reader.readAsDataURL(file);
-    }
-
-    function previewUploadImg($uploadWrap, files, maxW, maxH) {
-
-        var $previewElem = $('<div class="thumbnail"></div>').appendTo($uploadWrap);
-
-        var file = files[0];
-
-        if (!file) {return false;}
-
-        if (!file.type.match(/image.*/)) {
-            throw "File Type must be an image";
-        }
-
-        var img = document.createElement("img");
-        img.file = file;
-        $previewElem.empty().append(img);
-
-        if ($previewElem.find('.del-icon').size() == 0) {
-            $('<a class="del-icon"></a>').appendTo($previewElem).click(function(event){
-                $previewElem.remove();
-                $uploadWrap.find('input[type=file]').val('');
-            });
-        }
-        if ($previewElem.find('.edit-icon').size() == 0) {
-            $('<a class="edit-icon"></a>').appendTo($previewElem).click(function(event){
-                editImg($uploadWrap,file,file.name,function(dataURL){
-                    if(dataURL){
-                        img.src=dataURL;
-                        $uploadWrap.find('input[name=base64File]').val(dataURL.substring(dataURL.indexOf('base64,')+7));
-                        $uploadWrap.find('input[name=originalFilename]').val(file.name);
-                        $uploadWrap.find('input[type=file]').val('');
-                    }
-                });
-            });
-        }
-
-        readAsDataURL(img, file, maxW, maxH);
-
-    }
-    
-    function editImg($uploadWrap,img,fileName,callback){
-        if(0 == $uploadWrap.parent().find('.image-editor').length ) {
-            $uploadWrap.after('<div class="image-editor" ><div class="unit"><p class="image-box"></p><label><a href="javascript:;" class="button"><i class="icon-ok"></i></a></label></div></div>');
-        }
-        var $this = $uploadWrap.parent().find('.image-editor');
-        if($this.attr("data-id")){
-            DWZ.instances[$this.attr("data-id")].destroy();
-        }
-        var index = window.photoclip.index++;
-        var dataId = "photoclip_"+index;
-        var widthInput=$uploadWrap.parents("form:first").find("input[name=width]");
-        var heightInput=$uploadWrap.parents("form:first").find("input[name=height]");
-        widthInput.change(function(){
-            DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
-        });
-        heightInput.change(function(){
-            DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
-        });
-        var options= {
-            size: [parseInt(widthInput.val()), parseInt(heightInput.val())],
-            ok: $this.find('.button'),
-            done: function(dataURL){
-                if ($.isFunction(callback) ) {
-                    callback(dataURL);
-                }
-                DWZ.instances[dataId].destroy();
-                delete DWZ.instances[dataId];
-                $this.remove();
-            },
-            fail: function(msg) {
-                alertMsg.error(msg);
-            }
-        };
-        var filenames=fileName.split('.');
-        if('png'==filenames[filenames.length-1]){
-            options.outputType='png';
-        }
-        function init(dataId,img){
-            var photoClip = new PhotoClip($this.find('.image-box')[0], options);
-            photoClip.load(img);
-            DWZ.instances[dataId] = photoClip;
-        }
-        if(!window.photoclip.initd){
-            loadScripts(window.photoclip.resources,function(){
-                window.photoclip.initd=true;
-                init(dataId,img);
-            });
-        } else {
-            init(dataId,img);
-        }
-        $this.attr("data-id",dataId);
-    }
-
-    // multiple
-    function previewUploadImg2($uploadWrap, files, maxW, maxH) {
-
-        var rel = $uploadWrap.attr('rel');
-        var $previewElem = $(rel);
-
-        $previewElem.empty();
-        for (var index=0; index<files.length; index++) {
-            var file = files[index];
-
-            var $thumb = $('<li class="thumbnail"></li>');
-
-            var img = document.createElement("img");
-            img.file = file;
-            $thumb.append(img);
-            $previewElem.append($thumb);
-
-            readAsDataURL(img, file, maxW, maxH);
-        }
-    }
-    
-    $.fn.extend({
-        /**
-         * 图片编辑
-         * @param options
-         */
-        editImg: function(options){
-            $uploadWrap = $(this);
-            var $previewElem = $uploadWrap.find('.thumbnail');
-            if(0 == $previewElem.length){
-                $previewElem = $('<div class="thumbnail"></div>').appendTo($uploadWrap);
-            }
-            var img = document.createElement("img");
-            img.src = options.imgUrl;
-            $previewElem.empty().append(img);
-
-            editImg($(this),options.imgUrl,options.imgName,function(dataURL){
-                if(dataURL){
-                    img.src=dataURL;
-                    $uploadWrap.find('input[name=base64File]').val(dataURL.substring(dataURL.indexOf('base64,')+7));
-                    $uploadWrap.find('input[name=originalFilename]').val(options.imgName);
-                    $uploadWrap.find('input[type=file]').val('');
-                    if ($previewElem.find('.del-icon').size() == 0) {
-                        $('<a class="del-icon"></a>').appendTo($previewElem).click(function(event){
-                            $previewElem.remove();
-                            $uploadWrap.find('input[name=base64File]').val('');
-                            $uploadWrap.find('input[name=originalFilename]').val('');
-                        });
-                    }
-                }
-            });
-        }
-    });
-
-    $.fn.extend({
-        /**
-         * 选择上传图片缩略图列表预览
-         * @param options
-         */
-        previewUploadImg: function(options){
-            var op = $.extend({maxW:80, maxH:80}, options);
-            return this.each(function(){
-                var $uploadWrap = $(this);
-
-                var $inputFiles = $uploadWrap.find('input[type=file]');
-                $inputFiles.each(function(index){
-                    var $inputFile = $(this).css({left:(op.maxW*index)+'px'});
-                    $inputFile.on('change', function () {
-                        var files = this.files;
-
-                        if (this.multiple) {
-                            previewUploadImg2($uploadWrap, files, op.maxW, op.maxH);
-                        } else {
-                            previewUploadImg($uploadWrap, files, op.maxW, op.maxH);
-                        }
-                    });
-                });
-
-                var $delIcon = $uploadWrap.find('.del-icon');
-                if ($delIcon) { // 删除服务器上的图片
-                    $delIcon.click(function(event){
-                        $.ajax({
-                            type: 'GET',
-                            url:$delIcon.attr('href'),
-                            dataType:"json",
-                            cache: false,
-                            success: function(json){
-                                DWZ.ajaxDone(json);
-
-                                if (json[DWZ.keys.statusCode] == DWZ.statusCode.ok){
-                                    $uploadWrap.find('div.thumbnail').remove();
-                                    $uploadWrap.find('input[type=file]').val('');
-                                }
-                            },
-                            error: DWZ.ajaxError
-                        });
-
-                        return false;
-                    });
-                }
-
-            });
-        }
-    });
-
-
-    DWZ.regPlugins.push(function($p){
-        $("div.upload-wrap", $p).previewUploadImg({maxW:300,maxH:200});
-    });
-
-})(jQuery);
 
 DWZ.regPlugins.push(function($p){
     $("a.view[target=_blank]", $p).each(function(){
@@ -547,6 +329,32 @@ DWZ.regPlugins.push(function($p){
             opts.showPaletteOnly = $this.attr("showPaletteOnly");
         }
         $this.spectrum(opts);
+    });
+});
+DWZ.regPlugins.push(function($p){
+    $('.compare', $p).each(function() {
+        var $this=$(this);
+        function init($resultBox,oldstring,newstring){
+            var diff = Diff.diffWords(oldstring, newstring);
+            $resultBox.empty();
+            for (var i=0; i < diff.length; i++) {
+                if (diff[i].removed) {
+                    $('<del></del>').appendTo($resultBox).text(diff[i].value);
+                } else if (diff[i].added) {
+                    $('<ins></ins>').appendTo($resultBox).text(diff[i].value);
+                } else {
+                  $resultBox.append($('<div></div>').text(diff[i].value).html());
+                }
+            }
+        }
+        if(window.jsdiff.initd){
+            init($this.find('.result-box'),$this.find('[name=old]').val(),$this.find('[name=new]').val());
+        } else {
+            loadScripts(window.jsdiff.resources,function(){
+                window.jsdiff.initd=true;
+                init($this.find('.result-box'),$this.find('[name=old]').val(),$this.find('[name=new]').val());
+            });
+        }
     });
 });
 $(document).keydown(function(e){

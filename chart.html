@@ -3,18 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<title>使用报表</title>
-	<script src="resource/js/jquery-1.9.1.min.js"></script>
-	<script src="resource/js/echarts.common.min.js"></script>
+	<link href="resource/css/core.css?version=6" rel="stylesheet" media="screen"/>
+    <link href="resource/css/theme-toptry.css" rel="stylesheet" media="screen"/>
 </head>
-<body>
-<a href=""><h1 style="margin:20px;">系统监控</h1></a>
-<div id="memory" style="width:300px;margin:20px;float:left;"></div>
-<div id="memory_count" style="width:300px;margin:20px;float:left;"></div>
-<div id="disk" style="width:300px;margin:20px;float:left;"></div>
+<body style="overflow: auto;">
+	<div class="pageFormContent">
+		<fieldset>
+			<legend>系统监控</legend>
+			<div class="unit clearfix">
+				<div id="memory_count" style="width:50%;min-width:400px;float:left;"></div>
+				<div id="disk" style="width:50%;min-width:400px;float:left;"></div>
+			</div>
+			<div class="unit">
+				<div id="memory" style="min-width:400px;min-height:300px;"></div>
+			</div>
+		</fieldset>
+	</div>
+<script src="resource/js/jquery-3.6.1.min.js"></script>
+<script src="resource/js/echarts.common.min.js"></script>
 <script>
-document.getElementById('memory').style.height=document.getElementById('memory').offsetWidth+'px';
-document.getElementById('memory_count').style.height=document.getElementById('memory_count').offsetWidth+'px';
-document.getElementById('disk').style.height=document.getElementById('disk').offsetWidth+'px';
+document.getElementById('memory_count').style.height=document.getElementById('memory_count').offsetWidth*0.4+'px';
+document.getElementById('disk').style.height=document.getElementById('disk').offsetWidth*0.4+'px';
+document.getElementById('memory').style.height=document.getElementById('memory').offsetWidth*0.3+'px';
 var memoryChart={
 	chart:echarts.init(document.getElementById('memory')),
 	countChart:echarts.init(document.getElementById('memory_count')),

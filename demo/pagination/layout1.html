@@ -3,9 +3,9 @@
 	ul.rightTools li{float:left; display:block; margin-left:5px}
 </style>
 
-<div class="pageContent" style="padding:5px">
-	<h1>病人基本信息</h1>
-	<div>
+<div class="card">
+	<h2 class="contentTitle">病人基本信息</h2>
+	<div class="pageFormContent">
 		病人编号：<input type="text" name="patientNo" />
 		<ul class="rightTools">
 			<li><a class="button" target="dialog" href="demo/pagination/dialog1.html" mask="true">创建病例</a></li>
@@ -49,26 +49,28 @@
 							<input type="hidden" name="orderField" value="${param.orderField}" />
 							<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 							<div class="searchBar">
-								<table class="searchContent">
-									<tr>
-										<td class="dateRange">
-											尿检日期:
-											<input type="text" value="" readonly="readonly" class="date" name="dateStart">
-											<span class="limit">-</span>
-											<input type="text" value="" readonly="readonly" class="date" name="dateEnd">
-										</td>
-										<td>
-											尿检结果：
-											<input type="radio" name="njjg" value="" checked="checked" />全部
-											<input type="radio" name="njjg" value="1"/>阴性
-											<input type="radio" name="njjg" value="2"/>阳性
-										</td>
-										<td>
-											病人编号：<input type="text" name="keyword" />
-										</td>
-										<td><button type="submit"class="buttonActive">检索</button></div></div></td>
-									</tr>
-								</table>
+								<ul class="searchContent">
+									<li>
+										<label>尿检日期:</label>
+										<input type="text" value="" readonly="readonly" class="date" name="dateStart">
+										<span>-</span>
+										<input type="text" value="" readonly="readonly" class="date" name="dateEnd">
+									</li>
+									<li>
+										<label>尿检结果：</label>
+										<label><input type="radio" name="njjg" value="" checked="checked" />全部</label>
+										<label><input type="radio" name="njjg" value="1"/>阴性</label>
+										<label><input type="radio" name="njjg" value="2"/>阳性</label>
+									</li>
+									<li>
+										<label>病人编号：</label><input type="text" name="keyword" />
+									</li>
+								</ul>
+								<div class="subBar">
+									<ul>
+										<li><button type="submit"class="buttonActive">检索</button></li>
+									</ul>
+								</div>
 							</div>
 						</form>
 					</div>

@@ -7,26 +7,18 @@
 	<link href="resource/plugins/codemirror/lib/codemirror.css" rel="stylesheet" >
     <link href="resource/plugins/codemirror/addon/hint/show-hint.css" rel="stylesheet" >
 	<link href="resource/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-	<!--[if IE 7]>
-	<link rel="stylesheet" href="resource/fonts/font-awesome/css/font-awesome-ie7.min.css">
-	<![endif]-->
 	<link href="resource/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
     <link href="resource/plugins/spectrum/spectrum.min.css" rel="stylesheet"/>
-	<link href="resource/css/core.css?10" rel="stylesheet" media="screen"/>
-	<link href="resource/css/print.css?10" rel="stylesheet" media="print"/>
-	<link href="resource/css/cms.css?10" rel="stylesheet" media="screen"/>
-	<!--[if lte IE 9]>
-		<link href="resource/css/ieHack.css" rel="stylesheet" media="screen"/>
-	    <script src="resource/js/html5shiv.min.js"></script>
-	    <script src="resource/js/respond.min.js"></script>
-	<![endif]-->
+	<link href="resource/css/core.css?version=202211" rel="stylesheet" media="screen"/>
+	<link href="resource/css/print.css" rel="stylesheet" media="print"/>
+	<link href="resource/css/cms.css?version=202211" rel="stylesheet" media="screen"/>
 	<script src="resource/js/echarts.proxy.js"></script>
 </head>
 <body>
 <header>
 	<a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
 	<ul class="nav">
-		<li><a><i class="icon-user icon-large"></i> 管理员</a></li>
+		<li><a href="javascript:"><i class="icon-user icon-large"></i> 管理员</a></li>
 		<li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
 		<li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
 	</ul>
@@ -40,7 +32,7 @@
 </header>
 <main>
     <div id="leftside">
-        <div id="sidebar_s"><i class="icon-caret-right icon-large"></i></div>
+        <div id="sidebar_s"><i class="icon-reorder icon-large"></i></div>
         <div id="sidebar">
             <div id="menu">
 				<div class="accordion">
@@ -116,7 +108,7 @@
         <div class="tabsPageHeader">
             <div class="tabsPageHeaderContent">
                 <ul class="navTab-tab">
-                    <li tabid="main" class="main"><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
+                    <li tabid="main" class="main" url="main.html"><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
                 </ul>
             </div>
             <a href="javascript:;" onclick="return false;" class="tabsLeft"><i class="icon-backward icon-large"></i></a>
@@ -159,7 +151,7 @@
 										<i class="icon-signin icon-large icon"></i>
 										<p>登录次数</p>
 										<h3>6306</h3>
-									</h3></div>
+									</div>
 								</li>
 								<li>
 									<div class="card">
@@ -170,12 +162,16 @@
 								</li>
 								<li>
 									<div class="card">
-										<p>
-											<label>上次登录日期:</label>2021-06-27 00:32
-										</p>
-										<p>
-											<label>上次登录IP:</label>127.0.0.1
-										</p>
+										<i class="icon-calendar-empty icon-large icon"></i>
+										<p class="label">上次登录日期:</p>
+										<p>2021-06-27 00:32</p>
+                    				</div>
+				                </li>
+				                <li>
+				                    <div class="card">
+				                        <i class="bi bi-cloudy-fill icon-large icon"></i>
+				                        <p class="label">上次登录IP:</p>
+										<p>127.0.0.1</p>
 									</div>
 								</li>
 							</ul>
@@ -184,6 +180,7 @@
 					<fieldset>
 						<legend>评论管理</legend>
 						<div class="unit">
+							<div id="comment" class="chart"></div>
 							<ul class="clearfix">
 								<li>
 									<div class="card">
@@ -200,45 +197,45 @@
 									</div>
 								</li>
 							</ul>
-							<div id="comment" style="height:350px;width:98%;"></div>
 						</div>
-						<script>
-						echarts.init(document.getElementById('comment')).setOption({
-							title: {
-								text: '评论',
-								x:'center'
-							},
-							tooltip : {
-								trigger: 'axis'
-							},
-							grid: {
-								left: '3%',
-								right: '4%',
-								bottom: '3%',
-								containLabel: true
-							},
-							xAxis: {
-								type: 'category',
-								boundaryGap: false,
-								data: ['03-28','03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
-							},
-							yAxis: {
-								type: 'value'
-							},
-							series: [
-							{
-								name:'操作',
-								type:'line',
-								data:[0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,1,0,1],
-								areaStyle: {}
-							}]
-						});
-						</script>
+<script>
+var commentChart=echarts.init(document.getElementById('comment'));
+commentChart.setOption({
+    title: {
+        text: '评论',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['11-29','11-30','12-01','12-02','12-03','12-04','12-05','12-06']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+    {
+        name:'操作',
+        type:'line',
+        data:[0,4,1,0,0,0,1,0],
+        areaStyle: {}
+    }]
+});
+</script>
 				   </fieldset>
 					<fieldset>
 						<legend>用户数据报表</legend>
 						<div class="unit">
-							<div id="visit" style="height:350px;width:98%;"></div>
+							<div id="visit" class="chart"></div>
 							<ul>
 								<li>
 									<div class="card">
@@ -249,6 +246,13 @@
 								</li>
 								<li>
 									<div class="card">
+				                        <i class="icon-signal icon-large icon"></i>
+				                        <p>用户</p>
+										<h3>975</h3>
+				                    </div>
+				                </li>
+				                <li>
+				                    <div class="card">
 										<i class="icon-ticket icon-large icon"></i>
 										<p>登录</p>
 										<h3>124</h3>
@@ -263,61 +267,62 @@
 								</li>
 							</ul>
 						</div>
-						<script>
-						echarts.init(document.getElementById('visit')).setOption({
-							title: {
-								text: '访问报表',
-								x:'center'
-							},
-							tooltip : {
-								trigger: 'axis'
-							},
-							grid: {
-								left: '3%',
-								right: '4%',
-								bottom: '3%',
-								containLabel: true
-							},
-							legend: {
-								data: ['PV', 'UV', 'IP Views'],
-								top:30
-							},
-							xAxis: {
-						        type: 'category',
-						        boundaryGap: false,
-						        data: ['03-29','03-30','03-31','04-01','04-02','04-03','04-04','04-05','04-06','04-07','04-08','04-09','04-10','04-11','04-12','04-13','04-14','04-15','04-16','04-17','04-18','04-19','04-20','04-21','04-22','04-23','04-24','04-25','04-26','04-27']
-						    },
-						    yAxis: {
-						        type: 'value'
-						    },
-						    series: [
-						    {
-						           name:'PV',
-						           type:'line',
-						           data:[2143,1790,1785,1800,1370,749,599,626,1879,1267,1667,1223,1083,2343,1943,1923,1776,1269,896,1715,1880,1552,2588,1944,2134,1220,1986,1933,1617,1433],
-						           areaStyle: {}
-						       },
-						       {
-						           name:'UV',
-						           type:'line',
-						           data:[710,718,745,689,588,425,371,392,612,266,241,383,442,537,620,457,586,467,391,340,491,481,600,593,520,575,479,400,426,460],
-						           areaStyle: {}
-						       },
-						       {
-						           name:'IP Views',
-						           type:'line',
-						           data:[436,442,448,437,389,294,272,283,408,232,216,293,325,409,479,359,448,388,312,276,403,395,507,465,418,468,400,348,377,384],
-						           areaStyle: {}
-						       }]
-						});
-						</script>
+<script>
+var visitChart = echarts.init(document.getElementById('visit'));
+visitChart.setOption({
+	title: {
+		text: '访问报表',
+		x:'center'
+	},
+	tooltip : {
+		trigger: 'axis'
+	},
+	grid: {
+		left: '3%',
+		right: '4%',
+		bottom: '3%',
+		containLabel: true
+	},
+	legend: {
+		data: ['PV', 'UV', 'IP Views'],
+		top:30
+	},
+	xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['11-30','12-01','12-02','12-03','12-04','12-05','12-06']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+    {
+           name:'PV',
+           type:'line',
+           data:[1770,1554,1574,811,600,1881,1450],
+           areaStyle: {}
+       },
+       {
+           name:'UV',
+           type:'line',
+           data:[394,448,451,355,352,511,413],
+           areaStyle: {}
+       },
+       {
+           name:'IP Views',
+           type:'line',
+           data:[339,370,371,282,287,434,323],
+           areaStyle: {}
+       }]
+});
+</script>
 					</fieldset>
 					<fieldset>
 						<legend>系统</legend>
 						<div class="unit">
 							<p class="cmsVersion">
 								<label>PublicCMS:</label>
-								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.b</a> <span class="new hide" style="color: green; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
+								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.d</a> <span class="new hide" style="color: green;; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
 							</p>
 							<p>
 								<label>时区:</label>Asia/Shanghai
@@ -381,133 +386,42 @@
         <li theme="red"><div></div></li>
     </ul>
 </footer>
-<script src="resource/js/jquery-1.12.4.min.js"></script>
+<script src="resource/js/jquery-3.6.1.min.js"></script>
 <script src="resource/js/jquery.cookie.js"></script>
 <script src="resource/js/jquery.validate.js"></script>
-<script src="resource/js/jquery.bgiframe.js"></script>
-<script src="resource/js/base64.js"></script>
-<script src="resource/js/sha512.min.js"></script>
-<script src="resource/js/dwz.min.js?7"></script>
+<script src="resource/plugins/base64.js"></script>
+<script src="resource/plugins/sha512.min.js"></script>
+<script src="resource/js/dwz.min.js?version=202206"></script>
 <script src="resource/js/loadscripts.js"></script>
 <script src="resource/plugins/spectrum/spectrum.min.js"></script>
 <script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
-<script src="resource/js/dwz.plugins.js"></script>
-<script src="resource/js/dwz.regional.zh.js"></script> <!-- en,jp-->
+<script src="resource/js/dwz.plugins.js?version=202211"></script>
+<script src="resource/js/lang/dwz.regional.zh.js"></script> <!-- en,jp-->
 <script>
 	var base="ajax";
-	window.UEDITOR_HOME_URL="resource/plugins/ueditor/";
-	window.CKEDITOR_BASEPATH="resource/plugins/ckeditor/";
+	window.UEDITOR_HOME_URL="/ui/resource/plugins/ueditor/";
+	window.UEDITOR_LANGUAGE = "zh-cn/zh-cn.js";
+	window.CKEDITOR_BASEPATH="/ui/resource/plugins/ckeditor/";
 	window.CKEDITOR_LANGUAGE="zh-cn";
 	window.KINDEDITOR_OPTIONS = {
-			width:'60%',
-			height:'400px',
-			basePath:'resource/plugins/kindeditor/',
-			uploadJson : 'ajax/upload.json',
-			fileManagerJson : 'ajax/fileList.json',
+			width:"60%",
+			height:"400px",
+			basePath:"/ui/resource/plugins/kindeditor/",
+			uploadJson : "ajax/upload.json",
+			fileManagerJson : "ajax/fileList.json",
 			allowFileManager : true,
 			formatUploadUrl : false
 	};
-	window.TINYMCE_OPTIONS = {
-		language:'zh-Hans',
-		base_url:'resource/plugins/tinymce/',
-		plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-		editimage_cors_hosts: ['picsum.photos'],
-		menubar: 'file edit view insert format tools table help',
-		toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-		toolbar_sticky: true,
-		toolbar_sticky_offset: 108,
-		autosave_ask_before_unload: true,
-		autosave_interval: '30s',
-		autosave_prefix: '{path}{query}-{id}-',
-		autosave_restore_when_empty: false,
-		autosave_retention: '2m',
-		pagebreak_split_block: true,
-		image_advtab: true,
-		importcss_append: true,
-		images_upload_url: '/admin/tinymce/upload',
-		images_reuse_filename: true,
-		images_upload_base_path: '/',
-		image_list: '/admin/tinymce/imageList',
-		image_prepend_url:"/",
-		file_picker_callback: function (callback, value, meta) {
-			var filetype='.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.mp3,.wav,.mid,.png,.jpg,.jpeg,.gif,.bmp,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.psd';
-			switch(meta.filetype){
-				case 'image':
-					filetype='.png,.jpg,.jpeg,.gif,.bmp';
-					break;
-				case 'media':
-					filetype='.mp3, .mp4, .wmv, .mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov';
-					break;
-				case 'file':
-				default:
-			}
-			var input = document.createElement('input');
-				input.setAttribute('type', 'file');
-				input.setAttribute('accept', filetype);
-			input.click();
-			input.onchange = function() {
-				var file = this.files[0];
-				var xhr, formData;
-				xhr = new XMLHttpRequest();
-				xhr.withCredentials = false;
-				xhr.open('POST', '/admin/tinymce/upload');
-				xhr.onload = function() {
-					var json;
-					if (xhr.status != 200) {
-						alertMsg.error('HTTP Error: ' + xhr.status);
-						return;
-					}
-					json = JSON.parse(xhr.responseText);
-					if (!json || typeof json.location != 'string') {
-						alertMsg.error('Invalid JSON: ' + xhr.responseText);
-						return;
-					}
-					callback('/'+json.location);
-				};
-				formData = new FormData();
-				formData.append('file', file, file.name );
-				xhr.send(formData);
-		  };
-	  },
-	  templates: [
-		{ title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
-		{ title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
-		{ title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
-	  ],
-	  template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-	  template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-	  height: 600,
-	  image_caption: true,
-	  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-	  noneditable_class: 'mceNonEditable',
-	  toolbar_mode: 'wrap',
-	  contextmenu: 'link image table',
-	  skin: 'oxide',
-	  content_css: 'default',
-	};
-	window.editor = {
-		ckeditorResources: ["resource/plugins/ckeditor/ckeditor.js"],
-		ueditorResources: ["resource/plugins/ueditor/ueditor.config.js","resource/plugins/ueditor/ueditor.all.min.js","resource/plugins/ueditor/lang/zh-cn/zh-cn.js"],
-		tinymceResources: ["resource/plugins/tinymce/tinymce.min.js"],
-		kindeditorResources: ["resource/plugins/kindeditor/kindeditor-all-min.js","resource/plugins/kindeditor/lang/zh-CN.js"],
-		ckeditorInitd: false,
-		ueditorInitd: false,
-		kindeditorInitd: false,
-		index: 0
-	};
-	window.codemirror = {
-		resources: ['resource/plugins/codemirror/lib/codemirror.js','resource/plugins/codemirror/mode/xml/xml.js','resource/plugins/codemirror/mode/javascript/javascript.js','resource/plugins/codemirror/mode/css/css.js',
-			'resource/plugins/codemirror/mode/htmlmixed/htmlmixed.js','resource/plugins/codemirror/mode/freemarker/freemarker.js','resource/plugins/codemirror/mode/freemarkermixed/freemarkermixed.js',
-			'resource/plugins/codemirror/mode/nginx/nginx.js','resource/plugins/codemirror/addon/hint/show-hint.js','resource/plugins/codemirror/addon/hint/javascript-hint.js','resource/plugins/codemirror/addon/hint/html-hint.js',
-			'resource/plugins/codemirror/addon/hint/css-hint.js','resource/plugins/codemirror/addon/hint/xml-hint.js'],
-		initd: false,
-		index: 0
-	};
-	window.photoclip = {
-		resources: ['resource/plugins/photoclip/hammer.min.js','resource/plugins/photoclip/iscroll-zoom-min.js','resource/plugins/photoclip/lrz.all.bundle.js','resource/plugins/photoclip/PhotoClip.min.js'],
-		initd: false,
-		index: 0
-	};
+	window.KINDEDITOR_LANGUAGE = "lang/zh-CN.js";
+    window.TIMYMCE_HOME_URL = "/ui/resource/plugins/tinymce/";
+    window.TIMYMCE_LANGUAGE = "zh-Hans";
+    window.TIMYMCE_RESOURCE_PREFIX = "/";
+    window.TIMYMCE_FILETYPES = ".mp3,.wav,.mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.png,.jpg,.jpeg,.gif,.bmp,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.psd";
+    window.LOADSCRIPTS_BASE = "/ui";
+	</script>
+    <script src="resource/js/loadscripts.config.js"></script>
+    <script src="resource/js/tinymce.config.js"></script>
+    <script>
 	DWZ.init("resource/dwz.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",
 		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"},
@@ -515,8 +429,7 @@
 		callback:function(){
 			initEnv();
 			$("#themeList").theme({themeBase:"resource/css/theme-",defaultTheme:"toptry"});
-			$('#navMenu li a[parentId=myself]').parent().addClass("selected");
-			loadScripts(["resource/js/echarts.common.min.js"],function(){
+			loadScripts(["resource/plugins/echarts/echarts.common.min.js"],function(){
 				echartsProxy(echarts);
 			});
 		}

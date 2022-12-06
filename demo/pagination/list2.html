@@ -5,14 +5,16 @@
 		<input type="hidden" name="orderField" value="${param.orderField}" />
 		<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
 		<div class="searchBar">
-			<table class="searchContent">
-				<tr>
-					<td>
-						<label>姓名：</label><input type="text" name="name" />
-					</td>
-					<td><button type="submit"class="buttonActive">检索</button></div></div></td>
-				</tr>
-			</table>
+			<ul class="searchContent">
+				<li>
+					<label>姓名：</label><input type="text" name="name" />
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><button type="submit"class="buttonActive">检索</button></li>
+				</ul>
+			</div>
 		</div>
 	</form>
 </div>

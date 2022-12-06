@@ -1,7 +1,7 @@
 /*!
  * UEditor
  * version: ueditor
- * build: Wed Apr 27 2022 19:46:20 GMT+0800 (中国标准时间)
+ * build: Mon Aug 29 2022 10:32:41 GMT+0800 (中国标准时间)
  */
 
 (function(){
@@ -10510,6 +10510,7 @@ UE.plugins['autotypeset'] = function(){
         tags = {
             div:1,
             p:1,
+            section:1,
             //trace:2183 这些也认为是行
             blockquote:1,center:1,h1:1,h2:1,h3:1,h4:1,h5:1,h6:1,
             span:1
@@ -25414,12 +25415,12 @@ UE.ui = baidu.editor.ui = {};
 
             var sideLeft, sideUp, left, top;
             if (hoz) {
-                sideLeft = this.canSideLeft && (rect.right + popSize.width > vpRect.right && rect.left > popSize.width);
+                sideLeft = this.canSideLeft && (rect.left + popSize.width > vpRect.right && rect.right > popSize.width);
                 sideUp = this.canSideUp && (rect.top + popSize.height > vpRect.bottom && rect.bottom > popSize.height);
                 left = (sideLeft ? rect.left - popSize.width : rect.right);
                 top = (sideUp ? rect.bottom - popSize.height : rect.top);
             } else {
-                sideLeft = this.canSideLeft && (rect.right + popSize.width > vpRect.right && rect.left > popSize.width);
+                sideLeft = this.canSideLeft && (rect.left + popSize.width > vpRect.right && rect.right > popSize.width);
                 sideUp = this.canSideUp && (rect.top + popSize.height > vpRect.bottom && rect.bottom > popSize.height);
                 left = (sideLeft ? rect.right - popSize.width : rect.left);
                 top = (sideUp ? rect.top - popSize.height : rect.bottom);
