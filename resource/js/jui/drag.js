@@ -117,7 +117,7 @@
  * @author 张慧华 z@j-ui.com
  */
 (function ($) {
-    DWZ.miscDrag = {
+    JUI.miscDrag = {
         start: function ($sortBox, $item, event, op) {
             var $helper = $item.clone();
             var position = $item.position();
@@ -142,7 +142,7 @@
         stop: function (el, event) {
             var $helper = $(arguments[0]),
                 $sortBox = $helper.data('$sortBox'),
-                $overBox = DWZ.miscDrag._getOverSortBox($helper);
+                $overBox = JUI.miscDrag._getOverSortBox($helper);
 
             if ($overBox.length > 0) { //移动到指定容器
                 var $dragBox = $helper.appendTo($overBox).mousedown(function (event) {
@@ -178,7 +178,7 @@
             }).filter(function () {
                 var $sortBox = $(this), sortBoxPos = $sortBox.offset(),
                     sortBoxH = $sortBox.height(), sortBoxW = $sortBox.width();
-                return DWZ.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
+                return JUI.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
             });
         },
         _createPlaceholder: function ($item) {
@@ -220,7 +220,7 @@
             $helper.css({
                 top: position.top + $unitBox.scrollTop()
             });
-            var $overBox = DWZ.miscDrag._getOverSortBox($helper);
+            var $overBox = JUI.miscDrag._getOverSortBox($helper);
             if ($overBox.length > 0 && $overBox[0] != $sortBox[0]) { //移动到其他容器
                 var $items = $overBox.find(">.dragItem").filter(':visible').filter(':not(.sortDragPlaceholder, .sortDragHelper)');
                 if($items.length) {
@@ -280,7 +280,7 @@
                 $box.find(op.items).each(function (i) {
                     var $item = $(this);
                     $item.mousedown(function (event) {
-                        DWZ.miscDrag.start($box, $item, event, op);
+                        JUI.miscDrag.start($box, $item, event, op);
                         event.preventDefault();
                     });
                 });
@@ -369,7 +369,7 @@
                 $sortBox.find(op.items).each(function (i) {
                     var $item = $(this);
                     $item.mousedown(function (event) {
-                        DWZ.miscDrag.startSortDrag($sortBox, $item, event, op);
+                        JUI.miscDrag.startSortDrag($sortBox, $item, event, op);
                         event.preventDefault();
                     });
                 });
@@ -388,7 +388,7 @@
         selector: '', //拖动排序项用于拖动的子元素的选择器，为空时等于item
         zIndex: 1000
     };
-    DWZ.sortDrag = {
+    JUI.sortDrag = {
         _onDrag: false, //用于判断重复绑定拖动事件
         start: function ($sortBox, $item, event, op) {
             var me = this;
@@ -418,7 +418,7 @@
             var $helper = $(arguments[0]), $sortBox = $helper.data('$sortBox'), $placeholder = $helper.data('$placeholder');
             var $items = $sortBox.find($helper.data('op')['items']).filter(':visible').filter(':not(.sortDragPlaceholder, .sortDragHelper)');
             var helperPos = $helper.position();
-            var $overBox = DWZ.sortDrag._getOverSortBox($helper);
+            var $overBox = JUI.sortDrag._getOverSortBox($helper);
             if ($sortBox.data('over-sort') == true && $overBox.length > 0 && $overBox[0] != $sortBox[0] ) { //移动到其他容器
                 $placeholder.appendTo($overBox);
                 $helper.data('$sortBox', $overBox);
@@ -439,7 +439,7 @@
             $item.insertAfter($placeholder).show();
             $placeholder.remove();
             $helper.remove();
-            DWZ.sortDrag._onDrag = false;
+            JUI.sortDrag._onDrag = false;
         },
         _createPlaceholder: function ($item) {
             return $('<' + $item[0].nodeName + ' class="sortDragPlaceholder"/>').css({
@@ -455,7 +455,7 @@
                 return !$sortBox.data("accept") || -1 < $sortBox.data("accept").split(",").indexOf($item.data("type"));
             }).filter(function () {
                 var $sortBox = $(this), sortBoxPos = $sortBox.offset(), sortBoxH = $sortBox.height(), sortBoxW = $sortBox.width();
-                return DWZ.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
+                return JUI.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
             });
         }
     };
@@ -477,7 +477,7 @@
                 }
                 $selector.mousedown(function (event) {
                     if (!$sortBox.hasClass('disabled') && !$(event.target).is('input')&& !$(event.target).is('a')) {
-                        DWZ.sortDrag.start($sortBox, $item, event, op);
+                        JUI.sortDrag.start($sortBox, $item, event, op);
                         event.preventDefault();
                     }
                 });
@@ -496,7 +496,7 @@
  * @author 张慧华 z@j-ui.com
  */
 (function($) {
-    DWZ.miscDrag = {
+    JUI.miscDrag = {
         start: function($sortBox, $item, event, op) {
             var $helper = $item.clone();
             var position = $item.position();
@@ -518,7 +518,7 @@
         },
         drag: function(el, event) {},
         stop: function(el, event) {
-            var $helper = $(arguments[0]), $sortBox = $helper.data("$sortBox"), $overBox = DWZ.miscDrag._getOverSortBox($helper);
+            var $helper = $(arguments[0]), $sortBox = $helper.data("$sortBox"), $overBox = JUI.miscDrag._getOverSortBox($helper);
             if ($overBox.length > 0) {
                 //移动到指定容器
                 var $dragBox = $helper.appendTo($overBox).mousedown(function(event) {
@@ -550,7 +550,7 @@
                 return !$sortBox.data("accept") || -1 < $sortBox.data("accept").split(",").indexOf($item.data("type"));
             }).filter(function() {
                 var $sortBox = $(this), sortBoxPos = $sortBox.offset(), sortBoxH = $sortBox.height(), sortBoxW = $sortBox.width();
-                return DWZ.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
+                return JUI.isOver(y, x, sortBoxPos.top, sortBoxPos.left, sortBoxH, sortBoxW);
             });
         },
         _createPlaceholder: function($item) {
@@ -589,7 +589,7 @@
             $helper.css({
                 top: position.top + $unitBox.scrollTop()
             });
-            var $overBox = DWZ.miscDrag._getOverSortBox($helper);
+            var $overBox = JUI.miscDrag._getOverSortBox($helper);
             if ($overBox.length > 0 && $overBox[0] != $sortBox[0]) {
                 //移动到其他容器
                 var $items = $overBox.find(">.dragItem").filter(":visible").filter(":not(.sortDragPlaceholder, .sortDragHelper)");
@@ -652,7 +652,7 @@
                 $box.find(op.items).each(function(i) {
                     var $item = $(this);
                     $item.mousedown(function(event) {
-                        DWZ.miscDrag.start($box, $item, event, op);
+                        JUI.miscDrag.start($box, $item, event, op);
                         event.preventDefault();
                     });
                 });
@@ -733,7 +733,7 @@
                 $sortBox.find(op.items).each(function(i) {
                     var $item = $(this);
                     $item.mousedown(function(event) {
-                        DWZ.miscDrag.startSortDrag($sortBox, $item, event, op);
+                        JUI.miscDrag.startSortDrag($sortBox, $item, event, op);
                         event.preventDefault();
                     });
                 });

@@ -43,7 +43,7 @@
             $.extend(this._op, options);
             this._taskBar = $("#" + this._op.id);
             if (this._taskBar.length == 0 ) {
-                this._taskBar = $($.parseHTML(DWZ.frag["taskbar"], document, true)).appendTo($("body"));
+                this._taskBar = $($.parseHTML(JUI.frag["taskbar"], document, true)).appendTo($("body"));
                 this._taskBar.find(".taskbarLeft");
                 this._taskBar.find(".taskbarRight");
             }

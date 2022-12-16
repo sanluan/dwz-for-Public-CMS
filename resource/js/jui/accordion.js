@@ -4,19 +4,19 @@
 
 ( function($) {
     var jmenus = new Map();
-    // If the DWZ scope is not available, add it
-    $.dwz = $.dwz || {};
+    // If the JUI scope is not available, add it
+    $.jui = $.jui || {};
     $.fn.extend({
         accordion: function(options, data) {
             var args = Array.prototype.slice.call(arguments, 1);
             return this.each(function() {
                 if (options.fillSpace) jmenus.put(options.fillSpace, this);
                 if (typeof options == "string" ) {
-                    var accordion = $.data(this, "dwz-accordion");
+                    var accordion = $.data(this, "jui-accordion");
                     accordion[options].apply(accordion, args);
                     // INIT with optional options
-                } else if (!$(this).is(".dwz-accordion") ) {
-                    $.data(this, "dwz-accordion", new $.dwz.accordion(this, options));
+                } else if (!$(this).is(".jui-accordion") ) {
+                    $.data(this, "jui-accordion", new $.jui.accordion(this, options));
                 }
             });
         },
@@ -30,12 +30,12 @@
             return this.accordion("activate", index);
         }
     });
-    $.dwz.accordion = function(container, options) {
+    $.jui.accordion = function(container, options) {
 
         // setup configuration
-        this.options = options = $.extend({}, $.dwz.accordion.defaults, options);
+        this.options = options = $.extend({}, $.jui.accordion.defaults, options);
         this.element = container;
-        $(container).addClass("dwz-accordion");
+        $(container).addClass("jui-accordion");
         if (options.navigation ) {
             var current = $(container).find("a").filter(options.navigationFilter);
             if (current.length ) {
@@ -62,10 +62,10 @@
         options.active.find("h2").addClass(options.selectedClass);
         options.active.find("h2 .icon").addClass(options.selectedIconClass);
         if (options.event ) {
-            $(container).on( ( options.event ) + ".dwz-accordion", null, null, clickHandler);
+            $(container).on( ( options.event ) + ".jui-accordion", null, null, clickHandler);
         }
     };
-    $.dwz.accordion.prototype = {
+    $.jui.accordion.prototype = {
         activate: function(index) {
             // call clickHandler with custom event
             clickHandler.call(this.element, {
@@ -82,8 +82,8 @@
             if ( this.options.fillSpace || this.options.autoheight ) {
                 this.options.headers.next().css("height", "");
             }
-            $.removeData(this.element, "dwz-accordion");
-            $(this.element).removeClass("dwz-accordion").off(".dwz-accordion");
+            $.removeData(this.element, "jui-accordion");
+            $(this.element).removeClass("jui-accordion").off(".jui-accordion");
         }
     }
     function scopeCallback(callback, scope) {
@@ -93,10 +93,10 @@
     }
     function completed(cancel) {
         // if removed while animated data can be empty
-        if (!$.data(this, "dwz-accordion") ) {
+        if (!$.data(this, "jui-accordion") ) {
             return;
         }
-        var instance = $.data(this, "dwz-accordion");
+        var instance = $.data(this, "jui-accordion");
         var options = instance.options;
         options.running = cancel ? 0: --options.running;
         if (options.running ) {
@@ -107,7 +107,7 @@
                 height: "", overflow: ""
             });
         }
-        $(this).triggerHandler("change.dwz-accordion", [ options.data ], options.change);
+        $(this).triggerHandler("change.jui-accordion", [ options.data ], options.change);
     }
     function fillSpace(key){
         var obj = jmenus.get(key);
@@ -123,7 +123,7 @@
         $(".accordionContent",obj).height(height);
     }
     function toggle(toShow, toHide, data, clickedActive, down) {
-        var options = $.data(this, "dwz-accordion").options;
+        var options = $.data(this, "jui-accordion").options;
         options.toShow = toShow;
         options.toHide = toHide;
         options.data = data;
@@ -133,11 +133,11 @@
         options.running = toHide.length == 0 ? toShow.length: toHide.length;
         if (options.animated ) {
             if (!options.alwaysOpen && clickedActive ) {
-                $.dwz.accordion.animations[options.animated]({
+                $.jui.accordion.animations[options.animated]({
                     toShow: jQuery([ ]), toHide: toHide, complete: complete, down: down, autoheight: options.autoheight
                 });
             } else {
-                $.dwz.accordion.animations[options.animated]({
+                $.jui.accordion.animations[options.animated]({
                     toShow: toShow, toHide: toHide, complete: complete, down: down, autoheight: options.autoheight
                 });
             }
@@ -152,7 +152,7 @@
         }
     }
     function clickHandler(event) {
-        var options = $.data(this, "dwz-accordion").options;
+        var options = $.data(this, "jui-accordion").options;
         if (options.disabled ) {
             return false;
         }
@@ -212,7 +212,7 @@
         return selector != undefined ? typeof selector == "number" ? headers.filter(":eq(" + selector + ")"): headers.not(headers.not(selector)): selector === false ? $([ ])
                 : headers.filter(":eq(0)");
     }
-    $.extend($.dwz.accordion, {
+    $.extend($.jui.accordion, {
         defaults: {
             selectedClass: "collapsable",selectedIconClass: "icon-chevron-down", alwaysOpen: true, animated: 'slide', event: "click", header: ".accordionHeader", autoheight: true, running: 0, clearStyle: true,
             navigationFilter: function() {
@@ -319,7 +319,7 @@
     });
     function display(index, trigger, e, options) {
         var cur = hash[index];
-        var content = $(DWZ.frag[cur.id]);
+        var content = $(JUI.frag[cur.id]);
         content.find('li');
 
         // Send the content to the menu
@@ -370,7 +370,7 @@
             var bar = $(op.sideBar, jbar);
             $(op.toggleBut).click(function() {
                 if($(op.splitBar).is(':visible')){
-                    DWZ.ui.sbar = false;
+                    JUI.ui.sbar = false;
                     $('.icon',op.toggleBut).addClass(op.iconClass);
                     $(op.splitBar).hide();
                     var barleft = sbar.outerWidth() - bar.outerWidth();
@@ -389,7 +389,7 @@
                         }, 50, function() {
                             bar.hide();
                             bar.css("bottom","auto");
-                            $(window).trigger(DWZ.eventType.resizeGrid);
+                            $(window).trigger(JUI.eventType.resizeGrid);
                         });
                     });
                     $(sbar).click(function() {
@@ -407,7 +407,7 @@
                         }
                         function _hideBar() {
                             $(op.container).off("click", null, _hideBar);
-                            if (!DWZ.ui.sbar ) {
+                            if (!JUI.ui.sbar ) {
                                 bar.animate({
                                     left: barleft
                                 }, 50, function() {
@@ -418,7 +418,7 @@
                         return false;
                     });
                 }else{
-                    DWZ.ui.sbar = true;
+                    JUI.ui.sbar = true;
                     $('.icon',op.toggleBut).removeClass(op.iconClass);
                     sbar.css('left', -50);
                     $(op.containerHeader).animate({
@@ -434,7 +434,7 @@
                             'margin-left': cleft, width: cwidth
                         });
                         $(sbar).off('click');
-                        $(window).trigger(DWZ.eventType.resizeGrid);
+                        $(window).trigger(JUI.eventType.resizeGrid);
                     });
                 }
                 return false;

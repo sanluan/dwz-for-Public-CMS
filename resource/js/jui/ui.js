@@ -2,7 +2,7 @@
  * 初始化UI
  */
 function initEnv() {
-    $("body").append(DWZ.frag["dwzFrag"]);
+    $("body").append(JUI.frag["dwzFrag"]);
     if (!$.support.leadingWhitespace && /6.0/.test(navigator.userAgent) ) {
         try {
             document.execCommand("BackgroundImageCache", false, true);
@@ -10,7 +10,7 @@ function initEnv() {
     }
     $(window).resize(function() {
         initLayout();
-        $(this).trigger(DWZ.eventType.resizeGrid);
+        $(this).trigger(JUI.eventType.resizeGrid);
     });
     var ajaxbg = $("#background,#progressBar");
     ajaxbg.hide();
@@ -52,14 +52,14 @@ function initEnv() {
                 $('#navMenu a[parentid='+parentId+']').click();
             }
         }
-        $(document).trigger(DWZ.eventType.initEnvAfter);
+        $(document).trigger(JUI.eventType.initEnvAfter);
     }, 10);
 }
 /**
  * 初始化布局
  */
 function initLayout() {
-    var iContentW = $(window).width() - (DWZ.ui.sbar ? $("#sidebar").width() : 0);
+    var iContentW = $(window).width() - (JUI.ui.sbar ? $("#sidebar").width() : 0);
     var iContentH = $(window).height() - $('header').outerHeight(true) - $('footer').outerHeight(true);
     $("#navTab").css({"width":iContentW+'px'});
     $("main .tabsPageContent").height(iContentH - $('.tabsPageHeader').outerHeight(true)).find("[layoutH]").layoutH();
@@ -105,9 +105,9 @@ function initUI(_box) {
             var options = {
                 fileObjName: $this.attr("name") || "file", auto: true, multi: true, onUploadError: uploadifyError
             };
-            var uploaderOption = DWZ.jsonEval($this.attr("uploaderOption"));
+            var uploaderOption = JUI.jsonEval($this.attr("uploaderOption"));
             $.extend(options, uploaderOption);
-            DWZ.debug("uploaderOption: " + DWZ.obj2str(uploaderOption));
+            JUI.debug("uploaderOption: " + JUI.obj2str(uploaderOption));
             $this.uploadify(options);
         });
     }
@@ -119,7 +119,7 @@ function initUI(_box) {
             onsubmit: false, focusInvalid: false, focusCleanup: true, errorElement: "span", ignore: ".ignore", invalidHandler: function(form, validator) {
                 var errors = validator.numberOfInvalids();
                 if (errors ) {
-                    var message = DWZ.msg("validateFormError", [ errors ]);
+                    var message = JUI.msg("validateFormError", [ errors ]);
                     alertMsg.error(message);
                 }
             }
@@ -156,13 +156,6 @@ function initUI(_box) {
 
     initLink($p);
 
-    $("div.pagination", $p).each(function() {
-        var $this = $(this);
-        $this.pagination({
-            targetType: $this.attr("targetType"), rel: $this.attr("rel"), totalCount: $this.attr("totalCount"), numPerPage: $this.attr("numPerPage") ,
-            pageNumShown: $this.attr("pageNumShown"), currentPage: $this.attr("currentPage")
-        });
-    });
     if ($.fn.sortDrag) {
         $("div.sortDrag", $p).sortDrag();
     }
@@ -170,7 +163,7 @@ function initUI(_box) {
         $(".miscSortDrag", $p).miscSortDrag();
     }
 
-    // dwz.ajax.js
+    // ajax.js
     if ($.fn.multLookup ) {
         $("[multLookup]:button", $p).multLookup();
     }
@@ -180,8 +173,8 @@ function initUI(_box) {
     if ($.fn.itemDetail ) {
         $("table.itemDetail", $p).itemDetail();
     }
-    // 执行第三方jQuery插件【 第三方jQuery插件注册：DWZ.regPlugins.push(function($p){}); 】
-    $.each(DWZ.regPlugins, function(index, fn) {
+    // 执行第三方jQuery插件【 第三方jQuery插件注册：JUI.regPlugins.push(function($p){}); 】
+    $.each(JUI.regPlugins, function(index, fn) {
         fn($p);
     });
     // init styles
@@ -209,9 +202,9 @@ function initLink($p) {
             var external = eval($this.attr("external") || "false");
             var url = $this.attr("href").replaceTmById($(event.target).parents(".unitBox:first"));
             var newWindow = (navigator.platform.match("Mac") ? event.metaKey : event.ctrlKey);
-            DWZ.debug(url);
+            JUI.debug(url);
             if (!url.isFinishedTm() ) {
-                alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                 return false;
             }
             navTab.openTab(tabid, url, {
@@ -247,9 +240,9 @@ function initLink($p) {
             options.param = $this.attr("param") || "";
             options.focusNewWindow = (navigator.platform.match("Mac") ? event.metaKey : event.ctrlKey);
             var url = $this.attr("href").replaceTmById($(event.target).parents(".unitBox:first"));
-            DWZ.debug(url);
+            JUI.debug(url);
             if (!url.isFinishedTm() ) {
-                alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                 return false;
             }
             $.pdialog.open(url, rel, title, options);

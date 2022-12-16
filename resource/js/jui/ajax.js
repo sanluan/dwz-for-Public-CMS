@@ -14,7 +14,7 @@
  */
 function validateCallback(form, callback, confirmMsg) {
     var $form = $(form);
-    $form.trigger(DWZ.eventType.editorSync);
+    $form.trigger(JUI.eventType.editorSync);
     $("textarea.editor[escape=true]", $form).each(function() {
          $(this).val(html2Escape($(this).val()));
     });
@@ -33,8 +33,8 @@ function validateCallback(form, callback, confirmMsg) {
     }
     var _submitFn = function() {
         $.ajax({
-            type: form.method || 'POST', url: $form.attr("action"), data: $form.serializeArray(), dataType: "json", cache: false, success: callback || DWZ.ajaxDone ,
-            error: DWZ.ajaxError
+            type: form.method || 'POST', url: $form.attr("action"), data: $form.serializeArray(), dataType: "json", cache: false, success: callback || JUI.ajaxDone ,
+            error: JUI.ajaxError
         });
     }
     if (confirmMsg ) {
@@ -66,7 +66,7 @@ function iframeCallback(form, callback) {
         $form.append('<input type="hidden" name="ajax" value="1" />');
     }
     form.target = "callbackframe";
-    _iframeResponse($iframe[0], callback || DWZ.ajaxDone);
+    _iframeResponse($iframe[0], callback || JUI.ajaxDone);
 }
 function _iframeResponse(iframe, callback) {
     var $iframe = $(iframe), $document = $(document);
@@ -116,16 +116,16 @@ function _iframeResponse(iframe, callback) {
  * navTabAjaxDone这个回调函数基本可以通用了，如果还有特殊需要也可以自定义回调函数. 如果表单提交只提示操作是否成功, 就可以不指定回调函数.
  * 框架会默认调用DWZ.ajaxDone() <form action="/user.do?method=save" onsubmit="return
  * validateCallback(this, navTabAjaxDone)">
- * form提交后返回json数据结构statusCode=DWZ.statusCode.ok表示操作成功, 做页面跳转等操作.
- * statusCode=DWZ.statusCode.error表示操作失败, 提示错误原因.
- * statusCode=DWZ.statusCode.timeout表示session超时，下次点击时跳转到DWZ.loginUrl
+ * form提交后返回json数据结构statusCode=JUI.statusCode.ok表示操作成功, 做页面跳转等操作.
+ * statusCode=JUI.statusCode.error表示操作失败, 提示错误原因.
+ * statusCode=JUI.statusCode.timeout表示session超时，下次点击时跳转到DWZ.loginUrl
  * {"statusCode":"200", "message":"操作成功", "navTabId":"navNewsLi",
  * "forwardUrl":"", "callbackType":"closeCurrent", "rel"."xxxId"}
  * {"statusCode":"300", "message":"操作失败"} {"statusCode":"301", "message":"会话超时"}
  */
 function navTabAjaxDone(json) {
-    DWZ.ajaxDone(json);
-    if (json[DWZ.keys.statusCode] == DWZ.statusCode.ok ) {
+    JUI.ajaxDone(json);
+    if (json[JUI.keys.statusCode] == JUI.statusCode.ok ) {
         if (json.navTabId ) { // 把指定navTab页面标记为需要“重新载入”。注意navTabId不能是当前navTab页面的
             if('page' == json.rel){
                 navTab.reloadFlag(json.navTabId, 2);
@@ -151,7 +151,7 @@ function navTabAjaxDone(json) {
                 navTab.reload(json.forwardUrl);
             }
         } else if ("forwardConfirm" == json.callbackType ) {
-            alertMsg.confirm(json.confirmMsg || DWZ.msg("forwardConfirmMsg"), {
+            alertMsg.confirm(json.confirmMsg || JUI.msg("forwardConfirmMsg"), {
                 okCall: function() {
                     navTab.reload(json.forwardUrl);
                 }, cancelCall: function() {
@@ -164,12 +164,12 @@ function navTabAjaxDone(json) {
 
 /**
  * dialog上的表单提交回调函数 当前navTab页面有pagerForm就重新加载 服务器转回navTabId，可以重新载入指定的navTab.
- * statusCode=DWZ.statusCode.ok表示操作成功, 自动关闭当前dialog
+ * statusCode=JUI.statusCode.ok表示操作成功, 自动关闭当前dialog
  * form提交后返回json数据结构,json格式和navTabAjaxDone一致
  */
 function dialogAjaxDone(json) {
-    DWZ.ajaxDone(json);
-    if (json[DWZ.keys.statusCode] == DWZ.statusCode.ok ) {
+    JUI.ajaxDone(json);
+    if (json[JUI.keys.statusCode] == JUI.statusCode.ok ) {
         if (json.navTabId ) {
             navTab.reload(json.forwardUrl, {
                 navTabId: json.navTabId
@@ -208,8 +208,8 @@ function navTabSearch(form, navTabId) {
  */
 function dialogSearch(form) {
     var $form = $(form);
-    if (form[DWZ.pageInfo.pageNum] ) {
-        form[DWZ.pageInfo.pageNum].value = 1;
+    if (form[JUI.pageInfo.pageNum] ) {
+        form[JUI.pageInfo.pageNum].value = 1;
     }
     $.pdialog.reload($form.attr('action'), {
         data: $form.serializeArray()
@@ -224,8 +224,8 @@ function dialogSearch(form) {
  */
 function divSearch(form, rel) {
     var $form = $(form);
-    if (form[DWZ.pageInfo.pageNum] ) {
-        form[DWZ.pageInfo.pageNum].value = 1;
+    if (form[JUI.pageInfo.pageNum] ) {
+        form[JUI.pageInfo.pageNum].value = 1;
     }
     if (rel ) {
         var $box = $("#" + rel);
@@ -247,16 +247,16 @@ function _getPagerForm($parent, args) {
     var form = $(".pagerForm", $parent).get(0);
     if (form ) {
         if (args["pageNum"] ) {
-            form[DWZ.pageInfo.pageNum].value = args["pageNum"];
+            form[JUI.pageInfo.pageNum].value = args["pageNum"];
         }
         if (args["numPerPage"] ) {
-            form[DWZ.pageInfo.numPerPage].value = args["numPerPage"];
+            form[JUI.pageInfo.numPerPage].value = args["numPerPage"];
         }
         if (args["orderField"] ) {
-            form[DWZ.pageInfo.orderField].value = args["orderField"];
+            form[JUI.pageInfo.orderField].value = args["orderField"];
         }
-        if (args["orderDirection"] && form[DWZ.pageInfo.orderDirection] ) {
-            form[DWZ.pageInfo.orderDirection].value = args["orderDirection"];
+        if (args["orderDirection"] && form[JUI.pageInfo.orderDirection] ) {
+            form[JUI.pageInfo.orderDirection].value = args["orderDirection"];
         }
     }
     return form;
@@ -329,7 +329,7 @@ function ajaxTodo(url, callback) {
         $callback = eval('(' + callback + ')');
     }
     $.ajax({
-        type: 'POST', url: url, dataType: "json", cache: false, success: $callback, error: DWZ.ajaxError
+        type: 'POST', url: url, dataType: "json", cache: false, success: $callback, error: JUI.ajaxError
     });
 }
 
@@ -337,7 +337,7 @@ function escapeJquery(srcString) {
     var escapseResult = srcString;
     var jsSpecialChars = ["\\", "^", "$", "*", "?", ".", "+", "(", ")", "[",
         "]", "|", "{", "}"];
-    var jquerySpecialChars = ["~", "`", "@", "#", "%", "&", "=", "'", "\"",
+    var jquerySpecialChars = ["~", "`", "@", "#", "%", "&", "=", "'", "\"", " ",
         ":", ";", "<", ">", ",", "/"];
     for (var i = 0; i < jsSpecialChars.length; i++) {
         escapseResult = escapseResult.replace(new RegExp("\\"
@@ -407,9 +407,9 @@ $.fn.extend({
             var $this = $(this);
             $this.click(function(event) {
                 var url = $this.attr("href").replaceTmById($(event.target).parents(".unitBox:first"));
-                DWZ.debug(url);
+                JUI.debug(url);
                 if (!url.isFinishedTm() ) {
-                    alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                    alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                     return false;
                 }
                 var title = $this.attr("title");

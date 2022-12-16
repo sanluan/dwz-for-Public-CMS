@@ -386,17 +386,17 @@ visitChart.setOption({
         <li theme="red"><div></div></li>
     </ul>
 </footer>
-<script src="resource/js/jquery-3.6.1.min.js"></script>
-<script src="resource/js/jquery.cookie.js"></script>
-<script src="resource/js/jquery.validate.js"></script>
-<script src="resource/plugins/base64.js"></script>
-<script src="resource/plugins/sha512.min.js"></script>
-<script src="resource/js/dwz.min.js?version=202206"></script>
-<script src="resource/js/loadscripts.js"></script>
+<script src="resource/plugins/jquery/jquery.min.js"></script>
+<script src="resource/plugins/jquery/jquery.cookie.js"></script>
+<script src="resource/plugins/jquery/jquery.validate.js"></script>
+<script src="resource/plugins/encrypt/base64.js"></script>
+<script src="resource/plugins/encrypt/sha512.min.js"></script>
 <script src="resource/plugins/spectrum/spectrum.min.js"></script>
 <script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
-<script src="resource/js/dwz.plugins.js?version=202211"></script>
-<script src="resource/js/lang/dwz.regional.zh.js"></script> <!-- en,jp-->
+<script src="resource/js/jui.min.js"></script>
+<script src="resource/js/loadscripts.js"></script>
+<script src="resource/js/jui.plugins.js?version=202211"></script>
+<script src="resource/js/lang/regional.zh.js"></script> <!-- en,ja,zh_tw-->
 <script>
 	var base="ajax";
 	window.UEDITOR_HOME_URL="/ui/resource/plugins/ueditor/";
@@ -422,7 +422,7 @@ visitChart.setOption({
     <script src="resource/js/loadscripts.config.js"></script>
     <script src="resource/js/tinymce.config.js"></script>
     <script>
-	DWZ.init("resource/dwz.frag.html", {
+	DWZ.init("resource/jui.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",
 		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderType"},
 		debug:false,

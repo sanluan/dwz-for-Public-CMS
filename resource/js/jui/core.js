@@ -1,7 +1,7 @@
 /**
  * @author ZhangHuihua@msn.com
  */
-var DWZ = {
+var JUI = {
     version: "1.6.2" ,
     regPlugins: [ ], // [function($parent){} ...]
     // sbar: show sidebar
@@ -63,12 +63,12 @@ var DWZ = {
         }
     } ,
     loadLogin: function() {
-        if ($.pdialog && DWZ._set.loginTitle ) {
-            $.pdialog.open(DWZ._set.loginUrl, "login", DWZ._set.loginTitle, {
+        if ($.pdialog && JUI._set.loginTitle ) {
+            $.pdialog.open(JUI._set.loginUrl, "login", JUI._set.loginTitle, {
                 mask: true, width: 520, height: 260
             });
         } else {
-            window.location = DWZ._set.loginUrl;
+            window.location = JUI._set.loginUrl;
         }
     } ,
     instances : {},
@@ -83,14 +83,14 @@ var DWZ = {
         if (typeof o == "object" ) {
             if (!o.sort ) {
                 for (var i in o)
-                    r.push("\""+i + "\":" + DWZ.obj2str(o[i]));
+                    r.push("\""+i + "\":" + JUI.obj2str(o[i]));
                 if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString) ) {
                     r.push("toString:" + o.toString.toString());
                 }
                 r = "{" + r.join() + "}"
             } else {
                 for (var i = 0; i < o.length; i++) {
-                    r.push(DWZ.obj2str(o[i]));
+                    r.push(JUI.obj2str(o[i]));
                 }
                 r = "[" + r.join() + "]"
             }
@@ -124,29 +124,29 @@ var DWZ = {
         }
     },
     ajaxDone: function(json) {
-        if (json[DWZ.keys.statusCode] == DWZ.statusCode.error ) {
-            if (json[DWZ.keys.message] && alertMsg ) {
-                alertMsg.error(json[DWZ.keys.message]);
+        if (json[JUI.keys.statusCode] == JUI.statusCode.error ) {
+            if (json[JUI.keys.message] && alertMsg ) {
+                alertMsg.error(json[JUI.keys.message]);
             }
-        } else if (json[DWZ.keys.statusCode] == DWZ.statusCode.timeout ) {
+        } else if (json[JUI.keys.statusCode] == JUI.statusCode.timeout ) {
             if (alertMsg ){
-                alertMsg.error(json[DWZ.keys.message] || DWZ.msg("sessionTimout"), {
-                    okCall: DWZ.loadLogin
+                alertMsg.error(json[JUI.keys.message] || JUI.msg("sessionTimout"), {
+                    okCall: JUI.loadLogin
                 });
             } else {
-                DWZ.loadLogin();
+                JUI.loadLogin();
             }
-        } else if (json[DWZ.keys.statusCode] == DWZ.statusCode.okAndRefresh ){
-            if (json[DWZ.keys.message] && alertMsg ){
-                alertMsg.correct(json[DWZ.keys.message],{
+        } else if (json[JUI.keys.statusCode] == JUI.statusCode.okAndRefresh ){
+            if (json[JUI.keys.message] && alertMsg ){
+                alertMsg.correct(json[JUI.keys.message],{
                     callback:function(){
                         window.location.reload();
                     }
                 });
             }
         } else {
-            if (json[DWZ.keys.message] && alertMsg ){
-                alertMsg.correct(json[DWZ.keys.message]);
+            if (json[JUI.keys.message] && alertMsg ){
+                alertMsg.correct(json[JUI.keys.message]);
             }
         }
     },
@@ -157,17 +157,17 @@ var DWZ = {
         this._set.loginUrl = op.loginUrl;
         this._set.loginTitle = op.loginTitle;
         this._set.debug = op.debug;
-        $.extend(DWZ.statusCode, op.statusCode);
-        $.extend(DWZ.keys, op.keys);
-        $.extend(DWZ.pageInfo, op.pageInfo);
+        $.extend(JUI.statusCode, op.statusCode);
+        $.extend(JUI.keys, op.keys);
+        $.extend(JUI.pageInfo, op.pageInfo);
         $.ajax({
             type: 'GET', url: pageFrag, dataType: 'html', cache: false, error: function(xhr) {
                 alert(xhr.statusText);
             }, success: function(html) {
                 $($.parseHTML(html, document, true)).each(function() {
-                    var pageId = $(this).attr("id");
-                    if (pageId ) {
-                        DWZ.frag[pageId] = $(this).text();
+                    var fragId = $(this).attr("id");
+                    if (fragId ) {
+                        JUI.frag[fragId] = $(this).text();
                     }
                 });
                 if ("function" === typeof op.callback ) {
@@ -176,8 +176,8 @@ var DWZ = {
             }
         });
         var _doc = $(document);
-        if (!_doc.isBind(DWZ.eventType.editorSync) ) {
-            _doc.on(DWZ.eventType.editorSync, null, null, function(event) {
+        if (!_doc.isBind(JUI.eventType.editorSync) ) {
+            _doc.on(JUI.eventType.editorSync, null, null, function(event) {
                 var box = event.target;
                 var $box = $(box);
                 $("textarea.editor", $box).each(function() {
@@ -198,21 +198,21 @@ var DWZ = {
                     }
                 });
                 $("textarea.code", $box).each(function() {
-                    if(DWZ.instances[$(this).data("id")]) {
-                        DWZ.instances[$(this).data("id")].save();
+                    if(JUI.instances[$(this).data("id")]) {
+                        JUI.instances[$(this).data("id")].save();
                     }
                 });
         
                 $(".miscSortDrag", $box).each(function() {
                     var $sortBox=$(this);
                     if($sortBox.data("result")){
-                        $sortBox.find($sortBox.data("result")).val(DWZ.obj2str($sortBox.miscSortDragData($sortBox)));
+                        $sortBox.find($sortBox.data("result")).val(JUI.obj2str($sortBox.miscSortDragData($sortBox)));
                     }
                 });
             });
         }
-        if (!_doc.isBind(DWZ.eventType.pageClear) ) {
-            _doc.on(DWZ.eventType.pageClear, null, null, function(event) {
+        if (!_doc.isBind(JUI.eventType.pageClear) ) {
+            _doc.on(JUI.eventType.pageClear, null, null, function(event) {
                 var box = event.target;
                 var $box = $(box);
                 $("textarea.editor", $box).each(function() {
@@ -231,15 +231,15 @@ var DWZ = {
                     }
                 });
                 $("textarea.code", $box).each(function() {
-                    if(DWZ.instances[$(this).data("id")]) {
-                        DWZ.instances[$(this).data("id")].toTextArea();
-                        delete DWZ.instances[$(this).data("id")];
+                    if(JUI.instances[$(this).data("id")]) {
+                        JUI.instances[$(this).data("id")].toTextArea();
+                        delete JUI.instances[$(this).data("id")];
                     }
                 });
                 $(".image-editor", $box).each(function() {
-                    if(DWZ.instances[$(this).data("id")]) {
-                        DWZ.instances[$(this).data("id")].destroy();
-                        delete DWZ.instances[$(this).data("id")];
+                    if(JUI.instances[$(this).data("id")]) {
+                        JUI.instances[$(this).data("id")].destroy();
+                        delete JUI.instances[$(this).data("id")];
                     }
                 });
                 $('[close-url]',$box).each(function (){
@@ -251,7 +251,7 @@ var DWZ = {
 };
 
 ( function($) {
-    // DWZ set regional
+    // JUI set regional
     $.setRegional = function(key, value) {
         if (!$.regional ) {
             $.regional = {};
@@ -259,9 +259,9 @@ var DWZ = {
         $.regional[key] = value;
     };
 
-    // DWZ set msg
+    // JUI set msg
     $.setMessage = function(key, value) {
-        DWZ._msg[key] = value;
+        JUI._msg[key] = value;
     };
 
     $.fn.extend({
@@ -272,15 +272,15 @@ var DWZ = {
          */
         ajaxUrl: function(op) {
             var $this = $(this);
-            $this.trigger(DWZ.eventType.pageClear);
+            $this.trigger(JUI.eventType.pageClear);
             $.ajax({
                 type: op.type || 'GET', url: op.url, data: op.data, cache: false, success: function(response) {
-                    var json = DWZ.jsonEval(response);
-                    if (json[DWZ.keys.statusCode] == DWZ.statusCode.error ) {
-                        if (json[DWZ.keys.message] ) {
-                            alertMsg.error(json[DWZ.keys.message]);
+                    var json = JUI.jsonEval(response);
+                    if (json[JUI.keys.statusCode] == JUI.statusCode.error ) {
+                        if (json[JUI.keys.message] ) {
+                            alertMsg.error(json[JUI.keys.message]);
                         }
-                    } else if (json[DWZ.keys.statusCode] == DWZ.statusCode.timeout ) {
+                    } else if (json[JUI.keys.statusCode] == JUI.statusCode.timeout ) {
                         $this.html(response);
                         if ($.pdialog ) {
                             $.pdialog.checkTimeout();
@@ -288,9 +288,9 @@ var DWZ = {
                         if (navTab ) {
                             navTab.checkTimeout();
                         }
-                        alertMsg.error(json[DWZ.keys.message] || DWZ.msg("sessionTimout"), {
+                        alertMsg.error(json[JUI.keys.message] || JUI.msg("sessionTimout"), {
                             okCall: function() {
-                                DWZ.loadLogin();
+                                JUI.loadLogin();
                             }
                         });
                     } else {
@@ -300,9 +300,9 @@ var DWZ = {
                         }
                     }
                 },
-                error: DWZ.ajaxError, statusCode: {
+                error: JUI.ajaxError, statusCode: {
                     503: function(xhr, ajaxOptions, thrownError) {
-                        alert(DWZ.msg("statusCode_503") || thrownError);
+                        alert(JUI.msg("statusCode_503") || thrownError);
                     }
                 }
             });

@@ -67,20 +67,20 @@
         }
         var $this = $uploadWrap.parent().find('.image-editor');
         if($this.attr("data-id")){
-            DWZ.instances[$this.attr("data-id")].destroy();
+            JUI.instances[$this.attr("data-id")].destroy();
         }
         var index = window.photoclip.index++;
         var dataId = "photoclip_"+index;
         var widthInput=$uploadWrap.find("input[name=width]");
         var heightInput=$uploadWrap.find("input[name=height]");
         widthInput.change(function(){
-            if(DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")]){
-                DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
+            if(JUI.instances[$uploadWrap.parent().find('.image-editor').data("id")]){
+                JUI.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
             }
         });
         heightInput.change(function(){
-            if(DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")]){
-                DWZ.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
+            if(JUI.instances[$uploadWrap.parent().find('.image-editor').data("id")]){
+                JUI.instances[$uploadWrap.parent().find('.image-editor').data("id")].size(parseInt(widthInput.val()),parseInt(heightInput.val()));
             }
         });
         var options= {
@@ -90,8 +90,8 @@
                 if ($.isFunction(callback) ) {
                     callback(dataURL);
                 }
-                DWZ.instances[dataId].destroy();
-                delete DWZ.instances[dataId];
+                JUI.instances[dataId].destroy();
+                delete JUI.instances[dataId];
                 $this.remove();
             },
             fail: function(msg) {
@@ -105,7 +105,7 @@
         function init(dataId,img){
             var photoClip = new PhotoClip($this.find('.image-box')[0], options);
             photoClip.load(img);
-            DWZ.instances[dataId] = photoClip;
+            JUI.instances[dataId] = photoClip;
         }
         if(window.photoclip.initd){
             init(dataId,img);
@@ -200,14 +200,14 @@
                             dataType:"json",
                             cache: false,
                             success: function(json){
-                                DWZ.ajaxDone(json);
+                                JUI.ajaxDone(json);
 
-                                if (json[DWZ.keys.statusCode] == DWZ.statusCode.ok){
+                                if (json[JUI.keys.statusCode] == JUI.statusCode.ok){
                                     $uploadWrap.find('div.thumbnail').remove();
                                     $uploadWrap.find('input[type=file]').val('');
                                 }
                             },
-                            error: DWZ.ajaxError
+                            error: JUI.ajaxError
                         });
 
                         return false;
@@ -219,7 +219,7 @@
     });
 
 
-    DWZ.regPlugins.push(function($p){
+    JUI.regPlugins.push(function($p){
         $("div.upload-wrap", $p).previewUploadImg({maxW:300,maxH:200});
     });
 

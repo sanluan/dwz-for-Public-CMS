@@ -240,7 +240,7 @@ var navTab = {
     } ,
     _closeTab: function(index, openTabid) {
         this._getTabs().eq(index).remove();
-        this._getPanels().eq(index).trigger(DWZ.eventType.pageClear).remove();
+        this._getPanels().eq(index).trigger(JUI.eventType.pageClear).remove();
         this._getMoreLi().eq(index).remove();
         if (this._currentIndex >= index ) {
             this._currentIndex--;
@@ -269,7 +269,7 @@ var navTab = {
     } ,
     closeAllTab: function() {
         this._getTabs().filter(":gt(0)").remove();
-        this._getPanels().filter(":gt(0)").trigger(DWZ.eventType.pageClear).remove();
+        this._getPanels().filter(":gt(0)").trigger(JUI.eventType.pageClear).remove();
         this._getMoreLi().filter(":gt(0)").remove();
         this._currentIndex = 0;
         this._init();
@@ -280,7 +280,7 @@ var navTab = {
         if (index > 0 ) {
             var str$ = ":eq(" + index + ")";
             this._getTabs().not(str$).filter(":gt(0)").remove();
-            this._getPanels().not(str$).filter(":gt(0)").trigger(DWZ.eventType.pageClear).remove();
+            this._getPanels().not(str$).filter(":gt(0)").trigger(JUI.eventType.pageClear).remove();
             this._getMoreLi().not(str$).filter(":gt(0)").remove();
             this._currentIndex = 1;
             this._init();
@@ -303,7 +303,7 @@ var navTab = {
             var $panel = this.getPanel($tab.attr("tabid"));
             if ($tab.hasClass("external") || url.isExternalUrl()) {
                 navTab.openExternal(url, $panel);
-            } else if("2" ==flag) {
+            } else if(2 == flag) {
                 $panel.loadUrl(url, {}, function() {
                     navTab._loadUrlCallback($panel);
                 });
@@ -367,14 +367,14 @@ var navTab = {
         return this._getPanels().eq(this._currentIndex);
     } ,
     checkTimeout: function() {
-        var json = DWZ.jsonEval(this.getCurrentPanel().html());
-        if (json && json.statusCode == DWZ.statusCode.timeout ) {
+        var json = JUI.jsonEval(this.getCurrentPanel().html());
+        if (json && json.statusCode == JUI.statusCode.timeout ) {
             this.closeCurrentTab();
         }
     } ,
     openExternal: function(url, $panel) {
         var ih = navTab._panelBox.height();
-        $panel.html(DWZ.frag["externalFrag"].replaceAll("{url}", url).replaceAll("{height}", ih + "px"));
+        $panel.html(JUI.frag["externalFrag"].replaceAll("{url}", url).replaceAll("{height}", ih + "px"));
     } ,
     /**
      * @param {Object}

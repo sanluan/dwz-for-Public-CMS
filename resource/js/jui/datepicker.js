@@ -9,11 +9,11 @@
     $.fn.datepicker = function(opts) {
         var setting = {
             box$: "#calendar",
-            year$: "#calendar [name=year]", month$: "#calendar [name=month]",
-            tmInputs$: "#calendar .time :text", hour$: "#calendar .time .hh" , minute$: "#calendar .time .mm", second$: "#calendar .time .ss",
+            year$: "#calendar [name=year]", month$: "#calendar [name=month]",tmInputs$: "#calendar .time :text", 
+            hour$: "#calendar .time .hh" , minute$: "#calendar .time .mm", second$: "#calendar .time .ss",
             tmBox$: "#calendar .tm", tmUp$: "#calendar .time .up", tmDown$: "#calendar .time .down" ,
-            close$: "#calendar .close", main$: "#calendar .main", days$: "#calendar .days", dayNames$: "#calendar .dayNames" ,
-            clearBut$: "#calendar .clearBut", okBut$: "#calendar .okBut"
+            close$: "#calendar .close", calIcon$:"a.inputDateButton", main$: "#calendar .main", days$: "#calendar .days", 
+            dayNames$: "#calendar .dayNames" , clearBut$: "#calendar .clearBut", okBut$: "#calendar .okBut"
         };
         function changeTmMenu(sltClass) {
             var $tm = $(setting.tmBox$);
@@ -32,7 +32,7 @@
             });
         }
         function keydownInt(e) {
-            if (! ( ( e.keyCode >= 48 && e.keyCode <= 57 ) || ( e.keyCode == DWZ.keyCode.DELETE || e.keyCode == DWZ.keyCode.BACKSPACE ) ) ) {
+            if (! ( ( e.keyCode >= 48 && e.keyCode <= 57 ) || ( e.keyCode == JUI.keyCode.DELETE || e.keyCode == JUI.keyCode.BACKSPACE ) ) ) {
                 return false;
             }
         }
@@ -170,7 +170,7 @@
                 var dp = new Datepicker($this.val(), opts);
                 var offset = $this.offset();
                 var iTop = offset.top + this.offsetHeight;
-                $($.parseHTML(DWZ.frag['calendarFrag'], document, true)).appendTo("body").css({
+                $($.parseHTML(JUI.frag['calendarFrag'], document, true)).appendTo("body").css({
                     left: offset.left + 'px', top: iTop + 'px'
                 }).show().click(function(event) {
                     event.stopPropagation();
@@ -229,6 +229,13 @@
                 $(document).on("click", null, null, closeCalendar);
                 return false;
             });
+
+            if($this.next().is(setting.calIcon$)){
+                $this.next().click(function(){
+                    $this.trigger("click");
+                    return false;
+                });
+            }
         });
     }
     var Datepicker = function(sDate, opts) {

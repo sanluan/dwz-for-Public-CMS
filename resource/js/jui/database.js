@@ -34,7 +34,7 @@
                                 UE.instants[$input.data("id")].setContent(args[key]);
                             }
                         } else if($input.hasClass('code')) {
-                            DWZ.instances[$(this).data("id")].setValue(args[key]);
+                            JUI.instances[$(this).data("id")].setValue(args[key]);
                         } else {
                             $input.val(args[key]).trigger('change');
                         }
@@ -44,14 +44,14 @@
             });
         },
         bringBack: function(json) {
-            if (json[DWZ.keys.statusCode] == DWZ.statusCode.error ) {
-                if (json[DWZ.keys.message] ) {
-                    alertMsg.error(json[DWZ.keys.message]);
+            if (json[JUI.keys.statusCode] == JUI.statusCode.error ) {
+                if (json[JUI.keys.message] ) {
+                    alertMsg.error(json[JUI.keys.message]);
                 }
-            } else if (json[DWZ.keys.statusCode] == DWZ.statusCode.timeout ) {
-                alertMsg.error(json[DWZ.keys.message] || DWZ.msg("sessionTimout"), {
+            } else if (json[JUI.keys.statusCode] == JUI.statusCode.timeout ) {
+                alertMsg.error(json[JUI.keys.message] || JUI.msg("sessionTimout"), {
                     okCall: function() {
-                        DWZ.loadLogin();
+                        JUI.loadLogin();
                     }
                 });
             } else {
@@ -63,15 +63,15 @@
             if(_lookup.nextButton ) {
                 for ( var row in args) {
                     _lookup.nextButton.click();
-                    if (args[row][DWZ.keys.statusCode] == DWZ.statusCode.error ) {
-                        if (args[row][DWZ.keys.message] ) {
-                            alertMsg.error(args[row][DWZ.keys.message]);
+                    if (args[row][JUI.keys.statusCode] == JUI.statusCode.error ) {
+                        if (args[row][JUI.keys.message] ) {
+                            alertMsg.error(args[row][JUI.keys.message]);
                         }
                         break;
-                    } else if (args[row][DWZ.keys.statusCode] == DWZ.statusCode.timeout ) {
-                        alertMsg.error(args[row][DWZ.keys.message] || DWZ.msg("sessionTimout"), {
+                    } else if (args[row][JUI.keys.statusCode] == JUI.statusCode.timeout ) {
+                        alertMsg.error(args[row][JUI.keys.message] || JUI.msg("sessionTimout"), {
                             okCall: function() {
-                                DWZ.loadLogin();
+                                JUI.loadLogin();
                             }
                         });
                         break;
@@ -96,7 +96,7 @@
                     });
                     var url = $this.attr("href").replaceTmById($(event.target).parents(".unitBox:first"));
                     if (!url.isFinishedTm() ) {
-                        alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                        alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                         return false;
                     }
                     $.pdialog.open(url, "_blank", $this.attr("title") || $this.text(), options);
@@ -110,14 +110,14 @@
                 $this.click(function(event) {
                     var $unitBox = $this.parents(".unitBox:first");
                     $unitBox.find("[name='" + $this.attr("multLookup") + "']").filter(":checked").each(function() {
-                        var _args = DWZ.jsonEval($(this).val());
+                        var _args = JUI.jsonEval($(this).val());
                         for ( var key in _args) {
                             var value = args[key] ? args[key] + ",": "";
                             args[key] = value + _args[key];
                         }
                     });
                     if ($.isEmptyObject(args) ) {
-                        alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                        alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                         return false;
                     }
                     $.bringBack(args);
@@ -132,7 +132,7 @@
             var selectedIndex = -1;
             return this.each(function() {
                 var $input = $(this).attr('autocomplete', 'off').keydown(function(event) {
-                    if (event.keyCode == DWZ.keyCode.ENTER && $(op.suggest$).is(':visible') ) {
+                    if (event.keyCode == JUI.keyCode.ENTER && $(op.suggest$).is(':visible') ) {
                         return false; // 屏蔽回车提交
                     }
                 });
@@ -152,7 +152,7 @@
                     });
                     var url = $input.attr("suggestUrl").replaceTmById($(event.target).parents(".unitBox:first"));
                     if (!url.isFinishedTm() ) {
-                        alertMsg.error($input.attr("warn") || DWZ.msg("alertSelectMsg"));
+                        alertMsg.error($input.attr("warn") || JUI.msg("alertSelectMsg"));
                         return false;
                     }
                     var postData = {};
@@ -201,7 +201,7 @@
                                     jsonStr += suggestFields[i] + ":''";
                                 }
                                 jsonStr = "{" + _lookup.pk + ":''," + jsonStr + "}";
-                                $.bringBackSuggest(DWZ.jsonEval(jsonStr));
+                                $.bringBackSuggest(JUI.jsonEval(jsonStr));
                             }
                         }, error: function() {
                             $suggest.html('');
@@ -212,7 +212,7 @@
                 }
                 function _select($item) {
                     var jsonStr = "{" + $item.attr('lookupAttrs') + "}";
-                    $.bringBackSuggest(DWZ.jsonEval(jsonStr));
+                    $.bringBackSuggest(JUI.jsonEval(jsonStr));
                 }
                 function _close() {
                     $(op.suggest$).html('').hide();
@@ -222,25 +222,25 @@
                 $input.focus(_show).click(false).keyup(function(event) {
                     var $items = $(op.suggest$).find("li");
                     switch (event.keyCode) {
-                        case DWZ.keyCode.ESC:
-                        case DWZ.keyCode.TAB:
-                        case DWZ.keyCode.SHIFT:
-                        case DWZ.keyCode.HOME:
-                        case DWZ.keyCode.END:
-                        case DWZ.keyCode.LEFT:
-                        case DWZ.keyCode.RIGHT:
+                        case JUI.keyCode.ESC:
+                        case JUI.keyCode.TAB:
+                        case JUI.keyCode.SHIFT:
+                        case JUI.keyCode.HOME:
+                        case JUI.keyCode.END:
+                        case JUI.keyCode.LEFT:
+                        case JUI.keyCode.RIGHT:
                             break;
-                        case DWZ.keyCode.ENTER:
+                        case JUI.keyCode.ENTER:
                             _close();
                             break;
-                        case DWZ.keyCode.DOWN:
+                        case JUI.keyCode.DOWN:
                             if (selectedIndex >= $items.length - 1 ) {
                                 selectedIndex = -1;
                             } else {
                                 selectedIndex++;
                             }
                             break;
-                        case DWZ.keyCode.UP:
+                        case JUI.keyCode.UP:
                             if (selectedIndex < 0 ) {
                                 selectedIndex = $items.length - 1;
                             } else {
@@ -285,7 +285,7 @@
                             type: 'POST', dataType: "json", url: $btnDel.attr('href'), cache: false, success: function() {
                                 $btnDel.parents("tr:first").remove();
                                 initSuffix($tbody);
-                            }, error: DWZ.ajaxError
+                            }, error: JUI.ajaxError
                         });
                     }
                     if ($btnDel.attr("title") ) {
@@ -377,7 +377,7 @@
                 var suffixFrag = suffix ? ' suffix="' + suffix + '" ': '';
                 var attrFrag = '';
                 if (field.fieldAttrs ) {
-                    var attrs = DWZ.jsonEval(field.fieldAttrs);
+                    var attrs = JUI.jsonEval(field.fieldAttrs);
                     for ( var key in attrs) {
                         attrFrag += key + '="' + attrs[key] + '"';
                     }
@@ -462,7 +462,7 @@
                     var targetType = $this.attr("targetType");
                     var ids = _getIds(selectedIds, targetType);
                     if (!ids ) {
-                        alertMsg.error($this.attr("warn") || DWZ.msg("alertSelectMsg"));
+                        alertMsg.error($this.attr("warn") || JUI.msg("alertSelectMsg"));
                         return false;
                     }
                     var _callback = $this.attr("callback") || ( targetType == "dialog" ? dialogAjaxDone: navTabAjaxDone );
@@ -483,7 +483,7 @@
                                     _data[selectedIds] = ids;
                                     return _data;
                                 }
-                            }(), success: _callback, error: DWZ.ajaxError
+                            }(), success: _callback, error: JUI.ajaxError
                         });
                     }
                     var title = $this.attr("title");

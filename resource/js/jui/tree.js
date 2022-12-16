@@ -134,7 +134,7 @@
                                         }
                                     });
                                     node.removeAttr(op.options.async);
-                                },error: DWZ.ajaxError
+                                },error: JUI.ajaxError
                             });
                             if(node.attr(op.options.async) ){
                                 return false;

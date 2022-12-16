@@ -965,19 +965,29 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="pageBar panelBar">
-		<div class="pages">
-			<span>显示</span>
-			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-				<option value="200">200</option>
-			</select>
-			<span>条，共${totalCount}条</span>
-		</div>
-
-		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
-
-	</div>
+	<div class="panelBar pageBar">
+        <ul class="pagination">
+            <li>
+                <span>共54条</span>
+                <select class="combox" name="numPerPage" onchange="navTabPageBreak({pageNum:1,numPerPage:this.value});">
+                    <option value="30" selected="true">每页30条</option>
+                    <option value="50">每页50条</option>
+                    <option value="100">每页100条</option>
+                    <option value="500">每页500条</option>
+                </select>
+            </li>
+            <li class="disabled">
+                <a class="previous" href="javascript:;" onclick="navTabPageBreak({pageNum:1});return false;">上一页</a>
+            </li>
+                <li class="selected"><a href="javascript:;" onclick="navTabPageBreak({pageNum:1});return false;">1</a></li>
+                <li><a href="javascript:;" onclick="navTabPageBreak({pageNum:2});return false;">2</a></li>
+            <li>
+                <a class="next" href="javascript:;" onclick="navTabPageBreak({pageNum:2});return false;">下一页</a>
+            </li>
+            <li class="jumpto">
+                <input type="text" size="4" value="1"/>
+                <a href="javascript:;" class="goto" onclick="navTabPageBreak({pageNum:$(this).prev().val()});return false;"><i class="icon-large icon-chevron-right"></i></a>
+            </li>
+        </ul>
+    </div>
 </div>
