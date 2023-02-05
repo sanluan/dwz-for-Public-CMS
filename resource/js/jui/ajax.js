@@ -15,6 +15,9 @@
 function validateCallback(form, callback, confirmMsg) {
     var $form = $(form);
     $form.trigger(JUI.eventType.editorSync);
+    if (!$form.valid() ) {
+        return false;
+    }
     $("textarea.editor[escape=true]", $form).each(function() {
          $(this).val(html2Escape($(this).val()));
     });
@@ -27,10 +30,6 @@ function validateCallback(form, callback, confirmMsg) {
           $(this).val(sha512($(this).val()));
         }
     });
-    
-    if (!$form.valid() ) {
-        return false;
-    }
     var _submitFn = function() {
         $.ajax({
             type: form.method || 'POST', url: $form.attr("action"), data: $form.serializeArray(), dataType: "json", cache: false, success: callback || JUI.ajaxDone ,
@@ -332,33 +331,6 @@ function ajaxTodo(url, callback) {
         type: 'POST', url: url, dataType: "json", cache: false, success: $callback, error: JUI.ajaxError
     });
 }
-
-function escapeJquery(srcString) {
-    var escapseResult = srcString;
-    var jsSpecialChars = ["\\", "^", "$", "*", "?", ".", "+", "(", ")", "[",
-        "]", "|", "{", "}"];
-    var jquerySpecialChars = ["~", "`", "@", "#", "%", "&", "=", "'", "\"", " ",
-        ":", ";", "<", ">", ",", "/"];
-    for (var i = 0; i < jsSpecialChars.length; i++) {
-        escapseResult = escapseResult.replace(new RegExp("\\"
-                + jsSpecialChars[i], "g"), "\\"
-                + jsSpecialChars[i]);
-    }
-    for (var i = 0; i < jquerySpecialChars.length; i++) {
-        escapseResult = escapseResult.replace(new RegExp(jquerySpecialChars[i],
-                "g"), "\\" + jquerySpecialChars[i]);
-    }
-    return escapseResult;
-}
-
-function escapeHtml(str) {
-    if(str) {
-        return str.encodeTXT();
-    } else {
-        return str;
-    }
-}
-
 
 /**
  * http://www.uploadify.com/documentation/uploadify/onqueuecomplete/

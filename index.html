@@ -15,189 +15,189 @@
 	<script src="resource/js/echarts.proxy.js"></script>
 </head>
 <body>
-<header>
-	<a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
-	<ul class="nav">
-		<li><a href="javascript:"><i class="icon-user icon-large"></i> 管理员</a></li>
-		<li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
-		<li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
-	</ul>
-	<ul id="navMenu">
-		<li>
-            <a href="javascript:;" onclick="return false;" class="toggleCollapse"><i class="icon icon-chevron-sign-left icon-large"></i></a>
-        </li>
-		<li class="selected"><a href="menu/main.html" parentId="mian"><i class="icon-user icon-large"></i> 功能</a></li>
-		<li><a href="menu/chart.html"  parentId="chart"><i class="icon-book icon-large"></i> 报表</a></li>
-	</ul>
-</header>
-<main>
-    <div id="leftside">
-        <div id="sidebar_s"><i class="icon-reorder icon-large"></i></div>
-        <div id="sidebar">
-            <div id="menu">
-				<div class="accordion">
-					<div class="accordionHeader">
-						<h2><i class="icon-user icon-large"></i> 界面组件 <i class="icon icon-chevron-up"></i></h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="tabsPage.html" target="navTab">主面板</a>
-								<ul>
-									<li><a href="dwz.html" target="navTab" rel="dwz">DWZ介绍</a></li>
-									<li><a href="https://www.publiccms.com" target="navTab" rel="external" external="true">外部页面(页面一)</a></li>
-									<li><a href="login.html" target="navTab" rel="external" external="true">iframe navTab页面</a></li>
-									<li><a href="demo_page_list.html" target="navTab" rel="page1" fresh="false">替换页面一</a></li>
-									<li><a href="demo_page_list.html" target="navTab" rel="page3" title="自定义标签名">页面二</a></li>
-									<li><a href="demo_page_list.html" target="navTab" rel="page4" fresh="false">不刷新页面（fresh="false"）</a></li>
-									<li><a href="w_editor.html" target="navTab">表单提交会话超时</a></li>
-									<li><a href="demo/common/ajaxTimeout.html" target="navTab">navTab会话超时</a></li>
-									<li><a href="demo/common/ajaxTimeout.html" target="dialog">dialog会话超时</a></li>
-								</ul>
-							</li>
-							<li><a>常用组件</a>
-								<ul>
-									<li><a href="w_tabs.html" target="navTab" rel="w_tabs">选项卡面板</a></li>
-									<li><a href="w_dialog.html" target="navTab" rel="w_dialog">弹出窗口</a></li>
-									<li><a href="w_alert.html" target="navTab" rel="w_alert">提示窗口</a></li>
-									<li><a href="w_list.html" target="navTab" rel="w_list">CSS表格容器</a></li>
-									<li><a href="w_removeSelected.html" target="navTab" rel="w_table">表格数据库排序+批量删除</a></li>
-									<li><a href="w_tree.html" target="navTab" rel="w_tree">树形菜单</a></li>
-									<li><a href="w_accordion.html" target="navTab" rel="w_accordion">滑动菜单</a></li>
-									<li><a href="w_editor.html" target="navTab" rel="w_editor">编辑器</a></li>
-									<li><a href="w_datepicker.html" target="navTab" rel="w_datepicker">日期控件</a></li>
-									<li><a href="demo/database/db_widget.html" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
-									<li><a href="demo/database/treeBringBack.html" target="navTab" rel="db">tree查找带回</a></li>
-									<li><a href="demo/sortDrag/1.html" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/2.html" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/form.html" target="navTab" rel="sortDrag">可拖动表单示例</a></li>
-								</ul>
-							</li>
-							<li><a>表单组件</a>
-								<ul>
-									<li><a href="w_validation.html" target="navTab" rel="w_validation">表单验证</a></li>
-									<li><a href="w_button.html" target="navTab" rel="w_button">按钮</a></li>
-									<li><a href="w_textInput.html" target="navTab" rel="w_textInput">文本框/文本域</a></li>
-									<li><a href="w_combox.html" target="navTab" rel="w_combox">下拉菜单</a></li>
-									<li><a href="w_checkbox.html" target="navTab" rel="w_checkbox">多选框/单选框</a></li>
-									<li><a href="demo_upload.html" target="navTab" rel="demo_upload">iframeCallback表单提交</a></li>
-									<li><a href="w_html5_upload.html" target="navTab" rel="w_html5_upload">html5文件上传</a></li>
-								</ul>
-							</li>
-							<li><a>组合应用</a>
-								<ul>
-									<li><a href="demo/pagination/layout1.html" target="navTab" rel="pagination1">局部刷新分页1</a></li>
-									<li><a href="demo/pagination/layout2.html" target="navTab" rel="pagination2">局部刷新分页2</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2><i class="icon-cogs icon-large"></i> 典型页面 <i class="icon icon-chevron-up"></i></h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="demo_page_form.html" target="navTab" rel="demo_page_form">表单录入页面</a></li>
-							<li><a href="demo_page_list.html" target="navTab" rel="demo_page_list">表单查询页面</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    <div id="navTab" class="tabsPage">
-        <div class="tabsPageHeader">
-            <div class="tabsPageHeaderContent">
-                <ul class="navTab-tab">
-                    <li tabid="main" class="main" url="main.html"><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
-                </ul>
-            </div>
-            <a href="javascript:;" onclick="return false;" class="tabsLeft"><i class="icon-backward icon-large"></i></a>
-            <a href="javascript:;" onclick="return false;" class="tabsRight"><i class="icon-forward icon-large"></i></a>
-            <a href="javascript:;" onclick="return false;" class="tabsMore"><i class="icon-th-list icon-large"></i></a>
-        </div>
-        <ul class="tabsMoreList">
-            <li><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
+    <header>
+        <a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
+        <ul class="nav">
+            <li><a href="javascript:"><i class="icon-user icon-large"></i> 管理员</a></li>
+            <li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
+            <li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
         </ul>
-        <div class="navTab-panel tabsPageContent layoutBox">
-            <div class="page unitBox work-bench">
-				<a class="button float" href="main.html" target="navTab" rel="main"><i class="icon-refresh"></i>刷新</a>
-				<div class="pageFormContent" layoutH>
-					<div class="unit">
-						<h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
-					</div>
-					<div class="unit">
-						<script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
-					</div>
-					<fieldset>
-						<legend>我的账号</legend>
-						<div class="unit">
-							<ul>
-								<li>
-									<div class="card">
-										<i class="icon-book icon-large icon"></i>
-										<p>我的待审核内容</p>
-										<h3>19</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-edit icon-large icon"></i>
-										<p>我的草稿</p>
-										<h3>0</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-signin icon-large icon"></i>
-										<p>登录次数</p>
-										<h3>6306</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-unlock-alt icon-large icon-large icon"></i>
-										<p>我的登录授权</p>
-										<h3>4</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-calendar-empty icon-large icon"></i>
-										<p class="label">上次登录日期:</p>
-										<p>2021-06-27 00:32</p>
-                    				</div>
-				                </li>
-				                <li>
-				                    <div class="card">
-				                        <i class="bi bi-cloudy-fill icon-large icon"></i>
-				                        <p class="label">上次登录IP:</p>
-										<p>127.0.0.1</p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>评论管理</legend>
-						<div class="unit">
-							<div id="comment" class="chart"></div>
-							<ul class="clearfix">
-								<li>
-									<div class="card">
-										<i class="icon-comment icon-large icon"></i>
-										<p>待审核评论</p>
-										<h3>0</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-comments icon-large icon"></i>
-										<p>评论数</p>
-										<h3>274</h3>
-									</div>
-								</li>
-							</ul>
-						</div>
+        <ul id="navMenu">
+            <li>
+                <a href="javascript:;" onclick="return false;" class="toggleCollapse"><i class="icon icon-chevron-sign-left icon-large"></i></a>
+            </li>
+            <li class="selected"><a href="menu/main.html" parentId="mian"><i class="icon-user icon-large"></i> 功能</a></li>
+            <li><a href="menu/chart.html"  parentId="chart"><i class="icon-book icon-large"></i> 报表</a></li>
+        </ul>
+    </header>
+    <main>
+        <div id="leftside">
+            <div id="sidebar_s"><i class="icon-reorder icon-large"></i></div>
+            <div id="sidebar">
+                <div id="menu">
+                    <div class="accordion">
+                        <div class="accordionHeader">
+                            <h2><i class="icon-user icon-large"></i> 界面组件 <i class="icon icon-chevron-up"></i></h2>
+                        </div>
+                        <div class="accordionContent">
+                            <ul class="tree treeFolder">
+                                <li><a href="tabsPage.html" target="navTab">主面板</a>
+                                    <ul>
+                                        <li><a href="dwz.html" target="navTab" rel="dwz">DWZ介绍</a></li>
+                                        <li><a href="https://www.publiccms.com" target="navTab" rel="external" external="true">外部页面(页面一)</a></li>
+                                        <li><a href="login.html" target="navTab" rel="external" external="true">iframe navTab页面</a></li>
+                                        <li><a href="demo_page_list.html" target="navTab" rel="page1" fresh="false">替换页面一</a></li>
+                                        <li><a href="demo_page_list.html" target="navTab" rel="page3" title="自定义标签名">页面二</a></li>
+                                        <li><a href="demo_page_list.html" target="navTab" rel="page4" fresh="false">不刷新页面（fresh="false"）</a></li>
+                                        <li><a href="w_editor.html" target="navTab">表单提交会话超时</a></li>
+                                        <li><a href="demo/common/ajaxTimeout.html" target="navTab">navTab会话超时</a></li>
+                                        <li><a href="demo/common/ajaxTimeout.html" target="dialog">dialog会话超时</a></li>
+                                    </ul>
+                                </li>
+                                <li><a>常用组件</a>
+                                    <ul>
+                                        <li><a href="w_tabs.html" target="navTab" rel="w_tabs">选项卡面板</a></li>
+                                        <li><a href="w_dialog.html" target="navTab" rel="w_dialog">弹出窗口</a></li>
+                                        <li><a href="w_alert.html" target="navTab" rel="w_alert">提示窗口</a></li>
+                                        <li><a href="w_list.html" target="navTab" rel="w_list">CSS表格容器</a></li>
+                                        <li><a href="w_removeSelected.html" target="navTab" rel="w_table">表格数据库排序+批量删除</a></li>
+                                        <li><a href="w_tree.html" target="navTab" rel="w_tree">树形菜单</a></li>
+                                        <li><a href="w_accordion.html" target="navTab" rel="w_accordion">滑动菜单</a></li>
+                                        <li><a href="w_editor.html" target="navTab" rel="w_editor">编辑器</a></li>
+                                        <li><a href="w_datepicker.html" target="navTab" rel="w_datepicker">日期控件</a></li>
+                                        <li><a href="demo/database/db_widget.html" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
+                                        <li><a href="demo/database/treeBringBack.html" target="navTab" rel="db">tree查找带回</a></li>
+                                        <li><a href="demo/sortDrag/1.html" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
+                                        <li><a href="demo/sortDrag/2.html" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
+                                        <li><a href="demo/sortDrag/form.html" target="navTab" rel="sortDrag">可拖动表单示例</a></li>
+                                    </ul>
+                                </li>
+                                <li><a>表单组件</a>
+                                    <ul>
+                                        <li><a href="w_validation.html" target="navTab" rel="w_validation">表单验证</a></li>
+                                        <li><a href="w_button.html" target="navTab" rel="w_button">按钮</a></li>
+                                        <li><a href="w_textInput.html" target="navTab" rel="w_textInput">文本框/文本域</a></li>
+                                        <li><a href="w_combox.html" target="navTab" rel="w_combox">下拉菜单</a></li>
+                                        <li><a href="w_checkbox.html" target="navTab" rel="w_checkbox">多选框/单选框</a></li>
+                                        <li><a href="demo_upload.html" target="navTab" rel="demo_upload">iframeCallback表单提交</a></li>
+                                        <li><a href="w_html5_upload.html" target="navTab" rel="w_html5_upload">html5文件上传</a></li>
+                                    </ul>
+                                </li>
+                                <li><a>组合应用</a>
+                                    <ul>
+                                        <li><a href="demo/pagination/layout1.html" target="navTab" rel="pagination1">局部刷新分页1</a></li>
+                                        <li><a href="demo/pagination/layout2.html" target="navTab" rel="pagination2">局部刷新分页2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="accordionHeader">
+                            <h2><i class="icon-cogs icon-large"></i> 典型页面 <i class="icon icon-chevron-up"></i></h2>
+                        </div>
+                        <div class="accordionContent">
+                            <ul class="tree treeFolder">
+                                <li><a href="demo_page_form.html" target="navTab" rel="demo_page_form">表单录入页面</a></li>
+                                <li><a href="demo_page_list.html" target="navTab" rel="demo_page_list">表单查询页面</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="navTab" class="tabsPage">
+            <div class="tabsPageHeader">
+                <div class="tabsPageHeaderContent">
+                    <ul class="navTab-tab">
+                        <li tabid="main" class="main" url="main.html"><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
+                    </ul>
+                </div>
+                <a href="javascript:;" onclick="return false;" class="tabsLeft"><i class="icon-backward icon-large"></i></a>
+                <a href="javascript:;" onclick="return false;" class="tabsRight"><i class="icon-forward icon-large"></i></a>
+                <a href="javascript:;" onclick="return false;" class="tabsMore"><i class="icon-th-list icon-large"></i></a>
+            </div>
+            <ul class="tabsMoreList">
+                <li><a href="javascript:;" onclick="return false;"><i class="icon-home icon-large"></i> 工作台</a></li>
+            </ul>
+            <div class="navTab-panel tabsPageContent layoutBox">
+                <div class="page unitBox work-bench">
+                    <a class="button float" href="main.html" target="navTab" rel="main"><i class="icon-refresh"></i>刷新</a>
+                    <div class="pageFormContent" layoutH>
+                        <div class="unit">
+                            <h1>该页面仅展示<a href="https://cms.publiccms.com/admin/">PublicCMS后台</a>使用的UI框架，该UI框架由<a href="http://jui.org/">DWZ</a>改造而来,延用之前的apache开源协议，您可以自由使用在您的软件产品中</h1>
+                        </div>
+                        <div class="unit">
+                            <script src='https://gitee.com/sanluan/dwz-for-Public-CMS/widget_preview'></script>
+                        </div>
+                        <fieldset>
+                            <legend>我的账号</legend>
+                            <div class="unit">
+                                <ul>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-book icon-large icon"></i>
+                                            <p>我的待审核内容</p>
+                                            <h3>19</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-edit icon-large icon"></i>
+                                            <p>我的草稿</p>
+                                            <h3>0</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-signin icon-large icon"></i>
+                                            <p>登录次数</p>
+                                            <h3>6306</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-unlock-alt icon-large icon-large icon"></i>
+                                            <p>我的登录授权</p>
+                                            <h3>4</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-calendar-empty icon-large icon"></i>
+                                            <p class="label">上次登录日期:</p>
+                                            <p>2021-06-27 00:32</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="bi bi-cloudy-fill icon-large icon"></i>
+                                            <p class="label">上次登录IP:</p>
+                                            <p>127.0.0.1</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>评论管理</legend>
+                            <div class="unit">
+                                <div id="comment" class="chart"></div>
+                                <ul class="clearfix">
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-comment icon-large icon"></i>
+                                            <p>待审核评论</p>
+                                            <h3>0</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-comments icon-large icon"></i>
+                                            <p>评论数</p>
+                                            <h3>274</h3>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
 <script>
 var commentChart=echarts.init(document.getElementById('comment'));
 commentChart.setOption({
@@ -226,47 +226,48 @@ commentChart.setOption({
     {
         name:'操作',
         type:'line',
+        smooth: true,
         data:[0,4,1,0,0,0,1,0],
         areaStyle: {}
     }]
 });
 </script>
-				   </fieldset>
-					<fieldset>
-						<legend>用户数据报表</legend>
-						<div class="unit">
-							<div id="visit" class="chart"></div>
-							<ul>
-								<li>
-									<div class="card">
-										<i class="icon-signal icon-large icon"></i>
-										<p>注册</p>
-										<h3>0</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-				                        <i class="icon-signal icon-large icon"></i>
-				                        <p>用户</p>
-										<h3>975</h3>
-				                    </div>
-				                </li>
-				                <li>
-				                    <div class="card">
-										<i class="icon-ticket icon-large icon"></i>
-										<p>登录</p>
-										<h3>124</h3>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<i class="icon-list-alt icon-large icon"></i>
-										<p>操作</p>
-										<h3>4</h3>
-									</div>
-								</li>
-							</ul>
-						</div>
+                       </fieldset>
+                        <fieldset>
+                            <legend>用户数据报表</legend>
+                            <div class="unit">
+                                <div id="visit" class="chart"></div>
+                                <ul>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-signal icon-large icon"></i>
+                                            <p>注册</p>
+                                            <h3>0</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-signal icon-large icon"></i>
+                                            <p>用户</p>
+                                            <h3>975</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-ticket icon-large icon"></i>
+                                            <p>登录</p>
+                                            <h3>124</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="card">
+                                            <i class="icon-list-alt icon-large icon"></i>
+                                            <p>操作</p>
+                                            <h3>4</h3>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
 <script>
 var visitChart = echarts.init(document.getElementById('visit'));
 visitChart.setOption({
@@ -299,128 +300,131 @@ visitChart.setOption({
     {
            name:'PV',
            type:'line',
+           smooth: true,
            data:[1770,1554,1574,811,600,1881,1450],
            areaStyle: {}
        },
        {
            name:'UV',
            type:'line',
+           smooth: true,
            data:[394,448,451,355,352,511,413],
            areaStyle: {}
        },
        {
            name:'IP Views',
            type:'line',
+           smooth: true,
            data:[339,370,371,282,287,434,323],
            areaStyle: {}
        }]
 });
 </script>
-					</fieldset>
-					<fieldset>
-						<legend>系统</legend>
-						<div class="unit">
-							<p class="cmsVersion">
-								<label>PublicCMS:</label>
-								<a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.d</a> <span class="new hide" style="color: green;; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
-							</p>
-							<p>
-								<label>时区:</label>Asia/Shanghai
-							</p>
-							<p>
-								<label>管理节点:</label>
-								11146bb6-0329-465a-b236-4c28df87205b
-							</p>
-							<p>
-								<label>数据目录:</label>
-								D:\data\publiccms
-							</p>
-							<p>
-								<label>磁盘空间:</label>156.25GB
-							</p>
-							<div class="divider"></div>
-							<div class="unit">
-								<p>
-									<label>站点数量:</label>
-									8
-								</p>
-								<p>
-									<label>域名数量:</label>
-									9
-								</p>
-							</div>
-						</div>
-					</fieldset>
-				</div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>系统</legend>
+                            <div class="unit">
+                                <p class="cmsVersion">
+                                    <label>PublicCMS:</label>
+                                    <a href="//www.publiccms.com/" target="navTab" rel="publiccms.com" icon="<i class='icon-home icon-large'></i>" title="PublicCMS官网">V4.0.202204.d</a> <span class="new hide" style="color: green;; display: inline;">[最新版本]</span><span class="old hide" style="color:red">[过时版本]</span>
+                                </p>
+                                <p>
+                                    <label>时区:</label>Asia/Shanghai
+                                </p>
+                                <p>
+                                    <label>管理节点:</label>
+                                    11146bb6-0329-465a-b236-4c28df87205b
+                                </p>
+                                <p>
+                                    <label>数据目录:</label>
+                                    D:\data\publiccms
+                                </p>
+                                <p>
+                                    <label>磁盘空间:</label>156.25GB
+                                </p>
+                                <div class="divider"></div>
+                                <div class="unit">
+                                    <p>
+                                        <label>站点数量:</label>
+                                        8
+                                    </p>
+                                    <p>
+                                        <label>域名数量:</label>
+                                        9
+                                    </p>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-<footer>
-   <ul class="langList">
-        <li>
-        	<a href="ajax/changeLocale.json?lang=en" target="ajaxTodo">
-        		<img src="resource/images/en.png" alt="English"/>English
-        	</a>
-        </li>
-        <li class="current-lang">
-        	<a href="ajax/changeLocale.json?lang=zh" target="ajaxTodo">
-        		<img src="resource/images/zh.png" alt="中文"/>中文
-        	</a>
-        </li>
-		<li>
-        	<a href="changeLocale?lang=zh_TW" target="ajaxTodo">
-        		<img src="resource/images/zh_TW.png" alt="繁體"/>繁體
-        	</a>
-        </li>
-        <li>
-        	<a href="ajax/changeLocale.json?lang=ja" target="ajaxTodo">
-        		<img src="resource/images/ja.png" alt="日本語"/>日本語
-        	</a>
-        </li>
-    </ul>
-    Copyright &copy; 2022
+    </main>
+    <footer>
+       <ul class="langList">
+            <li>
+                <a href="ajax/changeLocale.json?lang=en" target="ajaxTodo">
+                    <img src="resource/images/en.png" alt="English"/>English
+                </a>
+            </li>
+            <li class="current-lang">
+                <a href="ajax/changeLocale.json?lang=zh" target="ajaxTodo">
+                    <img src="resource/images/zh.png" alt="中文"/>中文
+                </a>
+            </li>
+            <li>
+                <a href="changeLocale?lang=zh_TW" target="ajaxTodo">
+                    <img src="resource/images/zh_TW.png" alt="繁體"/>繁體
+                </a>
+            </li>
+            <li>
+                <a href="ajax/changeLocale.json?lang=ja" target="ajaxTodo">
+                    <img src="resource/images/ja.png" alt="日本語"/>日本語
+                </a>
+            </li>
+        </ul>
+        Copyright &copy; 2022
 
-    <ul class="themeList" id="themeList">
-        <li theme="toptry"><div></div></li>
-        <li theme="red"><div></div></li>
-    </ul>
-</footer>
-<script src="resource/plugins/jquery/jquery.min.js"></script>
-<script src="resource/plugins/jquery/jquery.cookie.js"></script>
-<script src="resource/plugins/jquery/jquery.validate.js"></script>
-<script src="resource/plugins/encrypt/base64.js"></script>
-<script src="resource/plugins/encrypt/sha512.min.js"></script>
-<script src="resource/plugins/spectrum/spectrum.min.js"></script>
-<script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
-<script src="resource/js/jui.min.js"></script>
-<script src="resource/js/loadscripts.js"></script>
-<script src="resource/js/jui.plugins.js?version=202211"></script>
-<script src="resource/js/lang/regional.zh.js"></script> <!-- en,ja,zh_tw-->
-<script>
-	var base="ajax";
-	window.UEDITOR_HOME_URL="/ui/resource/plugins/ueditor/";
-	window.UEDITOR_LANGUAGE = "zh-cn/zh-cn.js";
-	window.CKEDITOR_BASEPATH="/ui/resource/plugins/ckeditor/";
-	window.CKEDITOR_LANGUAGE="zh-cn";
-	window.KINDEDITOR_OPTIONS = {
-			width:"60%",
-			height:"400px",
-			basePath:"/ui/resource/plugins/kindeditor/",
-			uploadJson : "ajax/upload.json",
-			fileManagerJson : "ajax/fileList.json",
-			allowFileManager : true,
-			formatUploadUrl : false
-	};
-	window.KINDEDITOR_LANGUAGE = "lang/zh-CN.js";
-    window.TIMYMCE_HOME_URL = "/ui/resource/plugins/tinymce/";
-    window.TIMYMCE_LANGUAGE = "zh-Hans";
-    window.TIMYMCE_RESOURCE_PREFIX = "/";
-    window.TIMYMCE_FILETYPES = ".mp3,.wav,.mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.png,.jpg,.jpeg,.gif,.bmp,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.psd";
-    window.LOADSCRIPTS_BASE = "/ui";
-	</script>
+        <ul class="themeList" id="themeList">
+            <li theme="toptry"><div></div></li>
+            <li theme="red"><div></div></li>
+        </ul>
+    </footer>
+    <script>
+        var base="ajax";
+        window.UEDITOR_HOME_URL="/ui/resource/plugins/ueditor/";
+        window.UEDITOR_LANGUAGE = "zh-cn/zh-cn.js";
+        window.CKEDITOR_BASEPATH="/ui/resource/plugins/ckeditor/";
+        window.CKEDITOR_LANGUAGE="zh-cn";
+        window.KINDEDITOR_OPTIONS = {
+                width:"60%",
+                height:"400px",
+                basePath:"/ui/resource/plugins/kindeditor/",
+                uploadJson : "ajax/upload.json",
+                fileManagerJson : "ajax/fileList.json",
+                allowFileManager : true,
+                formatUploadUrl : false
+        };
+        window.KINDEDITOR_LANGUAGE = "lang/zh-CN.js";
+        window.TIMYMCE_HOME_URL = "/ui/resource/plugins/tinymce/";
+        window.TIMYMCE_LANGUAGE = "zh-Hans";
+        window.TIMYMCE_RESOURCE_PREFIX = "/";
+        window.TIMYMCE_FILETYPES = ".mp3,.wav,.mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.png,.jpg,.jpeg,.gif,.bmp,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.psd";
+        window.LOADSCRIPTS_BASE = "/ui";
+    </script>
+    <script src="resource/plugins/jquery/jquery.min.js"></script>
+    <script src="resource/plugins/jquery/jquery.cookie.js"></script>
+    <script src="resource/plugins/jquery/jquery.validate.js"></script>
+    <script src="resource/plugins/encrypt/base64.js"></script>
+    <script src="resource/plugins/encrypt/sha512.min.js"></script>
+    <script src="resource/plugins/spectrum/spectrum.min.js"></script>
+    <script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
+    <script src="resource/js/loadscripts.js"></script>
     <script src="resource/js/loadscripts.config.js"></script>
     <script src="resource/js/tinymce.config.js"></script>
+    <script src="resource/js/jui.min.js"></script>
+    <script src="resource/js/jui.plugins.js?version=202211"></script>
+    <script src="resource/js/lang/regional.zh.js"></script> <!-- en,ja,zh_tw-->
     <script>
 	DWZ.init("resource/jui.frag.html", {
 		loginUrl:"login_dialog.html", loginTitle:"登录",

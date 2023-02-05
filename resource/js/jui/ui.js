@@ -3,7 +3,7 @@
  */
 function initEnv() {
     $("body").append(JUI.frag["dwzFrag"]);
-    if (!$.support.leadingWhitespace && /6.0/.test(navigator.userAgent) ) {
+    if (!$.support.leadingWhitespace ) {
         try {
             document.execCommand("BackgroundImageCache", false, true);
         } catch (e) {}
@@ -11,15 +11,16 @@ function initEnv() {
     $(window).resize(function() {
         initLayout();
         $(this).trigger(JUI.eventType.resizeGrid);
+        $(this).trigger(JUI.eventType.resizeChart);
     });
     var ajaxbg = $("#background,#progressBar");
     ajaxbg.hide();
-    ajaxbg.click(function(){
-        ajaxbg.hide();
-    });
     $(document).ajaxStart(function() {
         ajaxbg.show();
     }).ajaxStop(function() {
+        ajaxbg.hide();
+    });
+    $("#progressBar").click(function(){
         ajaxbg.hide();
     });
     $("#leftside").jBar({
@@ -43,6 +44,10 @@ function initEnv() {
                 var tabid = hash.substring(hash.indexOf('_') + 1);
                 if(tabid ) {
                     callback = function(){
+                        var $box = $('#menu a[rel='+escapeJquery(tabid)+']').closest('.accordionContent');
+                        if(!$box.is(":visible")){
+                            $box.prev().click();
+                        }
                         $('#menu a[rel='+escapeJquery(tabid)+']').click();
                     }
                 }

@@ -30,8 +30,8 @@
 
     // JUI regional
     $.setRegional("datepicker", {
-        dayNames: ['日', '月', '火', '水', '木', '金', '土'],
-        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+        dayNames: ["日", "月", "火", "水", "木", "金", "土"],
+        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
     });
     $.setRegional("alertMsg", {
         title:{error:"エラー", info:"プロンプト", warn:"アラート", correct:"成功", confirm:"確認プロンプト"},
