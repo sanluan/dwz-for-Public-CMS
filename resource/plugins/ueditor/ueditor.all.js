@@ -1,7 +1,7 @@
 /*!
  * UEditor
  * version: ueditor
- * build: Thu Feb 09 2023 18:12:07 GMT+0800 (中国标准时间)
+ * build: Sat Feb 25 2023 09:09:59 GMT+0800 (中国标准时间)
  */
 
 (function(){
@@ -17162,10 +17162,6 @@ UE.plugins['fiximgclick'] = (function () {
             },
             updateTargetElement: function () {
                 var me = this;
-                domUtils.setStyles(me.target, {
-                    'width': me.resizer.style.width,
-                    'height': me.resizer.style.height
-                });
                 me.target.width = parseInt(me.resizer.style.width);
                 me.target.height = parseInt(me.resizer.style.height);
                 me.attachTo(me.target);
@@ -24744,7 +24740,7 @@ UE.plugin.register('insertfile', function (){
                         title = item.title || item.url.substr(item.url.lastIndexOf('/') + 1);
                         html += '<p style="line-height: 16px;">' +
                             '<img style="vertical-align: middle; margin-right: 2px;" src="'+ icon + '" _src="' + icon + '" />' +
-                            '<a style="font-size:12px; color:#0066cc;" href="' + item.url +'" title="' + title + '">' + title + '</a>' +
+                            '<a style="font-size:12px; color:#0066cc;" href="' + item.url +'" title="' + title + '" download="' + title + '">' + title + '</a>' +
                             '</p>';
                     }
                     me.execCommand('insertHtml', html);
