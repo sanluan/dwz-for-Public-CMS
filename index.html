@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.6">
 	<link href="resource/plugins/codemirror/lib/codemirror.css" rel="stylesheet" >
     <link href="resource/plugins/codemirror/addon/hint/show-hint.css" rel="stylesheet" >
+    <link href="resource/plugins/codemirror/addon/fold/foldgutter.css" rel="stylesheet"/>
+    <link href="resource/plugins/codemirror/theme/erlang-dark.css" rel="stylesheet"/>
 	<link href="resource/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="resource/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
     <link href="resource/plugins/spectrum/spectrum.min.css" rel="stylesheet"/>
@@ -15,10 +17,11 @@
 	<script src="resource/js/echarts.proxy.js"></script>
 </head>
 <body>
+    <div id="background"></div><div id="progressBar"><i class="icon-spinner icon-spin"></i></div>
     <header>
         <a class="logo" href="./"><img src="resource/logo.png" alt="LOGO"/></a>
         <ul class="nav">
-            <li><a href="javascript:"><i class="icon-user icon-large"></i> 管理员</a></li>
+            <li><a href="javascript:"><i class="avatar icon-user icon-large"></i> 管理员</a></li>
             <li><a href="changepwd.html" target="dialog"><i class="icon-key icon-large"></i> 修改密码</a></li>
             <li><a href="login.html"><i class="icon-signout icon-large"></i> 退出</a></li>
         </ul>
@@ -498,33 +501,26 @@ visitChart.setOption({
     </footer>
     <script>
         var base="ajax";
-        window.UEDITOR_HOME_URL="/ui/resource/plugins/ueditor/";
+        window.UEDITOR_HOME_URL="resource/plugins/ueditor/";
+        window.UEDITOR_BASE_URL="resource/plugins/ueditor/";
         window.UEDITOR_LANGUAGE = "zh-cn/zh-cn.js";
-        window.CKEDITOR_BASEPATH="/ui/resource/plugins/ckeditor/";
-        window.CKEDITOR_LANGUAGE="zh-cn";
-        window.KINDEDITOR_OPTIONS = {
-                width:"60%",
-                height:"400px",
-                basePath:"/ui/resource/plugins/kindeditor/",
-                uploadJson : "ajax/upload.json",
-                fileManagerJson : "ajax/fileList.json",
-                allowFileManager : true,
-                formatUploadUrl : false
-        };
-        window.KINDEDITOR_LANGUAGE = "lang/zh-CN.js";
-        window.TIMYMCE_HOME_URL = "/ui/resource/plugins/tinymce/";
+        window.TIMYMCE_HOME_URL = "resource/plugins/tinymce/";
         window.TIMYMCE_LANGUAGE = "zh-Hans";
         window.TIMYMCE_RESOURCE_PREFIX = "/";
         window.TIMYMCE_FILETYPES = ".mp3,.wav,.mid,.flv,.swf,.mkv,.avi,.rm,.rmvb,.mpeg,.mpg,.ogg,.ogv,.mov,.wmv,.mp4,.webm,.png,.jpg,.jpeg,.gif,.bmp,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.txt,.md,.xml,.ofd,.rar,.zip,.tar,.gz,.7z,.bz2,.cab,.iso,.psd";
-        window.LOADSCRIPTS_BASE = "/ui";
+        window.CKEDITOR_BASEPATH="resource/plugins/ckeditor/";
+        window.CKEDITOR_LANGUAGE="zh-cn";
+        window.LOADSCRIPTS_BASE = "";
     </script>
     <script src="resource/plugins/jquery/jquery.min.js"></script>
     <script src="resource/plugins/jquery/jquery.cookie.js"></script>
-    <script src="resource/plugins/jquery/jquery.validate.js"></script>
+    <script src="resource/plugins/jquery/jquery.validate.min.js"></script>
     <script src="resource/plugins/encrypt/base64.js"></script>
     <script src="resource/plugins/encrypt/sha512.min.js"></script>
     <script src="resource/plugins/spectrum/spectrum.min.js"></script>
     <script src="resource/plugins/spectrum/i18n/jquery.spectrum-zh-cn.js"></script>
+    <script src="resource/plugins/filerobot-image-editor/config.js"></script>
+    <script src="resource/plugins/filerobot-image-editor/lang/zh.js"></script>
     <script src="resource/js/loadscripts.js"></script>
     <script src="resource/js/loadscripts.config.js"></script>
     <script src="resource/js/tinymce.config.js"></script>

@@ -40,31 +40,8 @@
         var tabs = $G('tabHeads').children;
         for (var i = 0; i < tabs.length; i++) {
             domUtils.on(tabs[i], "click", function (e) {
-                var j, bodyId, target = e.target || e.srcElement;
-                for (j = 0; j < tabs.length; j++) {
-                    bodyId = tabs[j].getAttribute('data-content-id');
-                    if(tabs[j] == target){
-                        domUtils.addClass(tabs[j], 'focus');
-                        domUtils.addClass($G(bodyId), 'focus');
-                        switch (bodyId) {
-                            case 'upload':
-                                uploadFile = uploadFile || new UploadFile('queueList')
-                                break;
-                            case 'onlineVideo':
-                                onlineVideo = onlineVideo || new OnlineVideo('videoList');
-                                break;
-                            case 'uploadImage':
-                                uploadImage = uploadImage || new UploadImage('imageQueueList');
-                                break;
-                            case 'onlineImage':
-                                onlineImage = onlineImage || new OnlineImage('imageList');
-                                break;
-                        }
-                    }else {
-                        domUtils.removeClasses(tabs[j], 'focus');
-                        domUtils.removeClasses($G(bodyId), 'focus');
-                    }
-                }
+                var target = e.target || e.srcElement;
+                switchTabs(target.getAttribute('data-content-id'));
             });
         }
     }
@@ -76,6 +53,20 @@
             if(bodyId==selectedTab){
                 domUtils.addClass(tabs[i], 'focus');
                 domUtils.addClass($G(selectedTab), 'focus');
+                switch (bodyId) {
+                    case 'upload':
+                        uploadFile = uploadFile || new UploadFile('queueList')
+                        break;
+                    case 'onlineVideo':
+                        onlineVideo = onlineVideo || new OnlineVideo('videoList');
+                        break;
+                    case 'uploadImage':
+                        uploadImage = uploadImage || new UploadImage('imageQueueList');
+                        break;
+                    case 'onlineImage':
+                        onlineImage = onlineImage || new OnlineImage('imageList');
+                        break;
+                }
             }else{
                 domUtils.removeClasses(tabs[i], 'focus');
                 domUtils.removeClasses($G(bodyId), 'focus');
@@ -458,7 +449,6 @@
                     extensions: acceptExtensions,
                     mimeTypes: 'video/*'
                 },
-                swf: '../../third-party/webuploader/Uploader.swf',
                 server: actionUrl,
                 fileVal: editor.getOpt('videoFieldName'),
                 duplicate: true,
@@ -819,7 +809,7 @@
 
             uploader.on('uploadError', function (file, code) {
             });
-            uploader.on('error', function (code, file) {
+            uploader.on('error', function (code, size, file) {
                 if (code == 'Q_TYPE_DENIED' || code == 'F_EXCEED_SIZE') {
                     addFile(file);
                 }
@@ -848,7 +838,7 @@
             var file, i, status, readyFile = 0, files = this.uploader.getFiles();
             for (i = 0; file = files[i++]; ) {
                 status = file.getStatus();
-                if (status == 'queued' || status == 'uploading' || status == 'progress') readyFile++;
+                if (status == 'inited' || status == 'queued' || status == 'uploading' || status == 'progress') readyFile++;
             }
             return readyFile;
         },
@@ -943,7 +933,6 @@
                     extensions: acceptExtensions,
                     mimeTypes: 'image/*'
                 },
-                swf: '../../third-party/webuploader/Uploader.swf',
                 server: actionUrl,
                 fileVal: editor.getOpt('imageFieldName'),
                 duplicate: true,
@@ -1307,7 +1296,7 @@
 
             uploader.on('uploadError', function (file, code) {
             });
-            uploader.on('error', function (code, file) {
+            uploader.on('error', function (code, size, file) {
                 if (code == 'Q_TYPE_DENIED' || code == 'F_EXCEED_SIZE') {
                     addFile(file);
                 }
@@ -1336,7 +1325,7 @@
             var file, i, status, readyFile = 0, files = this.uploader.getFiles();
             for (i = 0; file = files[i++]; ) {
                 status = file.getStatus();
-                if (status == 'queued' || status == 'uploading' || status == 'progress') readyFile++;
+                if (status == 'inited' || status == 'queued' || status == 'uploading' || status == 'progress') readyFile++;
             }
             return readyFile;
         },

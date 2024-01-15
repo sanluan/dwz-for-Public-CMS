@@ -23,6 +23,7 @@
 
         alphanumeric: "英字、数字、アンダーラインでなければなりません",
         lettersonly: "英字でなければなりません",
+        nocommas:"コンマを含めることはできません",
         letterstart: "英字、数字、アンダースコアで構成され、最初の文字は英字で始まらなければなりません",
         phone: "正確な電話番号を入力してください",
         domain: "正確なドメイン名を入力しなければなりません"
@@ -39,9 +40,10 @@
     });
 
 
-    $.setMessage('statusCode_503','サーバーは現在過負荷状態になるか、ただいまメンテナンス中です!');
-    $.setMessage('validateFormError','提出データが不完全、{0}フィールドにエラーがあります。修正してから提出してください！');    
-    $.setMessage('sessionTimout','タイムアウトしました、再度ログインしてください！');
-    $.setMessage('alertSelectMsg','一つのデータを選択してください!');
-    $.setMessage('forwardConfirmMsg','次へ!');
+    $.setMessage("statusCode_503","サーバーは現在過負荷状態になるか、ただいまメンテナンス中です!");
+    $.setMessage('networkError','ネットワークエラー!');
+    $.setMessage("validateFormError","提出データが不完全、{0}フィールドにエラーがあります。修正してから提出してください！");    
+    $.setMessage("sessionTimout","タイムアウトしました、再度ログインしてください！");
+    $.setMessage("alertSelectMsg","一つのデータを選択してください!");
+    $.setMessage("forwardConfirmMsg","次へ!");
 })(jQuery);

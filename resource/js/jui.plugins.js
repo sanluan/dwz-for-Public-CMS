@@ -101,28 +101,6 @@ JUI.regPlugins.push(function($p){
                     });
                 }
             }
-        } else if("kindeditor"==$this.attr("editorType")) {
-            if(window.editor.kindeditorInitd){
-                KindEditor.create("#"+dataId,window.KINDEDITOR_OPTIONS);
-            } else {
-                if(window.editor.kindeditorIniting){
-                    window.editor.kindeditorArray.push(dataId);
-                } else {
-                    window.editor.kindeditorIniting=true;
-                    ajaxbg.show();
-                    loadScripts(window.editor.kindeditorResources,function(){
-                        window.editor.kindeditorIniting=false;
-                        window.editor.kindeditorInitd=true;
-                        KindEditor.create("#"+dataId,window.KINDEDITOR_OPTIONS);
-                        ajaxbg.hide();
-                        if(0 < window.editor.kindeditorArray.length){
-                            for(var i=0;i<window.editor.kindeditorArray.length;i++){
-                                KindEditor.create("#"+window.editor.kindeditorArray[i],window.KINDEDITOR_OPTIONS);
-                            }
-                        }
-                    });
-                }
-            }
         } else {
             if(window.editor.ueditorInitd){
                 var editor = new baidu.editor.ui.Editor();
@@ -154,8 +132,14 @@ JUI.regPlugins.push(function($p){
                         if(0 < window.editor.ueditorArray.length){
                             for(var i=0;i<window.editor.ueditorArray.length;i++){
                                 var editor = new baidu.editor.ui.Editor();
-                                editor.render($("#"+window.editor.ueditorArray[i])[0]);
-                                $("#"+window.editor.ueditorArray[i]).attr("data-id","ueditorInstant"+editor.uid);
+                                var $textarea=$("#"+window.editor.ueditorArray[i]);
+                                $textarea.attr("data-id","ueditorInstant"+editor.uid);
+                                if ($textarea.attr("maxlength") ){
+                                    editor.setOpt({
+                                        maximumWords: $textarea.attr("maxlength")
+                                    });
+                                }
+                                editor.render($textarea[0]);
                             }
                         }
                     });
@@ -171,39 +155,42 @@ JUI.regPlugins.push(function($p){
         if($(this).attr("mode")){
             mode = $(this).attr("mode");
         }
-        if(!window.codemirror.initd){
-            ajaxbg.show();
-            loadScripts(window.codemirror.resources,function(){
-                window.codemirror.initd=true;
-                JUI.instances[dataId]=CodeMirror.fromTextArea($this[0], {
-                    mode: mode,
-                    lineNumbers: true,
-                    tabSize        : 4,
-                    indentUnit     : 4,
-                    lineWrapping   : true,
-                    indentWithTabs : true,
-                    extraKeys: { "Ctrl": "autocomplete" }
-                });
-                if($this.prop("readonly")){
-                    JUI.instances[dataId].setOption("readOnly",true);
-                }
-                $this.attr("data-id",dataId);
-                ajaxbg.hide();
-            });
-        } else {
+        function initCodeMirror($this,mode,dataId){
             JUI.instances[dataId]=CodeMirror.fromTextArea($this[0], {
                 mode: mode,
-                lineNumbers: true,
                 tabSize        : 4,
                 indentUnit     : 4,
+                lineNumbers    : true,
                 lineWrapping   : true,
                 indentWithTabs : true,
-                extraKeys: { "Ctrl": "autocomplete" }
+                foldGutter     : true,
+                gutters        : ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                extraKeys      : { "Ctrl": "autocomplete" }
             });
             if($this.prop("readonly")){
                 JUI.instances[dataId].setOption("readOnly",true);
             }
+            if ("function" === typeof $.cookie && $("select.codeTheme",$p).length){
+                $("select.codeTheme",$p).change(function(){
+                    $.cookie("code_theme",$(this).val(), { expires: 30 });
+                    JUI.instances[dataId].setOption("theme", $(this).val());
+                });
+                if ($.cookie("code_theme")) {
+                    $("select.codeTheme",$p).comboxVal($.cookie("code_theme"));
+                    JUI.instances[dataId].setOption("theme", $.cookie("code_theme"));
+                }
+            }
             $this.attr("data-id",dataId);
+        }
+        if(!window.codemirror.initd){
+            ajaxbg.show();
+            loadScripts(window.codemirror.resources,function(){
+                window.codemirror.initd=true;
+                initCodeMirror($this,mode,dataId);
+                ajaxbg.hide();
+            },window.codemirror.base);
+        } else {
+            initCodeMirror($this,mode,dataId);
         }
 
     });
@@ -231,7 +218,7 @@ JUI.regPlugins.push(function($p){
             if(value){
                 if(value.isUrl() ){
                     $(this).attr("href",value);
-                } else if($(this).data("prefix").indexOf("?")){
+                } else if(-1 < $(this).data("prefix").indexOf("?")){
                     $(this).attr("href",$(this).data("prefix")+encodeURIComponent(value));
                 } else {
                     $(this).attr("href",$(this).data("prefix")+value);
@@ -328,6 +315,19 @@ JUI.regPlugins.push(function($p){
             }
         });
     });
+});
+JUI.regPlugins.push(function($p){
+    if ("function" === typeof $.cookie ){
+        $("select[name=defaultFontFamily]",$p).each(function(){
+            var $this = $(this);
+            if($.cookie("import_font")) {
+                $this.comboxVal($.cookie("import_font"));
+            }
+            $this.change(function(){
+                $.cookie("import_font",$this.val(), { expires: 30 });
+            });
+        });
+    }
 });
 JUI.regPlugins.push(function($p){
     $("input.color", $p).each(function() {
